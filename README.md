@@ -1,6 +1,6 @@
-# Projeto Integrador 
+# Projeto Integrador - BACK-END
 
-## Back-End
+## Etapa 01
 
 ### Funcionalidades Essenciais
 
