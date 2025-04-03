@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meu Perfil - Social Events</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <h1>Social Events</h1>
+            </div>
+            <div class="nav-links">
+                <a href="index.html">Início</a>
+                <a href="#">Projetos</a>
+                <a href="#">Eventos</a>
+                <a href="#" class="active">Meu Perfil</a>
+                <a href="#" id="logoutBtn">Sair</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="profile-container">
+        <section class="profile-header">
+            <div class="profile-image">
+                <img src="images/profile-placeholder.jpg" alt="Foto de perfil">
+                <button class="edit-profile-btn">Editar Perfil</button>
+            </div>
+            <div class="profile-info">
+                <h2>João Silva</h2>
+                <p class="user-type">Voluntário</p>
+                <p class="user-bio">Apaixonado por ajudar a comunidade e participar de eventos sociais.</p>
+                <div class="profile-stats">
+                    <div class="stat">
+                        <span class="number">12</span>
+                        <span class="label">Projetos Seguidos</span>
+                    </div>
+                    <div class="stat">
+                        <span class="number">8</span>
+                        <span class="label">Eventos Participados</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="profile-content">
+            <div class="tabs">
+                <button class="tab-btn active" data-tab="events">Meus Eventos</button>
+                <button class="tab-btn" data-tab="projects">Projetos Seguidos</button>
+                <button class="tab-btn" data-tab="created">Projetos Criados</button>
+            </div>
+
+            <div class="tab-content">
+                <div class="tab-pane active" id="events">
+                    <h3>Próximos Eventos</h3>
+                    <div class="events-list">
+                        <!-- Eventos serão carregados dinamicamente via JavaScript -->
+                    </div>
+                </div>
+
+                <div class="tab-pane" id="projects">
+                    <h3>Projetos que Acompanho</h3>
+                    <div class="projects-list">
+                        <!-- Projetos serão carregados dinamicamente via JavaScript -->
+                    </div>
+                </div>
+
+                <div class="tab-pane" id="created">
+                    <h3>Meus Projetos</h3>
+                    <div class="created-projects">
+                        <!-- Projetos criados serão carregados dinamicamente via JavaScript -->
+                    </div>
+                    <button class="create-project-btn">Criar Novo Projeto</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2024 Social Events. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+</body>
+</html> 

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Social Events - Conectando Projetos Sociais</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <h1>Social Events</h1>
+            </div>
+            <div class="nav-links">
+                <a href="#" class="active">Início</a>
+                <a href="#">Projetos</a>
+                <a href="#">Eventos</a>
+                <a href="#" id="loginBtn">Login</a>
+                <a href="#" id="registerBtn">Cadastrar</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <h2>Conecte-se a Projetos Sociais</h2>
+            <p>Encontre e participe de eventos que fazem a diferença</p>
+            <button class="cta-button">Explorar Projetos</button>
+        </section>
+
+        <section class="projects-feed">
+            <h2>Projetos em Destaque</h2>
+            <div class="projects-grid">
+                <!-- Projetos serão carregados dinamicamente via JavaScript -->
+            </div>
+        </section>
+
+        <section class="events-feed">
+            <h2>Próximos Eventos</h2>
+            <div class="events-grid">
+                <!-- Eventos serão carregados dinamicamente via JavaScript -->
+            </div>
+        </section>
+    </main>
+
+    <!-- Modal de Login -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Login</h2>
+            <form id="loginForm">
+                <input type="email" placeholder="E-mail" required>
+                <input type="password" placeholder="Senha" required>
+                <button type="submit">Entrar</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal de Cadastro -->
+    <div id="registerModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Cadastro</h2>
+            <form id="registerForm">
+                <input type="text" placeholder="Nome Completo" required>
+                <input type="email" placeholder="E-mail" required>
+                <input type="password" placeholder="Senha" required>
+                <select required>
+                    <option value="">Selecione o tipo de usuário</option>
+                    <option value="volunteer">Voluntário</option>
+                    <option value="organizer">Organizador</option>
+                </select>
+                <button type="submit">Cadastrar</button>
+            </form>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2024 Social Events. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html> 

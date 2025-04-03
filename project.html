@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projeto Verde Vida - Social Events</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <h1>Social Events</h1>
+            </div>
+            <div class="nav-links">
+                <a href="index.html">Início</a>
+                <a href="#" class="active">Projetos</a>
+                <a href="#">Eventos</a>
+                <a href="profile.html">Meu Perfil</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="project-container">
+        <section class="project-header">
+            <div class="project-image">
+                <img src="images/project1.jpg" alt="Projeto Verde Vida">
+            </div>
+            <div class="project-info">
+                <h2>Projeto Verde Vida</h2>
+                <p class="project-organizer">Organizado por: ONG Verde Vida</p>
+                <p class="project-description">
+                    O Projeto Verde Vida é uma iniciativa de reflorestamento urbano que visa transformar 
+                    espaços públicos em áreas verdes, promovendo a conscientização ambiental e melhorando 
+                    a qualidade de vida da comunidade.
+                </p>
+                <div class="project-stats">
+                    <div class="stat">
+                        <span class="number">1200</span>
+                        <span class="label">Seguidores</span>
+                    </div>
+                    <div class="stat">
+                        <span class="number">45</span>
+                        <span class="label">Eventos Realizados</span>
+                    </div>
+                </div>
+                <div class="project-actions">
+                    <button class="follow-button">Seguir Projeto</button>
+                    <button class="share-button">Compartilhar</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="project-content">
+            <div class="tabs">
+                <button class="tab-btn active" data-tab="about">Sobre</button>
+                <button class="tab-btn" data-tab="events">Eventos</button>
+                <button class="tab-btn" data-tab="gallery">Galeria</button>
+                <button class="tab-btn" data-tab="volunteers">Voluntários</button>
+            </div>
+
+            <div class="tab-content">
+                <div class="tab-pane active" id="about">
+                    <h3>Sobre o Projeto</h3>
+                    <div class="about-content">
+                        <p>
+                            O Projeto Verde Vida nasceu da necessidade de transformar espaços urbanos 
+                            em áreas verdes sustentáveis. Nossa missão é promover a conscientização 
+                            ambiental através de ações práticas de reflorestamento e educação.
+                        </p>
+                        <h4>Objetivos</h4>
+                        <ul>
+                            <li>Plantar 1000 árvores em áreas urbanas até 2025</li>
+                            <li>Realizar workshops mensais de educação ambiental</li>
+                            <li>Engajar a comunidade em ações de preservação</li>
+                        </ul>
+                        <h4>Contato</h4>
+                        <p>Email: contato@verdevida.org</p>
+                        <p>Telefone: (11) 1234-5678</p>
+                    </div>
+                </div>
+
+                <div class="tab-pane" id="events">
+                    <h3>Próximos Eventos</h3>
+                    <div class="events-list">
+                        <!-- Eventos serão carregados dinamicamente via JavaScript -->
+                    </div>
+                </div>
+
+                <div class="tab-pane" id="gallery">
+                    <h3>Galeria de Fotos</h3>
+                    <div class="gallery-grid">
+                        <!-- Fotos serão carregadas dinamicamente via JavaScript -->
+                    </div>
+                </div>
+
+                <div class="tab-pane" id="volunteers">
+                    <h3>Nossa Equipe</h3>
+                    <div class="volunteers-grid">
+                        <!-- Voluntários serão carregados dinamicamente via JavaScript -->
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2024 Social Events. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+</body>
+</html> 
