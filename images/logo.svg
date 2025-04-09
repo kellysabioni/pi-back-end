@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+    <!-- Círculo de fundo -->
+    <circle cx="100" cy="100" r="90" fill="#4CAF50" opacity="0.1"/>
+    
+    <!-- Ícone de conexão -->
+    <path d="M50,100 C50,50 150,50 150,100" stroke="#4CAF50" stroke-width="8" fill="none"/>
+    <path d="M50,100 C50,150 150,150 150,100" stroke="#4CAF50" stroke-width="8" fill="none"/>
+    
+    <!-- Pontos de conexão -->
+    <circle cx="50" cy="100" r="12" fill="#4CAF50"/>
+    <circle cx="100" cy="100" r="12" fill="#4CAF50"/>
+    <circle cx="150" cy="100" r="12" fill="#4CAF50"/>
+</svg> 

@@ -1,44 +1,61 @@
-# Projeto Integrador - BACK-END
+# Social Events
 
-## Etapa 01
+Um projeto web para conectar pessoas a projetos e eventos sociais.
 
-### Funcionalidades Essenciais
+## O que foi feito
 
-1. **Cadastro de Usuários**
-   - Registro de novos usuários (ONGs, administradores, voluntários).
-   - Login e autenticação de usuários.
-   - Perfis de usuário com informações básicas e contato.
+- **Interface Moderna**: Design responsivo e amigável para o usuário
+- **Navegação Intuitiva**: Menu de navegação com ícones e links principais
+- **Funcionalidades**:
+  - Login e Cadastro de usuários
+  - Visualização de projetos e eventos
+  - Sistema de busca
+  - Perfil de usuário
+  - Criação de projetos/eventos
 
-2. **Cadastro de Entidades**
-   - Formulário para criação de novos projetos sociais, ONGs, entidades.
-   - Campos para descrição do projeto, área de atuação, objetivos, localização, datas e necessidades.
-   - Upload de imagens e documentos relacionados ao projeto.
+## Tecnologias Utilizadas
 
-3. **Cadastro de Eventos**
-   - Formulário para criação de eventos.
-   - Campos para descrição do evento, data, horário, local e atividades previstas.
-   - Upload de imagens e documentos relacionados ao evento.
+- HTML5
+- CSS3
+- JavaScript
+- Font Awesome (ícones)
+- Google Fonts
 
-4. **Busca e Filtro**
-   - Sistema de busca para encontrar projetos, ONGs e eventos.
-   - Filtros por categoria, localização, data, entre outros.
+## Estrutura do Projeto
 
-5. **Painel de Administração**
-   - Área restrita para administradores gerenciarem usuários, projetos, ONGs e eventos.
-   - Ferramentas para aprovação, edição e exclusão de cadastros.
+```
+Projeto-Integrador/
+├── css/
+│   └── style.css
+├── js/
+│   └── main.js
+├── images/
+│   ├── logo.svg
+│   └── favicon.svg
+├── index.html
+├── perfil.html
+├── criar.html
+└── projeto.html
+```
 
-6. **Interação e Comunicação**
-   - Sistema de comentários e avaliações para projetos e eventos.
-   - Mensagens privadas entre usuários e ONGs.
+## Como Usar
 
-7. **Notificações**
-   - Notificações por e-mail ou dentro da plataforma sobre novos projetos, eventos e mensagens.
+1. Clone o repositório
+2. Abra o arquivo `index.html` em seu navegador
+3. Navegue pelo site usando o menu principal
+4. Crie uma conta ou faça login para acessar todas as funcionalidades
 
-8. **Relatórios e Estatísticas**
-   - Geração de relatórios sobre projetos, eventos e atividades dos usuários.
-   - Estatísticas de participação e engajamento.
+## Recursos Implementados
 
-9. **Segurança e Privacidade**
-    - Implementação de medidas de segurança para proteção de dados.
-    - Políticas de privacidade e termos de uso claros e acessíveis.
+- **Página Inicial**: Lista de projetos e eventos disponíveis
+- **Perfil**: Visualização e edição de informações do usuário
+- **Criação**: Formulário para criar novos projetos/eventos
+- **Modais**: Janelas de login e cadastro
+- **Responsividade**: Layout adaptável para diferentes tamanhos de tela
 
+## Próximos Passos
+
+- Implementar backend para persistência de dados
+- Adicionar sistema de comentários
+- Implementar notificações
+- Adicionar sistema de avaliação de projetos

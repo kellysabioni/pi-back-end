@@ -3,140 +3,196 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Criar Projeto/Evento - Social Events</title>
+    <title>Criar Projeto - Social Events</title>
+    <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="js/main.js" defer></script>
 </head>
 <body>
     <header>
         <nav class="navbar">
+            <button class="menu-toggle" id="menuToggle">
+                <i class="fas fa-bars"></i>
+            </button>
             <div class="logo">
-                <h1><a href="/index.html">Social Events</a></h1>
+                <a href="/index.html" class="logo-link">
+                    <img src="images/logo.svg" alt="Social Events Logo" class="logo-img">
+                    <span class="logo-text">Social Events</span>
+                </a>
             </div>
-            <div class="nav-links">
-                <a href="/criar.html">PAGINA DE CRIAÇÃO</a>
-                <a href="/perfil.html">PAGINA DE PERFIL</a>
-                <a href="/projeto.html">PAGINA DE PROJETO</a>
+            <div class="nav-center">
+                <a href="/perfil.html" class="nav-icon">
+                    <i class="fas fa-user"></i>
+                    <span>Perfil</span>
+                </a>
+                <a href="/index.html" class="nav-icon">
+                    <i class="fas fa-compass"></i>
+                    <span>Explorar</span>
+                </a>
+                <a href="/criar.html" class="nav-icon">
+                    <i class="fas fa-plus-circle"></i>
+                    <span>Criar</span>
+                </a>
+            </div>
+            <div class="nav-right">
                 <a href="#" id="loginBtn">Login</a>
                 <a href="#" id="registerBtn">Cadastrar</a>
             </div>
         </nav>
     </header>
 
-    <main class="create-container">
-        <section class="create-header">
-            <h2>Criar Novo Projeto ou Evento</h2>
+    <main>
+        <div class="create-container">
             <div class="create-tabs">
-                <button class="tab-btn active" data-tab="project">Novo Projeto</button>
-                <button class="tab-btn" data-tab="event">Novo Evento</button>
+                <button id="projectTab" class="create-tab active">Novo Projeto</button>
+                <button id="eventTab" class="create-tab">Novo Evento</button>
             </div>
-        </section>
 
-        <section class="create-content">
-            <div class="tab-content">
-                <!-- Formulário de Projeto -->
-                <div class="tab-pane active" id="project">
-                    <form id="projectForm" class="create-form">
-                        <div class="form-group">
-                            <label for="projectName">Nome do Projeto</label>
-                            <input type="text" id="projectName" required>
-                        </div>
+            <div class="create-form">
+                <h2 id="formTitle">Criar Novo Projeto</h2>
+                
+                <form id="projectForm">
+                    <div class="form-group">
+                        <label for="projectName">Nome do Projeto</label>
+                        <input type="text" id="projectName" name="projectName" placeholder="Nome do Projeto" required>
+                    </div>
 
-                        <div class="form-group">
-                            <label for="projectDescription">Descrição do Projeto</label>
-                            <textarea id="projectDescription" rows="4" required></textarea>
-                        </div>
+                    <div class="form-group">
+                        <label for="projectDescription">Descrição</label>
+                        <textarea id="projectDescription" name="projectDescription" placeholder="Descreva seu projeto..." required></textarea>
+                    </div>
 
-                        <div class="form-group">
-                            <label for="projectImage">Imagem do Projeto</label>
-                            <input type="file" id="projectImage" accept="image/*">
-                        </div>
+                    <div class="form-group">
+                        <label for="projectCategory">Categoria</label>
+                        <select id="projectCategory" name="projectCategory" required>
+                            <option value="">Selecione uma categoria</option>
+                            <option value="educacao">Educação</option>
+                            <option value="meio-ambiente">Meio Ambiente</option>
+                            <option value="saude">Saúde</option>
+                            <option value="cultura">Cultura</option>
+                            <option value="social">Social</option>
+                        </select>
+                    </div>
 
-                        <div class="form-group">
-                            <label for="projectCategory">Categoria</label>
-                            <select id="projectCategory" required>
-                                <option value="">Selecione uma categoria</option>
-                                <option value="environment">Meio Ambiente</option>
-                                <option value="education">Educação</option>
-                                <option value="health">Saúde</option>
-                                <option value="social">Social</option>
-                            </select>
-                        </div>
+                    <div class="form-group">
+                        <label for="projectLocation">Local</label>
+                        <input type="text" id="projectLocation" name="projectLocation" placeholder="Local do projeto" required>
+                    </div>
 
-                        <div class="form-group">
-                            <label for="projectGoals">Objetivos do Projeto</label>
-                            <textarea id="projectGoals" rows="3" required></textarea>
-                        </div>
+                    <div class="form-group">
+                        <label for="projectImage">Imagem do Projeto</label>
+                        <input type="file" id="projectImage" name="projectImage" accept="image/*">
+                    </div>
 
-                        <div class="form-group">
-                            <label for="projectContact">Informações de Contato</label>
-                            <input type="email" id="projectContact" placeholder="Email para contato" required>
-                            <input type="tel" id="projectPhone" placeholder="Telefone para contato">
-                        </div>
+                    <button type="submit" id="submitButton" class="submit-button">Criar Projeto</button>
+                </form>
 
-                        <button type="submit" class="submit-button">Criar Projeto</button>
-                    </form>
-                </div>
+                <form id="eventForm" style="display: none;">
+                    <div class="form-group">
+                        <label for="eventName">Nome do Evento</label>
+                        <input type="text" id="eventName" name="eventName" placeholder="Nome do Evento" required>
+                    </div>
 
-                <!-- Formulário de Evento -->
-                <div class="tab-pane" id="event">
-                    <form id="eventForm" class="create-form">
-                        <div class="form-group">
-                            <label for="eventProject">Projeto Relacionado</label>
-                            <select id="eventProject" required>
-                                <option value="">Selecione o projeto</option>
-                                <option value="1">Projeto Verde Vida</option>
-                                <option value="2">Educação para Todos</option>
-                            </select>
-                        </div>
+                    <div class="form-group">
+                        <label for="eventDescription">Descrição</label>
+                        <textarea id="eventDescription" name="eventDescription" placeholder="Descreva seu evento..." required></textarea>
+                    </div>
 
-                        <div class="form-group">
-                            <label for="eventName">Nome do Evento</label>
-                            <input type="text" id="eventName" required>
-                        </div>
+                    <div class="form-group">
+                        <label for="eventDate">Data</label>
+                        <input type="date" id="eventDate" name="eventDate" required>
+                    </div>
 
-                        <div class="form-group">
-                            <label for="eventDescription">Descrição do Evento</label>
-                            <textarea id="eventDescription" rows="4" required></textarea>
-                        </div>
+                    <div class="form-group">
+                        <label for="eventTime">Horário</label>
+                        <input type="time" id="eventTime" name="eventTime" required>
+                    </div>
 
-                        <div class="form-group">
-                            <label for="eventDate">Data do Evento</label>
-                            <input type="date" id="eventDate" required>
-                        </div>
+                    <div class="form-group">
+                        <label for="eventLocation">Local</label>
+                        <input type="text" id="eventLocation" name="eventLocation" placeholder="Local do evento" required>
+                    </div>
 
-                        <div class="form-group">
-                            <label for="eventTime">Horário</label>
-                            <input type="time" id="eventTime" required>
-                        </div>
+                    <div class="form-group">
+                        <label for="eventImage">Imagem do Evento</label>
+                        <input type="file" id="eventImage" name="eventImage" accept="image/*">
+                    </div>
 
-                        <div class="form-group">
-                            <label for="eventLocation">Local do Evento</label>
-                            <input type="text" id="eventLocation" required>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="eventMaxParticipants">Número Máximo de Participantes</label>
-                            <input type="number" id="eventMaxParticipants" min="1" required>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="eventRequirements">Requisitos para Participação</label>
-                            <textarea id="eventRequirements" rows="3"></textarea>
-                        </div>
-
-                        <button type="submit" class="submit-button">Criar Evento</button>
-                    </form>
-                </div>
+                    <button type="submit" id="submitButton" class="submit-button">Criar Evento</button>
+                </form>
             </div>
-        </section>
+        </div>
     </main>
+
+    <!-- Menu Lateral -->
+    <div class="side-menu" id="sideMenu">
+        <div class="side-menu-header">
+            <h2>Menu</h2>
+            <button class="close-menu" id="closeMenu">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="side-menu-content">
+            <a href="/perfil.html" class="side-menu-item">
+                <i class="fas fa-user"></i>
+                <span>Perfil</span>
+            </a>
+            <a href="/index.html" class="side-menu-item">
+                <i class="fas fa-compass"></i>
+                <span>Explorar</span>
+            </a>
+            <a href="/criar.html" class="side-menu-item">
+                <i class="fas fa-plus-circle"></i>
+                <span>Criar</span>
+            </a>
+            <div class="side-menu-search">
+                <input type="text" placeholder="Pesquisar projetos...">
+                <button class="search-submit">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+            <div class="side-menu-auth">
+                <a href="#" id="sideLoginBtn">Login</a>
+                <a href="#" id="sideRegisterBtn">Cadastrar</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Login -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Login</h2>
+            <form id="loginForm">
+                <input type="email" placeholder="E-mail" required>
+                <input type="password" placeholder="Senha" required>
+                <button type="submit">Entrar</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal de Cadastro -->
+    <div id="registerModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Cadastro</h2>
+            <form id="registerForm">
+                <input type="text" placeholder="Nome Completo" required>
+                <input type="email" placeholder="E-mail" required>
+                <input type="password" placeholder="Senha" required>
+                <select required>
+                    <option value="">Selecione o tipo de usuário</option>
+                    <option value="volunteer">Voluntário</option>
+                    <option value="organizer">Organizador</option>
+                </select>
+                <button type="submit">Cadastrar</button>
+            </form>
+        </div>
+    </div>
 
     <footer>
         <div class="footer-content">
-            <a href="/criar.html">PAGINA DE CRIAÇÃO</a>
-            <a href="/perfil.html">PAGINA DE PERFIL</a>
-            <a href="/projeto.html">PAGINA DE PROJETO</a>
             <p>&copy; 2024 Social Events. Todos os direitos reservados.</p>
         </div>
     </footer>

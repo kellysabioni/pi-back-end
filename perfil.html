@@ -3,87 +3,231 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Meu Perfil - Social Events</title>
+    <title>Perfil - Social Events</title>
+    <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="js/main.js" defer></script>
 </head>
 <body>
     <header>
         <nav class="navbar">
+            <button class="menu-toggle" id="menuToggle">
+                <i class="fas fa-bars"></i>
+            </button>
             <div class="logo">
-                <h1><a href="/index.html">Social Events</a></h1>
+                <a href="/index.html" class="logo-link">
+                    <img src="images/logo.svg" alt="Social Events Logo" class="logo-img">
+                    <span class="logo-text">Social Events</span>
+                </a>
             </div>
-            <div class="nav-links">
-                <a href="/criar.html">PAGINA DE CRIAÇÃO</a>
-                <a href="/perfil.html">PAGINA DE PERFIL</a>
-                <a href="/projeto.html">PAGINA DE PROJETO</a>
+            <div class="nav-center">
+                <a href="/perfil.html" class="nav-icon">
+                    <i class="fas fa-user"></i>
+                    <span>Perfil</span>
+                </a>
+                <a href="/index.html" class="nav-icon">
+                    <i class="fas fa-compass"></i>
+                    <span>Explorar</span>
+                </a>
+                <a href="/criar.html" class="nav-icon">
+                    <i class="fas fa-plus-circle"></i>
+                    <span>Criar</span>
+                </a>
+            </div>
+            <div class="nav-right">
                 <a href="#" id="loginBtn">Login</a>
                 <a href="#" id="registerBtn">Cadastrar</a>
             </div>
         </nav>
     </header>
 
-    <main class="profile-container">
-        <section class="profile-header">
-            <div class="profile-image">
-                <img src="images/profile-placeholder.jpg" alt="Foto de perfil">
-                <button class="edit-profile-btn">Editar Perfil</button>
-            </div>
-            <div class="profile-info">
-                <h2>João Silva</h2>
-                <p class="user-type">Voluntário</p>
-                <p class="user-bio">Apaixonado por ajudar a comunidade e participar de eventos sociais.</p>
-                <div class="profile-stats">
-                    <div class="stat">
-                        <span class="number">12</span>
-                        <span class="label">Projetos Seguidos</span>
-                    </div>
-                    <div class="stat">
-                        <span class="number">8</span>
-                        <span class="label">Eventos Participados</span>
+    <main>
+        <div class="profile-container">
+            <div class="profile-header">
+                <div class="profile-image">
+                    <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=200&q=80" alt="Foto do perfil">
+                </div>
+                <div class="profile-info">
+                    <h2>João Silva</h2>
+                    <span class="user-type">Voluntário</span>
+                    <p>Entusiasta de projetos sociais e ambientalista. Participando ativamente de iniciativas comunitárias desde 2020.</p>
+                    <div class="profile-stats">
+                        <div class="stat">
+                            <span class="number">12</span>
+                            <span class="label">Projetos</span>
+                        </div>
+                        <div class="stat">
+                            <span class="number">8</span>
+                            <span class="label">Seguindo</span>
+                        </div>
+                        <div class="stat">
+                            <span class="number">3</span>
+                            <span class="label">Criados</span>
+                        </div>
                     </div>
                 </div>
             </div>
-        </section>
 
-        <section class="profile-content">
-            <div class="tabs">
-                <button class="tab-btn active" data-tab="events">Meus Eventos</button>
-                <button class="tab-btn" data-tab="projects">Projetos Seguidos</button>
-                <button class="tab-btn" data-tab="created">Projetos Criados</button>
+            <div class="profile-tabs">
+                <button id="myProjectsTab" class="profile-tab active">Meus Projetos</button>
+                <button id="followedProjectsTab" class="profile-tab">Projetos Seguidos</button>
+                <button id="createdProjectsTab" class="profile-tab">Projetos Criados</button>
             </div>
 
-            <div class="tab-content">
-                <div class="tab-pane active" id="events">
-                    <h3>Próximos Eventos</h3>
-                    <div class="events-list">
-                        <!-- Eventos serão carregados dinamicamente via JavaScript -->
+            <div class="profile-content">
+                <div id="myProjectsContent" class="tab-content active">
+                    <div class="projects-grid">
+                        <div class="project-card">
+                            <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Projeto Verde Vida">
+                            <div class="project-info">
+                                <h3>Projeto Verde Vida</h3>
+                                <p>Iniciativa de reflorestamento urbano e conscientização ambiental.</p>
+                                <div class="project-stats">
+                                    <span><i class="fas fa-users"></i> 45 participantes</span>
+                                    <span><i class="fas fa-calendar"></i> Em andamento</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="project-card">
+                            <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Educação para Todos">
+                            <div class="project-info">
+                                <h3>Educação para Todos</h3>
+                                <p>Projeto de alfabetização e reforço escolar para crianças carentes.</p>
+                                <div class="project-stats">
+                                    <span><i class="fas fa-users"></i> 30 participantes</span>
+                                    <span><i class="fas fa-calendar"></i> Em andamento</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
-                <div class="tab-pane" id="projects">
-                    <h3>Projetos que Acompanho</h3>
-                    <div class="projects-list">
-                        <!-- Projetos serão carregados dinamicamente via JavaScript -->
+                <div id="followedProjectsContent" class="tab-content">
+                    <div class="projects-grid">
+                        <div class="project-card">
+                            <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Recicla+">
+                            <div class="project-info">
+                                <h3>Recicla+</h3>
+                                <p>Projeto de coleta seletiva e reciclagem comunitária.</p>
+                                <div class="project-stats">
+                                    <span><i class="fas fa-users"></i> 60 participantes</span>
+                                    <span><i class="fas fa-calendar"></i> Em andamento</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="project-card">
+                            <img src="https://images.unsplash.com/photo-1511795409834-432f7b1a1b0d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Arte na Rua">
+                            <div class="project-info">
+                                <h3>Arte na Rua</h3>
+                                <p>Iniciativa de revitalização urbana através da arte.</p>
+                                <div class="project-stats">
+                                    <span><i class="fas fa-users"></i> 25 participantes</span>
+                                    <span><i class="fas fa-calendar"></i> Em andamento</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
-                <div class="tab-pane" id="created">
-                    <h3>Meus Projetos</h3>
-                    <div class="created-projects">
-                        <!-- Projetos criados serão carregados dinamicamente via JavaScript -->
+                <div id="createdProjectsContent" class="tab-content">
+                    <div class="projects-grid">
+                        <div class="project-card">
+                            <img src="https://images.unsplash.com/photo-1464226184884-fa280b87c399?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Horta Comunitária">
+                            <div class="project-info">
+                                <h3>Horta Comunitária</h3>
+                                <p>Projeto de cultivo orgânico e educação alimentar.</p>
+                                <div class="project-stats">
+                                    <span><i class="fas fa-users"></i> 20 participantes</span>
+                                    <span><i class="fas fa-calendar"></i> Em andamento</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="project-card">
+                            <img src="https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Biblioteca Solidária">
+                            <div class="project-info">
+                                <h3>Biblioteca Solidária</h3>
+                                <p>Iniciativa de incentivo à leitura e doação de livros.</p>
+                                <div class="project-stats">
+                                    <span><i class="fas fa-users"></i> 15 participantes</span>
+                                    <span><i class="fas fa-calendar"></i> Em andamento</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <button class="create-project-btn">Criar Novo Projeto</button>
                 </div>
             </div>
-        </section>
+        </div>
     </main>
+
+    <!-- Menu Lateral -->
+    <div class="side-menu" id="sideMenu">
+        <div class="side-menu-header">
+            <h2>Menu</h2>
+            <button class="close-menu" id="closeMenu">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="side-menu-content">
+            <a href="/perfil.html" class="side-menu-item">
+                <i class="fas fa-user"></i>
+                <span>Perfil</span>
+            </a>
+            <a href="/index.html" class="side-menu-item">
+                <i class="fas fa-compass"></i>
+                <span>Explorar</span>
+            </a>
+            <a href="/criar.html" class="side-menu-item">
+                <i class="fas fa-plus-circle"></i>
+                <span>Criar</span>
+            </a>
+            <div class="side-menu-search">
+                <input type="text" placeholder="Pesquisar projetos...">
+                <button class="search-submit">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+            <div class="side-menu-auth">
+                <a href="#" id="sideLoginBtn">Login</a>
+                <a href="#" id="sideRegisterBtn">Cadastrar</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Login -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Login</h2>
+            <form id="loginForm">
+                <input type="email" placeholder="E-mail" required>
+                <input type="password" placeholder="Senha" required>
+                <button type="submit">Entrar</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal de Cadastro -->
+    <div id="registerModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Cadastro</h2>
+            <form id="registerForm">
+                <input type="text" placeholder="Nome Completo" required>
+                <input type="email" placeholder="E-mail" required>
+                <input type="password" placeholder="Senha" required>
+                <select required>
+                    <option value="">Selecione o tipo de usuário</option>
+                    <option value="volunteer">Voluntário</option>
+                    <option value="organizer">Organizador</option>
+                </select>
+                <button type="submit">Cadastrar</button>
+            </form>
+        </div>
+    </div>
 
     <footer>
         <div class="footer-content">
-            <a href="/criar.html">PAGINA DE CRIAÇÃO</a>
-            <a href="/perfil.html">PAGINA DE PERFIL</a>
-            <a href="/projeto.html">PAGINA DE PROJETO</a>
             <p>&copy; 2024 Social Events. Todos os direitos reservados.</p>
         </div>
     </footer>
