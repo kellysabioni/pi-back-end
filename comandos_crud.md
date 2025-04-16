@@ -3,7 +3,7 @@
 ## Criando banco de dados 
 
 ``` sql
-CREATE DATABASE conectacao CHARACTER SET utf8mb4 ;
+CREATE DATABASE projeta_bd CHARACTER SET utf8mb4 ;
 ```
 
 ## Criando Tabelas 
