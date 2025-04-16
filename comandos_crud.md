@@ -68,3 +68,16 @@ CREATE TABLE eventos(
     FOREIGN KEY (fotos_id) REFERENCES fotos(id)
 );
 ```
+4. Fotos
+``` sql
+CREATE TABLE fotos( 
+    id INT PRIMARY KEY NOT NULL AUTO_INCREMENT, 
+    nome_arquivo VARCHAR(100) NOT NULL, 
+    usuarios_id INT NOT NULL,
+    projetos_id INT,
+    eventos_id INT,  
+    FOREIGN KEY (usuarios_id) REFERENCES usuarios(id),
+    FOREIGN KEY (projetos_id) REFERENCES projetos(id)
+    FOREIGN KEY (eventos_id) REFERENCES eventos(id)
+);
+```
