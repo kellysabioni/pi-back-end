@@ -25,3 +25,25 @@ CREATE TABLE usuarios(
 );
 ```
 ---
+2. Cadastro Projetos
+``` sql
+CREATE TABLE projetos( 
+    id INT PRIMARY KEY NOT NULL AUTO_INCREMENT, 
+    nome VARCHAR(100) NOT NULL, 
+    CEP VARCHAR(9) NOT NULL,
+    RUA VARCHAR(100) NOT NULL,
+    numero VARCHAR(10) NOT NULL,
+    bairro VARCHAR(50) NOT NULL,
+    cidade VARCHAR(100) NOT NULL,
+    UF CHAR(2) NOT NULL,
+    telefone VARCHAR(15) NOT NULL,
+    categoria VARCHAR(50) NOT NULL,
+    usuarios_id INT NOT NULL,
+    eventos_id INT,
+    foto_id INT,  
+    FOREIGN KEY (usuarios_id) REFERENCES usuarios(id),
+    FOREIGN KEY (eventos_id) REFERENCES eventos(id)
+    FOREIGN KEY (fotos_id) REFERENCES fotos(id)
+);
+```
+---
