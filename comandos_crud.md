@@ -50,7 +50,7 @@ CREATE TABLE eventos(
     UF CHAR(2) NOT NULL,
     telefone VARCHAR(15) NOT NULL,
     categoria VARCHAR(50) NOT NULL,
-    usuarios_id INT NOT NULL,
+    usuarios_id INT,
     projetos_id INT,
     FOREIGN KEY (usuarios_id) REFERENCES usuarios(id),
     FOREIGN KEY (projetos_id) REFERENCES projetos(id)
