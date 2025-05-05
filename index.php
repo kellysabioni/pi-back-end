@@ -40,7 +40,9 @@
 
     <?php include 'components/nav.php' ?>
     <?php include 'components/card-modal.php' ?>
+    
+    <script src="js/pages/main.js"></script>
+    
 </body>
-<script src="js/pages/main.js"></script>
 
 </html>
