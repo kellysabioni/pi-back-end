@@ -37,9 +37,9 @@
             </div>
 
             <div class="perfil-botoes">
-                <button id="meusProjetos" class="perfil-botao">Meus Projetos</button>
-                <button id="projetosSeguidos" class="perfil-botao">Projetos Seguidos</button>
-                <button id="projetosCriados" class="perfil-botao">Projetos Criados</button>
+                <button id="meusProjetosBtn" class="perfil-botao">Meus Projetos</button>
+                <button id="projetosSeguidosBtn" class="perfil-botao">Projetos Seguidos</button>
+                <button id="projetosCriadosBtn" class="perfil-botao">Projetos Criados</button>
             </div>
 
             <div class="perfil-conteudo">
@@ -131,5 +131,6 @@
         </div>
     </main>
     <?php include 'components/nav.php' ?>
+    <script src="js/pages/perfil.js"></script>
 </body>
 </html>
