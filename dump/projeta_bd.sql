@@ -32,6 +32,7 @@ USE `projeta_bd`;
 CREATE TABLE `eventos` (
   `id` int(11) NOT NULL,
   `nome` varchar(100) NOT NULL,
+  `descricao` varchar(300) NOT NULL,
   `CEP` varchar(9) NOT NULL,
   `RUA` varchar(100) NOT NULL,
   `numero` varchar(10) NOT NULL,
