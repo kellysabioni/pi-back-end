@@ -34,12 +34,12 @@
             </div>
         </section>
         <section class="feed">
-            <?php include 'components/cards.php' ?>
+            <?php include 'includes/card.php' ?>
         </section>
     </main>
 
-    <?php include 'components/nav.php' ?>
-    <?php include 'components/card-modal.php' ?>
+    <?php include 'includes/nav.php' ?>
+    <?php include 'includes/card-modal.php' ?>
     
     <script src="js/pages/main.js"></script>
     

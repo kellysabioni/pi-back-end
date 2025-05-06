@@ -130,7 +130,7 @@
             </div>
         </div>
     </main>
-    <?php include 'components/nav.php' ?>
+    <?php include 'includes/nav.php' ?>
     <script src="js/pages/perfil.js"></script>
 </body>
 </html>
