@@ -71,3 +71,4 @@ CREATE TABLE fotos(
     FOREIGN KEY (eventos_id) REFERENCES eventos(id)
 );
 ```
+

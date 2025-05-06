@@ -26,7 +26,6 @@ INSERT INTO projetos (nome, CEP, RUA, numero, bairro, cidade, UF, telefone, cate
 ('Instituto Gol de Placa', '40020-000', 'Av. Sete de Setembro', '505', 'Vitória', 'Salvador', 'BA', '(71)94444-5555', 'Esportivo', 5),
 ('Centro Esportivo Atletas do Amanhã', '64000-020', 'Rua Álvaro Mendes', '606', 'Centro', 'Teresina', 'PI', '(86)93333-6666', 'Esportivo', 2),
 ('Projeto Social Viver Bem', '59020-200', 'Av. Prudente de Morais', '707', 'Lagoa Nova', 'Natal', 'RN', '(84)92222-7777', 'Social', 4);
-
 ```
 ---
 ### Eventos
@@ -48,5 +47,4 @@ INSERT INTO eventos (nome, data, CEP, RUA, numero, bairro, cidade, UF, telefone,
 ('Campeonato de Futsal Joga Junto', '2025-11-02', '22775-040', 'Rua Godofredo Viana', '300', 'Barra da Tijuca', 'Rio de Janeiro', 'RJ', '(21)99999-7777', 'Esportivo', "", 4),
 ('Feira de Saúde Viver Bem', '2025-11-16', '59070-400', 'Av. Salgado Filho', '999', 'Lagoa Nova', 'Natal', 'RN', '(84)98877-6655', 'Social', "", 7),
 ('Festival Transformar Jovens', '2025-12-01', '60055-200', 'Av. Santos Dumont', '1500', 'Centro', 'Fortaleza', 'CE', '(85)91234-0099', 'Social', "", );
-
 ```
