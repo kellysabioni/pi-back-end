@@ -10,84 +10,37 @@
 </head>
 
 <body>
-    <div class="criar-container">
-        <div class="criar-botoes">
-            <button id="btnProjeto" class="criar-botao">Novo Projeto</button>
-            <button id="btnEvento" class="criar-botao">Novo Evento</button>
-        </div>
+<div class="criar-botoes">
+    <a href="?tipo=evento">
+        <button id="btnEvento" class="criar-botao <?php
+            echo (!isset($_GET['tipo']) || $_GET['tipo'] === 'evento') ? 'ativo' : '';
+        ?>">
+            Novo Evento
+        </button>
+    </a>
+    <a href="?tipo=projeto">
+        <button id="btnProjeto" class="criar-botao <?php
+            echo (isset($_GET['tipo']) && $_GET['tipo'] === 'projeto') ? 'ativo' : '';
+        ?>">
+            Novo Projeto
+        </button>
+    </a>
+</div>
 
-        <div class="formularios">
-            <h2>Criar Novo Projeto</h2>
 
-            <form id="formEvento">
-                <div class="form">
-                    <label for="nomeEvento">Nome</label>
-                    <input type="text" id="nomeEvento" name="nomeEvento" placeholder="Digite o nome" required>
-                </div>
+    <?php
+        $tipo = $_GET['tipo'] ?? 'evento';
 
-                <div class="form">
-                    <label for="descricaoEvento">Descrição</label>
-                    <textarea name="descricaoEvento" id="descricaoEvento" placeholder="Descreva..." required></textarea>
-                </div>
+        if (isset($_GET['tipo'])) {
+            if ($_GET['tipo'] === 'evento') {
+                include 'includes/inserirEvento.php';
+            } elseif ($_GET['tipo'] === 'projeto') {
+                include 'includes/inserirProjeto.php';
+            }
+        }
+    ?>
 
-                <div class="form">
-                    <label for="dataEvento">Data</label>
-                    <input type="date" name="dataEvento" id="dataEvento" required>
-                </div>
-
-                <div class="form">
-                    <label for="horarioEvento">Horario</label>
-                    <input type="time" name="horarioEvento" id="horarioEvento" required>
-                </div>
-
-                <div class="form">
-                    <label for="cep">CEP</label>
-                    <div class="cep">
-                        <input type="text" name="cep" id="cep" placeholder="00000-000" required>
-                        <button type="button" id="buscarBtn" class="btnCEP">buscar</button>
-                    </div>
-                    <div id="resultado"></div>
-                </div>
-
-                <div class="form formCep">
-                    <label for="rua">Rua</label>
-                    <input type="text" id="rua" name="rua" required>
-                </div>
-
-                <div class="form formCep">
-                    <label for="complemento">complemento</label>
-                    <input type="text" id="complemento" name="complemento">
-                </div>
-
-                <div class="form formCep">
-                    <label for="bairro">Bairro</label>
-                    <input type="text" id="bairro" name="bairro" required>
-                </div>
-
-                <div class="form formCep">
-                    <label for="cidade">Cidade</label>
-                    <input type="text" id="cidade" name="cidade" required>
-                </div>
-
-                <div class="form formCep">
-                    <label for="estado">Estado</label>
-                    <input type="text" id="estado" name="estado" required>
-                </div>
-
-                <div class="form">
-                    <label for="celulaEvento">Telefone</label>
-                    <input type="tel" id="celularEvento" name="celularEvento" required placeholder="99-9999-9999">
-                </div>
-
-                <div class="form">
-                    <label for="imagemEvento">Imagem do Evento</label>
-                    <input type="file" id="imagemEvento" name="imagemEvento" accept="image/*" required>
-                </div>
-            </form>
-        </div>
-    </div>
-
-    <?php include 'components/nav.php' ?>
+    <?php include 'includes/nav.php' ?>
 
     <script type="module" src="js/pages/criar.js"></script>
 </body>
