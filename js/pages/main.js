@@ -52,7 +52,7 @@ function aoPressionar(event) {
         const nome = criar.value.trim();
 
         if (nome) {
-            window.location.href = `criar.php?nome=${encodeURIComponent(nome)}`;
+            window.location.href = `criar.php?tipo=evento&nome=${encodeURIComponent(nome)}`;
         }
     }
 }
