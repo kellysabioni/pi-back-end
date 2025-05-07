@@ -682,6 +682,19 @@ header {
     background-color: #418144;
 }
 
+.btnEnviar {
+    width: 550px;
+    flex: 1;
+    padding: 1rem;
+    border: none;
+    background-color: var(--cor-primaria);
+    color: var(--branco);
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
 /* estilo pag perfil */
 .perfil-container {
     max-width: 600px;
