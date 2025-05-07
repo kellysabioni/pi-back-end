@@ -210,7 +210,7 @@ header {
 
 .nav {
     border-top: 1px solid rgba(0, 0, 0, 0.144) ;
-    width: 500px;
+    width:600px;
     margin: auto;
     height: 5vh;
     display: flex;
@@ -607,6 +607,7 @@ header {
 }
 
 .criar-botoes {
+    padding-top: 2rem;
     display: flex;
     justify-content: center;
     gap: 1rem;
@@ -614,6 +615,7 @@ header {
 }
 
 .criar-botao {
+    width: 270px;
     flex: 1;
     padding: 1rem;
     border: none;
@@ -635,7 +637,6 @@ header {
     max-width: 600px;
     padding: 1.5rem;
     border-radius:10px ;
-    border: 1px solid #00000036;
     margin-bottom: 4rem;
 }
 
@@ -786,7 +787,6 @@ header {
     transition: all 0.3s ease;
     border-radius: 5px;
 }
-
 .perfil-botao:hover {
     background-color: rgba(76, 175, 80, 0.1);
 }

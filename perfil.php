@@ -11,7 +11,7 @@
 
 <body>
     <main>
-        <div class="perifl-container">
+        <div class="perfil-container">
             <div class="perfil-header">
                 <div class="perfil-img">
                     <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=200&q=80" alt="Foto do perfil">
@@ -48,7 +48,7 @@
                         <div class="projeto-card">
                             <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Projeto Verde Vida">
                             <div class="projeto-info">
-                                <h3>Projeto Verde Vida</h3>
+                                <h3>meusProjetos</h3>
                                 <p>Iniciativa de reflorestamento urbano e conscientização ambiental.</p>
                                 <div class="projeto-status">
                                     <span><i class="fas fa-users"></i> 45 participantes</span>
@@ -59,7 +59,7 @@
                         <div class="projeto-card">
                             <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Projeto Verde Vida">
                             <div class="projeto-info">
-                                <h3>Projeto Verde Vida</h3>
+                                <h3>meusProjetos</h3>
                                 <p>Iniciativa de reflorestamento urbano e conscientização ambiental.</p>
                                 <div class="projeto-status">
                                     <span><i class="fas fa-users"></i> 45 participantes</span>
@@ -70,58 +70,54 @@
                     </div>
                 </div>
 
-                <div class="perfil-conteudo">
-                    <div id="projetosSeguidos" class="aba-conteudo">
-                        <div class="projetos">
-                            <div class="projeto-card">
-                                <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Projeto Verde Vida">
-                                <div class="projeto-info">
-                                    <h3>Projeto Verde Vida</h3>
-                                    <p>Iniciativa de reflorestamento urbano e conscientização ambiental.</p>
-                                    <div class="projeto-status">
-                                        <span><i class="fas fa-users"></i> 45 participantes</span>
-                                        <span><i class="fas fa-calendar"></i> Em andamento</span>
-                                    </div>
+                <div id="projetosSeguidos" class="aba-conteudo">
+                    <div class="projetos">
+                        <div class="projeto-card">
+                            <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Projeto Verde Vida">
+                            <div class="projeto-info">
+                                <h3>projetosSeguidos</h3>
+                                <p>Iniciativa de reflorestamento urbano e conscientização ambiental.</p>
+                                <div class="projeto-status">
+                                    <span><i class="fas fa-users"></i> 45 participantes</span>
+                                    <span><i class="fas fa-calendar"></i> Em andamento</span>
                                 </div>
                             </div>
-                            <div class="projeto-card">
-                                <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Projeto Verde Vida">
-                                <div class="projeto-info">
-                                    <h3>Projeto Verde Vida</h3>
-                                    <p>Iniciativa de reflorestamento urbano e conscientização ambiental.</p>
-                                    <div class="projeto-status">
-                                        <span><i class="fas fa-users"></i> 45 participantes</span>
-                                        <span><i class="fas fa-calendar"></i> Em andamento</span>
-                                    </div>
+                        </div>
+                        <div class="projeto-card">
+                            <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Projeto Verde Vida">
+                            <div class="projeto-info">
+                                <h3>projetosSeguidos</h3>
+                                <p>Iniciativa de reflorestamento urbano e conscientização ambiental.</p>
+                                <div class="projeto-status">
+                                    <span><i class="fas fa-users"></i> 45 participantes</span>
+                                    <span><i class="fas fa-calendar"></i> Em andamento</span>
                                 </div>
                             </div>
                         </div>
                     </div>
+                </div>
 
-                    <div class="perfil-conteudo">
-                        <div id="projetosCriados" class="aba-conteudo">
-                            <div class="projetos">
-                                <div class="projeto-card">
-                                    <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Projeto Verde Vida">
-                                    <div class="projeto-info">
-                                        <h3>Projeto Verde Vida</h3>
-                                        <p>Iniciativa de reflorestamento urbano e conscientização ambiental.</p>
-                                        <div class="projeto-status">
-                                            <span><i class="fas fa-users"></i> 45 participantes</span>
-                                            <span><i class="fas fa-calendar"></i> Em andamento</span>
-                                        </div>
-                                    </div>
+                <div id="projetosCriados" class="aba-conteudo">
+                    <div class="projetos">
+                        <div class="projeto-card">
+                            <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Projeto Verde Vida">
+                            <div class="projeto-info">
+                                <h3>projetosCriados</h3>
+                                <p>Iniciativa de reflorestamento urbano e conscientização ambiental.</p>
+                                <div class="projeto-status">
+                                    <span><i class="fas fa-users"></i> 45 participantes</span>
+                                    <span><i class="fas fa-calendar"></i> Em andamento</span>
                                 </div>
-                                <div class="projeto-card">
-                                    <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Projeto Verde Vida">
-                                    <div class="projeto-info">
-                                        <h3>Projeto Verde Vida</h3>
-                                        <p>Iniciativa de reflorestamento urbano e conscientização ambiental.</p>
-                                        <div class="projeto-status">
-                                            <span><i class="fas fa-users"></i> 45 participantes</span>
-                                            <span><i class="fas fa-calendar"></i> Em andamento</span>
-                                        </div>
-                                    </div>
+                            </div>
+                        </div>
+                        <div class="projeto-card">
+                            <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Projeto Verde Vida">
+                            <div class="projeto-info">
+                                <h3>projetosCriados</h3>
+                                <p>Iniciativa de reflorestamento urbano e conscientização ambiental.</p>
+                                <div class="projeto-status">
+                                    <span><i class="fas fa-users"></i> 45 participantes</span>
+                                    <span><i class="fas fa-calendar"></i> Em andamento</span>
                                 </div>
                             </div>
                         </div>
@@ -133,4 +129,5 @@
     <?php include 'includes/nav.php' ?>
     <script src="js/pages/perfil.js"></script>
 </body>
+
 </html>

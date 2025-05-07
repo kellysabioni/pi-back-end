@@ -1,37 +1,48 @@
-function botoesPerfil() {
-    const meusProjetos = document.getElementById ('meusProjetos');
-    const projetosSeguidos = document.getElementById ('projetosSeguidos');
-    const projetosCriados = document.getElementById ('projetosCriados');
+(function() {
+    function initPerfil() {
 
-    const meusProjetosBtn = document.getElementById ('meusProjetosBtn');
-    const projetosSeguidosBtn = document.getElementById ('projetosSeguidosBtn');
-    const projetosCriadosBtn = document.getElementById ('projetosCriadosBtn');
+        const botoes = {
+            meusProjetos: document.getElementById('meusProjetosBtn'),
+            projetosSeguidos: document.getElementById('projetosSeguidosBtn'),
+            projetosCriados: document.getElementById('projetosCriadosBtn')
+        };
 
-    [meusProjetosBtn, projetosSeguidosBtn, projetosCriadosBtn].forEach(botao => {
-        botao.classList.remove('ativo');
-    });
+        const conteudos = {
+            meusProjetos: document.getElementById('meusProjetos'),
+            projetosSeguidos: document.getElementById('projetosSeguidos'),
+            projetosCriados: document.getElementById('projetosCriados')
+        };
 
-    [meusProjetos, projetosSeguidos, projetosCriados].forEach(conteudo => {
-        conteudo.style.display = 'none';
-    });
+        function removerClasseAtivo() {
+            Object.values(botoes).forEach(botao => botao.classList.remove('ativo'));
+            Object.values(conteudos).forEach(conteudo => conteudo.classList.remove('ativo'));
+        }
 
-    if (this.id === 'meusProjetos') {
-        meusProjetosBtn.classList.add('ativo');
-        meusProjetos.style.display = 'block';
-    } else if (this.id === 'projetosSeguidos') {
-        projetosSeguidosBtn.classList.add('ativo');
-        projetosSeguidos.style.display = 'block';
-    } else if (this.id === 'projetosCriados') {
-        projetosCriadosBtn.classList.add('ativo');
-        projetosCriados.style.display = 'block';
-    }
-}
+        function ativarAba(botao, conteudo) {
+            removerClasseAtivo();
+            botao.classList.add('ativo');
+            conteudo.classList.add('ativo');
+        }
 
-document.addEventListener('DOMContentLoaded', function() {
-    const perfilBotao = document.querySelectorAll('perfil-botao');
-    if (perfilBotao.length > 0) {
-        perfilBotao.forEach(botao => {
-            botao.addEventListener('click', botoesPerfil)
+        botoes.meusProjetos.addEventListener('click', () => {
+            ativarAba(botoes.meusProjetos, conteudos.meusProjetos);
         });
+
+        botoes.projetosSeguidos.addEventListener('click', () => {
+            ativarAba(botoes.projetosSeguidos, conteudos.projetosSeguidos);
+        });
+
+        botoes.projetosCriados.addEventListener('click', () => {
+            ativarAba(botoes.projetosCriados, conteudos.projetosCriados);
+        });
+
+        ativarAba(botoes.meusProjetos, conteudos.meusProjetos);
     }
-});
+
+    // Aguarda o DOM estar completamente carregado
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initPerfil);
+    } else {
+        initPerfil();
+    }
+})();
