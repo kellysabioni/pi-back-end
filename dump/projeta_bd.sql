@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 16/04/2025 às 07:43
+-- Tempo de geração: 07/05/2025 às 02:24
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.2.12
 
@@ -33,6 +33,7 @@ CREATE TABLE `eventos` (
   `id` int(11) NOT NULL,
   `nome` varchar(100) NOT NULL,
   `descricao` varchar(300) NOT NULL,
+  `data` date NOT NULL,
   `CEP` varchar(9) NOT NULL,
   `RUA` varchar(100) NOT NULL,
   `numero` varchar(10) NOT NULL,
@@ -41,7 +42,7 @@ CREATE TABLE `eventos` (
   `UF` char(2) NOT NULL,
   `telefone` varchar(15) NOT NULL,
   `categoria` varchar(50) NOT NULL,
-  `usuarios_id` int(11) NOT NULL,
+  `usuarios_id` int(11) DEFAULT NULL,
   `projetos_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
