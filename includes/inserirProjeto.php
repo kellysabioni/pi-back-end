@@ -20,7 +20,7 @@
                 <div class="form">
                     <label for="cep">CEP</label>
                     <div class="cep">
-                        <input type="text" name="cep" id="cep" placeholder="00000-000" required>
+                        <input type="text" name="cep" id="cep" maxlength="9" placeholder="00000-000" required>
                         <button type="button" id="buscarBtn" class="btnCEP">buscar</button>
                     </div>
                     <div id="resultado"></div>
@@ -53,7 +53,7 @@
 
                 <div class="form">
                     <label for="celulaProjeto">Telefone</label>
-                    <input type="tel" id="celularProjeto" name="celularProjeto" required placeholder="99-9999-9999">
+                    <input type="text" id="celular" name="celularProjeto" maxlength="15" placeholder="(00) 00000-0000" required >
                 </div>
 
                 <div class="form">

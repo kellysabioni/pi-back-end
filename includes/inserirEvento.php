@@ -58,7 +58,7 @@
 
                 <div class="form">
                     <label for="celularEvento">Telefone</label>
-                    <input type="tel" id="celularEvento" name="celularEvento" required placeholder="99-9999-9999">
+                    <input type="tel" id="celular" name="celularEvento" required placeholder="(00) 00000-0000">
                 </div>
 
                 <div class="form">
