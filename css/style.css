@@ -210,7 +210,8 @@ header {
 
 .nav {
     border-top: 1px solid rgba(0, 0, 0, 0.144) ;
-    width: 600px;
+    width: 500px;
+    margin: auto;
     height: 5vh;
     display: flex;
     justify-content: space-between;
@@ -607,6 +608,7 @@ header {
 
 .criar-botoes {
     display: flex;
+    justify-content: center;
     gap: 1rem;
     margin-bottom: 2rem;
 }
