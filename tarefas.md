@@ -20,6 +20,13 @@ card-modal
 
 6. Arrumar variaveis de cores e padronizar nos estilos 
 
+## 08/05/2025
+
+7. Adicionar campo categorias no forms
+
+8. Arrumar o Enum no banco de dados
+
+9. Adiconar JOIN usuario na index
 
 
 
