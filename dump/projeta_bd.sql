@@ -41,7 +41,7 @@ CREATE TABLE `eventos` (
   `cidade` varchar(100) NOT NULL,
   `UF` char(2) NOT NULL,
   `telefone` varchar(15) NOT NULL,
-  `categoria` varchar(50) NOT NULL,
+  `categoria` ENUM('Cultura','Saúde', 'Educação', 'Meio Ambiente', 'Desenvolvimento Social', 'Assistência Social', 'Esportes', 'Apoio a Grupos Vulneráveis', 'Combate à Violência', 'Apoio a Animais', 'Ações de Voluntariado') NOT NULL,
   `usuarios_id` int(11) DEFAULT NULL,
   `projetos_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -76,7 +76,7 @@ CREATE TABLE `projetos` (
   `cidade` varchar(100) NOT NULL,
   `UF` char(2) NOT NULL,
   `telefone` varchar(15) NOT NULL,
-  `categoria` varchar(50) NOT NULL,
+  `categoria` ENUM('Cultura','Saúde', 'Educação', 'Meio Ambiente', 'Desenvolvimento Social', 'Assistência Social', 'Esportes', 'Apoio a Grupos Vulneráveis', 'Combate à Violência', 'Apoio a Animais', 'Ações de Voluntariado') NOT NULL,
   `usuarios_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 

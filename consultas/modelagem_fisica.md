@@ -51,7 +51,7 @@ CREATE TABLE eventos(
     cidade VARCHAR(100) NOT NULL,
     UF CHAR(2) NOT NULL,
     telefone VARCHAR(15) NOT NULL,
-    categoria VARCHAR(50) NOT NULL,
+    categoria ENUM('Cultura','Saúde', 'Educação', 'Meio Ambiente', 'Desenvolvimento Social', 'Assistência Social', 'Esportes', 'Apoio a Grupos Vulneráveis', 'Combate à Violência', 'Apoio a Animais', 'Ações de Voluntariado') NOT NULL,
     usuarios_id INT,
     projetos_id INT,
     FOREIGN KEY (usuarios_id) REFERENCES usuarios(id),
