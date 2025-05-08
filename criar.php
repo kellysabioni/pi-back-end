@@ -41,7 +41,7 @@
     ?>
 
     <?php include 'includes/nav.php' ?>
-
+    <script src="https://unpkg.com/imask"></script>
     <script type="module" src="js/pages/criar.js"></script>
 </body>
 </html>

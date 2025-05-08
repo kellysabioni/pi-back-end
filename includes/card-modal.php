@@ -21,25 +21,6 @@
 
         <div class="post-modal-quebra">
             <div class="post-modal-main">
-                <div class="post-modal-galeria">
-                    <div class="galeria-item">
-                        <img src="https://images.unsplash.com/photo-1532996122724-e3c354a0b15b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
-                            alt="Local do evento 1">
-                    </div>
-                    <div class="galeria-item">
-                        <img src="https://images.unsplash.com/photo-1532996122724-e3c354a0b15b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
-                            alt="Local do evento 1">
-                    </div>
-                    <div class="galeria-item">
-                        <img src="https://images.unsplash.com/photo-1532996122724-e3c354a0b15b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
-                            alt="Local do evento 1">
-                    </div>
-                    <div class="galeria-item">
-                        <img src="https://images.unsplash.com/photo-1532996122724-e3c354a0b15b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
-                            alt="Local do evento 1">
-                    </div>
-                </div>
-
                 <div class="post-modal-descricao">
                     <h3>Sobre o Evento</h3>
                     <p>Junte-se a nós nesta iniciativa de conscientização ambiental e reciclagem. Vamos criar
