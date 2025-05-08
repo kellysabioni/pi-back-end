@@ -1,9 +1,7 @@
 <?php
-namespace ExemploCrud;
+namespace ProjetaBD\Database;
 
-use Exception;
-use PDO;
-use Throwable;
+use Exception, PDO, Throwable;
 
 abstract class ConexaoBD
 {
@@ -25,7 +23,6 @@ abstract class ConexaoBD
             } catch (Throwable $erro) {
                 // [A FAZER] Registra a exceção em um arquivo de log/texto interno
 
-                // Lançar uma mensagem de erro genérica sem detalhes do banco/sistema
                 throw new Exception ( "Erro ao conectar com o banco de dados!" );
             }
         }
