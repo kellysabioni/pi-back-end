@@ -49,4 +49,8 @@ INSERT INTO eventos (nome, descricao, data, CEP, RUA, numero, bairro, cidade, UF
 ('Festival Transformar Jovens', 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Numquam nemo eligendi tenetur non distinctio qui dicta a dolorem exercitationem incidunt consequatur, quas et molestiae cumque similique atque dolorum? Aliquid, alias?', '2025-12-01', '60055-200', 'Av. Santos Dumont', '1500', 'Centro', 'Fortaleza', 'CE', '(85)91234-0099', 'Social', NULL, 1);
 ```
 ---
-> 
+> Atualiza nome
+```sql
+UPDATE usuarios SET nome = 'Carla S. Mendes' WHERE id = 3;
+```
+---
