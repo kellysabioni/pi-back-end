@@ -22,13 +22,13 @@
         <section class="acoes-index">
             <div class="botoes-container">
                 <button class="botao botao-pesquisa" onclick="barraPesquisar()">
-                <i class="fas fa-search"></i> 
+                    <i class="fas fa-search"></i>
                 </button>
                 <input type="text" class="barra-pesquisar ativo" placeholder="Digite sua pesquisa...">
             </div>
             <div class="botoes-container">
                 <button class="botao botao-criar" onclick="barraCriar()">
-                <i class="fas fa-plus"></i>
+                    <i class="fas fa-plus"></i>
                 </button>
                 <input type="text" class="barra-criar" placeholder="Digite o nome do Projeto" onkeypress="">
             </div>
@@ -40,9 +40,9 @@
 
     <?php include 'includes/nav.php' ?>
     <?php include 'includes/card-modal.php' ?>
-    
+
     <script src="js/pages/main.js"></script>
-    
+
 </body>
 
 </html>
