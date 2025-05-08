@@ -104,4 +104,39 @@ class Evento {
     {
         return $this->projetos_id;
     }
+
+    private function setId(int $id): void
+    {
+        $this->id = $id;
+    }
+
+    private function setNome(string $nome): void
+    {
+        $this->nome = $nome;
+    }
+
+    private function setDescricao(string $descricao): void
+    {
+        $this->descricao= $descricao;
+    }
+
+    private function setData(string $data): void
+    {
+        $this->data = $data;
+    }
+
+    private function setCEP(string $CEP): void
+    {
+        $this->CEP = $CEP;
+    }
+
+    private function setRua(string $rua): void
+    {
+        $this->rua = $rua;
+    }
+
+    private function setNumero(string $numero): void
+    {
+        $this->numero = $numero;
+    }
 }
