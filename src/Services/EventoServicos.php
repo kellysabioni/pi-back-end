@@ -6,7 +6,7 @@ use ProjetaBD\Database\ConexaoBD;
 use PDO;
 use Throwable;
 
-class Evento {
+class EventoServicos {
     private PDO $conexao;
 
     public function __construct()
@@ -15,7 +15,7 @@ class Evento {
     }
 
     public function listarTodos():array {
-        $sql = "SELECT * FROM eventos ORDER BY data_evento DESC";
+        $sql = "SELECT * FROM eventos ORDER BY data DESC";
 
         try {
             $consulta = $this->conexao->prepare($sql);
