@@ -14,10 +14,10 @@ foreach($listarEventos as $evento) {
                 <i class="far fa-user"></i>
             </div>
             <div class="post-header-info">
-                <h2 class="post-modal-titulo"><?= $evento["nome"]?></h2>
+                <h2 class="post-modal-titulo">Projeto de Reciclagem Comunitária</h2>
                 <div class="post-modal-meta">
-                    <span><i class="far fa-calendar"></i><?=$evento["data"]?></span>
-                    <span><i class="far fa-user"></i> <?=$evento["nome_usuario"]?></span>
+                    <span><i class="far fa-calendar"></i> 15 de Março, 2024</span>
+                    <span><i class="far fa-user"></i> Maria Silva</span>
                 </div>
             </div>
         </div>
@@ -26,7 +26,17 @@ foreach($listarEventos as $evento) {
             <div class="post-modal-main">
                 <div class="post-modal-descricao">
                     <h3>Sobre o Evento</h3>
-                    <?=$evento["descricao"]?>
+                    <p>Junte-se a nós nesta iniciativa de conscientização ambiental e reciclagem. Vamos criar
+                        pontos de coleta seletiva e aprender sobre a importância da separação correta dos
+                        resíduos.</p>
+                    <p>Este evento faz parte do nosso projeto contínuo de sustentabilidade e educação ambiental
+                        na comunidade. Durante o evento, teremos:</p>
+                    <ul>
+                        <li>Workshops sobre reciclagem</li>
+                        <li>Atividades práticas de separação de resíduos</li>
+                        <li>Palestras sobre sustentabilidade</li>
+                        <li>Distribuição de materiais educativos</li>
+                    </ul>
                 </div>
             </div>
 
@@ -39,7 +49,7 @@ foreach($listarEventos as $evento) {
                         </h4>
                         <div class="info-item">
                             <i class="fas fa-map-marker-alt"></i>
-                            <span><strong>Local:</strong> <?=$evento["bairro"]?>, <?=$evento["cidade"]?> <br> <?=$evento["RUA"]?>  <span>
+                            <span><strong>Local:</strong> Jardim das Flores</span>
                         </div>
                         <div class="info-item">
                             <i class="far fa-clock"></i>
@@ -58,11 +68,11 @@ foreach($listarEventos as $evento) {
                         </h4>
                         <div class="info-item">
                             <i class="far fa-user"></i>
-                            <span><strong>Responsável:</strong> <?=$evento["nome_usuario"]?></span>
+                            <span><strong>Responsável:</strong> Maria Silva</span>
                         </div>
                         <div class="info-item">
                             <i class="far fa-building"></i>
-                            <span><strong>Organização:</strong><?=$evento["nome_projeto"]?></span>
+                            <span><strong>Organização:</strong> EcoVida</span>
                         </div>
                     </div>
 

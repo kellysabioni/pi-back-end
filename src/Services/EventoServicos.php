@@ -20,7 +20,6 @@ class EventoServicos
     {
         $sql = "SELECT 
     eventos.*, 
-    usuarios.id AS usuario_id,
     usuarios.nome AS nome_usuario, 
     projetos.nome AS nome_projeto
     FROM eventos
