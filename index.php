@@ -51,7 +51,8 @@ $listarEventos = $eventoServico->listarTodos();
     <?php include 'includes/nav.php' ?>
     <?php include 'includes/card-modal.php' ?>
 
-    <script src="js/pages/main.js"></script>
+    <script src="js/pages/main.js">
+    </script>
 
 </body>
 
