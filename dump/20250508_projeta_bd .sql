@@ -34,8 +34,9 @@ CREATE TABLE `eventos` (
   `nome` varchar(100) NOT NULL,
   `descricao` varchar(300) NOT NULL,
   `data` date NOT NULL,
+  `hora` time NOT NULL,
   `CEP` varchar(9) NOT NULL,
-  `RUA` varchar(100) NOT NULL,
+  `rua` varchar(100) NOT NULL,
   `numero` varchar(10) NOT NULL,
   `bairro` varchar(50) NOT NULL,
   `cidade` varchar(100) NOT NULL,
@@ -50,7 +51,7 @@ CREATE TABLE `eventos` (
 -- Despejando dados para a tabela `eventos`
 --
 
-INSERT INTO `eventos` (`id`, `nome`, `descricao`, `data`, `CEP`, `RUA`, `numero`, `bairro`, `cidade`, `UF`, `telefone`, `categoria`, `usuarios_id`, `projetos_id`) VALUES
+INSERT INTO `eventos` (`id`, `nome`, `descricao`, `data`, `CEP`, `rua`, `numero`, `bairro`, `cidade`, `UF`, `telefone`, `categoria`, `usuarios_id`, `projetos_id`) VALUES
 (1, 'Festival Vida Ativa 2025', 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Numquam nemo eligendi tenetur non distinctio qui dicta a dolorem exercitationem incidunt consequatur, quas et molestiae cumque similique atque dolorum? Aliquid, alias?', '2025-03-10', '01001-000', 'Rua das Flores', '123', 'Centro', 'São Paulo', 'SP', '(11)91234-5678', '', 1, NULL),
 (2, 'Copa Joga Junto Sub-15', 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Numquam nemo eligendi tenetur non distinctio qui dicta a dolorem exercitationem incidunt consequatur, quas et molestiae cumque similique atque dolorum? Aliquid, alias?', '2025-04-20', '20031-005', 'Rua do Catete', '89', 'Glória', 'Rio de Janeiro', 'RJ', '(21)92345-6789', '', 3, NULL),
 (3, 'Feira Crescer com Cidadania', 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Numquam nemo eligendi tenetur non distinctio qui dicta a dolorem exercitationem incidunt consequatur, quas et molestiae cumque similique atque dolorum? Aliquid, alias?', '2025-05-05', '30150-030', 'Av. Augusto de Lima', '321', 'Centro', 'Belo Horizonte', 'MG', '(31)99812-1111', '', NULL, 10),
@@ -106,7 +107,7 @@ CREATE TABLE `projetos` (
   `id` int(11) NOT NULL,
   `nome` varchar(100) NOT NULL,
   `CEP` varchar(9) NOT NULL,
-  `RUA` varchar(100) NOT NULL,
+  `rua` varchar(100) NOT NULL,
   `numero` varchar(10) NOT NULL,
   `bairro` varchar(50) NOT NULL,
   `cidade` varchar(100) NOT NULL,
@@ -120,7 +121,7 @@ CREATE TABLE `projetos` (
 -- Despejando dados para a tabela `projetos`
 --
 
-INSERT INTO `projetos` (`id`, `nome`, `CEP`, `RUA`, `numero`, `bairro`, `cidade`, `UF`, `telefone`, `categoria`, `usuarios_id`) VALUES
+INSERT INTO `projetos` (`id`, `nome`, `CEP`, `rua`, `numero`, `bairro`, `cidade`, `UF`, `telefone`, `categoria`, `usuarios_id`) VALUES
 (1, 'Projeto Vida Ativa', '01001-000', 'Rua das Flores', '123', 'Centro', 'São Paulo', 'SP', '(11)91234-5678', '', 2),
 (2, 'Instituto Joga Junto', '20040-002', 'Av. Atlântica', '456', 'Copacabana', 'Rio de Janeiro', 'RJ', '(21)98765-4321', '', 2),
 (3, 'Centro Social Crescer', '30130-010', 'Rua da Bahia', '789', 'Funcionários', 'Belo Horizonte', 'MG', '(31)99876-5432', '', 4),
