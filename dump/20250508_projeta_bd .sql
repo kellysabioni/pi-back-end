@@ -153,19 +153,18 @@ CREATE TABLE `usuarios` (
   `nome` varchar(100) NOT NULL,
   `email` varchar(50) NOT NULL,
   `senha` varchar(255) NOT NULL,
-  `tipo_usuario` enum('usuario','evento','projeto') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Despejando dados para a tabela `usuarios`
 --
 
-INSERT INTO `usuarios` (`id`, `nome`, `email`, `senha`, `tipo_usuario`) VALUES
-(1, 'Ana Souza', 'ana.souza@email.com', 'senhaCriptografada123', 'usuario'),
-(2, 'Bruno Lima', 'bruno.lima@email.com', 'seguraSenha456', 'usuario'),
-(3, 'Carla Mendes', 'carla.mendes@email.com', 'senhaForte789', 'usuario'),
-(4, 'Diego Rocha', 'diego.rocha@email.com', 'minhaSenha321', 'usuario'),
-(5, 'Eduarda Castro', 'eduarda.castro@email.com', 'outraSenha654', 'usuario');
+INSERT INTO `usuarios` (`id`, `nome`, `email`, `senha`) VALUES
+(1, 'Ana Souza', 'ana.souza@email.com', 'senhaCriptografada123'),
+(2, 'Bruno Lima', 'bruno.lima@email.com', 'seguraSenha456'),
+(3, 'Carla Mendes', 'carla.mendes@email.com', 'senhaForte789'),
+(4, 'Diego Rocha', 'diego.rocha@email.com', 'minhaSenha321'),
+(5, 'Eduarda Castro', 'eduarda.castro@email.com', 'outraSenha654');
 
 --
 -- Índices para tabelas despejadas

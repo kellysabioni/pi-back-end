@@ -91,7 +91,6 @@ CREATE TABLE `usuarios` (
   `nome` varchar(100) NOT NULL,
   `email` varchar(50) NOT NULL,
   `senha` varchar(255) NOT NULL,
-  `tipo_usuario` enum('usuario','evento','projeto') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
