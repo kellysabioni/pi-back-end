@@ -14,7 +14,7 @@ INSERT INTO usuarios (nome, email, senha, tipo_usuario) VALUES
 ---
 > Projetos
 ```sql
-INSERT INTO projetos (nome, CEP, RUA, numero, bairro, cidade, UF, telefone, categoria, usuarios_id
+INSERT INTO projetos (nome, CEP, rua, numero, bairro, cidade, UF, telefone, categoria, usuarios_id
 ) VALUES
 ('Projeto Vida Ativa', '01001-000', 'Rua das Flores', '123', 'Centro', 'São Paulo', 'SP', '(11)91234-5678', 'Esportes', 2),
 ('Instituto Joga Junto', '20040-002', 'Av. Atlântica', '456', 'Copacabana', 'Rio de Janeiro', 'RJ', '(21)98765-4321', 'Esportes', 2),
@@ -30,7 +30,7 @@ INSERT INTO projetos (nome, CEP, RUA, numero, bairro, cidade, UF, telefone, cate
 ---
 > Eventos
 ```sql
-INSERT INTO eventos (nome, descricao, data, CEP, RUA, numero, bairro, cidade, UF, telefone, categoria, usuarios_id, projetos_id
+INSERT INTO eventos (nome, descricao, data, CEP, rua, numero, bairro, cidade, UF, telefone, categoria, usuarios_id, projetos_id
 ) VALUES
 ('Festival Vida Ativa 2025', 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Numquam nemo eligendi tenetur non distinctio qui dicta a dolorem exercitationem incidunt consequatur, quas et molestiae cumque similique atque dolorum? Aliquid, alias?', '2025-03-10', '01001-000', 'Rua das Flores', '123', 'Centro', 'São Paulo', 'SP', '(11)91234-5678', 'Esportes', 1, NULL),
 ('Copa Joga Junto Sub-15', 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Numquam nemo eligendi tenetur non distinctio qui dicta a dolorem exercitationem incidunt consequatur, quas et molestiae cumque similique atque dolorum? Aliquid, alias?', '2025-04-20', '20031-005', 'Rua do Catete', '89', 'Glória', 'Rio de Janeiro', 'RJ', '(21)92345-6789', 'Esportes', 3, NULL),

@@ -10,7 +10,7 @@ enum Categoria: string {
     case DesenvolvimentoSocial = 'DesenvolvimentoSocial';
     case AssistenciaSocial = 'Assistência Social';
     case Esportes = 'Esportes';
-    case ApoioAGruposVulneráveis = 'Apoio a Grupos Vulneráveis';
+    case ApoioAGruposVulneraveis = 'Apoio a Grupos Vulneráveis';
     case CombateAViolencia = 'Combate à Violência';
     case ApoioAAnimais = 'Apoio a Animais';
     case AcoesDeVoluntariado = 'Ações de Voluntariado';

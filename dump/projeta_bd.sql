@@ -34,8 +34,9 @@ CREATE TABLE `eventos` (
   `nome` varchar(100) NOT NULL,
   `descricao` varchar(300) NOT NULL,
   `data` date NOT NULL,
+  `hora` time NOT NULL, 
   `CEP` varchar(9) NOT NULL,
-  `RUA` varchar(100) NOT NULL,
+  `rua` varchar(100) NOT NULL,
   `numero` varchar(10) NOT NULL,
   `bairro` varchar(50) NOT NULL,
   `cidade` varchar(100) NOT NULL,
@@ -70,7 +71,7 @@ CREATE TABLE `projetos` (
   `id` int(11) NOT NULL,
   `nome` varchar(100) NOT NULL,
   `CEP` varchar(9) NOT NULL,
-  `RUA` varchar(100) NOT NULL,
+  `rua` varchar(100) NOT NULL,
   `numero` varchar(10) NOT NULL,
   `bairro` varchar(50) NOT NULL,
   `cidade` varchar(100) NOT NULL,
@@ -91,7 +92,6 @@ CREATE TABLE `usuarios` (
   `nome` varchar(100) NOT NULL,
   `email` varchar(50) NOT NULL,
   `senha` varchar(255) NOT NULL,
-  `tipo_usuario` enum('usuario','evento','projeto') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
