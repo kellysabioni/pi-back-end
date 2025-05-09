@@ -15,7 +15,6 @@ CREATE TABLE usuarios(
     nome VARCHAR(100) NOT NULL,
     email VARCHAR(50) NOT NULL UNIQUE,
     senha VARCHAR(255) NOT NULL,
-    tipo_usuario ENUM('usuario', 'evento', 'projeto') NOT NULL
 );
 ```
 ---
@@ -25,7 +24,7 @@ CREATE TABLE projetos(
     id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
     nome VARCHAR(100) NOT NULL,
     CEP VARCHAR(9) NOT NULL,
-    RUA VARCHAR(100) NOT NULL,
+    rua VARCHAR(100) NOT NULL,
     numero VARCHAR(10) NOT NULL,
     bairro VARCHAR(50) NOT NULL,
     cidade VARCHAR(100) NOT NULL,
@@ -43,9 +42,10 @@ CREATE TABLE eventos(
     id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
     nome VARCHAR(100) NOT NULL,
     descricao VARCHAR(300) NOT NULL,
-    data DATE NOT NULL, 
+    data DATE NOT NULL,
+    hora TIME NOT NULL, 
     CEP VARCHAR(9) NOT NULL,
-    RUA VARCHAR(100) NOT NULL,
+    rua VARCHAR(100) NOT NULL,
     numero VARCHAR(10) NOT NULL,
     bairro VARCHAR(50) NOT NULL,
     cidade VARCHAR(100) NOT NULL,

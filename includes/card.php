@@ -20,7 +20,7 @@ foreach($listarEventos as $evento) {
                         <p class="card-conteudo">
                             <strong>📍 Local:</strong><?=$evento["RUA"]?><br>
                             <strong>🕒 Horário:</strong> 14:00<br>
-                            <strong>👥 Organizador:</strong> Maria Silva<br><br>
+                            <strong>👥 Organizador:</strong> <?=$evento["nome_usuario"]?><?=$evento["nome_projeto"]?><br><br>
                             <?=$evento["descricao"]?>
                         </p>
                     </div>
