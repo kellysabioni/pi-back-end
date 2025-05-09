@@ -4,7 +4,7 @@ namespace ProjetaBD\Models;
 class Projeto{
     private string $nome;
     private string $CEP;
-    private string $RUA;
+    private string $rua;
     private string $numero;
     private string $bairro;
     private string $cidade;
@@ -14,10 +14,10 @@ class Projeto{
     private ?int $usuarios_id;
     private ?int $eventos_id;
 
-    public function __construct(int $id , string $nome, string $CEP, string $RUA, string $numero, string $bairro, string $cidade, string $UF, string $telefone, string $categoria, ?int $usuarios_id = null, ?int $eventos_id = null) {
+    public function __construct(int $id , string $nome, string $CEP, string $rua, string $numero, string $bairro, string $cidade, string $UF, string $telefone, string $categoria, ?int $usuarios_id = null, ?int $eventos_id = null) {
         $this-> setNome ($nome);
         $this-> setCEP ($CEP);
-        $this-> setRua ($RUA);
+        $this-> setRua ($rua);
         $this-> setNumero ($numero);
         $this-> setBairro ($bairro);
         $this-> setCidade ($cidade);
@@ -39,4 +39,16 @@ class Projeto{
     public function getCategoria(): string {return $this->categoria;}
     public function getUsuariosId(): string {return $this->usuarios_id;}
     public function getEventosId(): string {return $this->eventos_id;}
+
+    public function setNome(): string {return $this->nome;}
+    public function setCEP(): string {return $this->CEP;}
+    public function setRua(): string {return $this->rua;}
+    public function setNumero(): string {return $this->numero;}
+    public function setBairro(): string {return $this->bairro;}
+    public function setCidade(): string {return $this->cidade;}
+    public function setUF(): string {return $this->UF;}
+    public function setTelefone(): string {return $this->telefone;}
+    public function setCategoria(): string {return $this->categoria;}
+    public function setUsuariosId(): string {return $this->usuarios_id;}
+    public function setEventosId(): string {return $this->eventos_id;}
 }
