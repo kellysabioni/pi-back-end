@@ -139,4 +139,39 @@ class Evento {
     {
         $this->numero = $numero;
     }
+
+    private function setBairro(string $bairro): void
+    {
+        $this->bairro = $bairro;
+    }
+
+    private function setCidade(string $cidade): void
+    {
+        $this->cidade = $cidade;
+    }
+
+    private function setUF(string $UF): void
+    {
+        $this->UF = $UF;
+    }
+
+    private function setTelefone(string $telefone): void
+    {
+        $this->telefone = $telefone;
+    }
+
+    protected function setCategoria(Categoria $categoria): void
+    {
+        $this->categoria = $categoria;
+    }
+
+    private function setUsuarios_id(?int $usuarios_id): void
+    {
+        $this->usuarios_id = $usuarios_id;
+    }
+
+    private function setProjetos_id(?int $projetos_id): void
+    {
+        $this->projetos_id = $projetos_id;
+    }
 }
