@@ -15,6 +15,7 @@ CREATE TABLE usuarios(
     nome VARCHAR(100) NOT NULL,
     email VARCHAR(50) NOT NULL UNIQUE,
     senha VARCHAR(255) NOT NULL,
+    data_criacao DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
 );
 ```
 ---
@@ -31,6 +32,7 @@ CREATE TABLE projetos(
     UF CHAR(2) NOT NULL,
     telefone VARCHAR(15) NOT NULL,
     categoria ENUM('Cultura','Saúde', 'Educação', 'Meio Ambiente', 'Desenvolvimento Social', 'Assistência Social', 'Esportes', 'Apoio a Grupos Vulneráveis', 'Combate à Violência', 'Apoio a Animais', 'Ações de Voluntariado') NOT NULL,
+    data_criacao DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     usuarios_id INT NOT NULL,
     FOREIGN KEY (usuarios_id) REFERENCES usuarios(id)
 );
@@ -51,6 +53,7 @@ CREATE TABLE eventos(
     cidade VARCHAR(100) NOT NULL,
     UF CHAR(2) NOT NULL,
     telefone VARCHAR(15) NOT NULL,
+    data_criacao DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     categoria ENUM('Cultura','Saúde', 'Educação', 'Meio Ambiente', 'Desenvolvimento Social', 'Assistência Social', 'Esportes', 'Apoio a Grupos Vulneráveis', 'Combate à Violência', 'Apoio a Animais', 'Ações de Voluntariado') NOT NULL,
     usuarios_id INT,
     projetos_id INT,
