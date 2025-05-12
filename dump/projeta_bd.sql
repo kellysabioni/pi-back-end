@@ -44,7 +44,7 @@ CREATE TABLE `eventos` (
   `telefone` varchar(15) NOT NULL,
   `categoria` enum('Cultura','Saúde','Educação','Meio Ambiente','Desenvolvimento Social','Assistência Social','Esportes','Apoio a Grupos Vulneráveis','Combate à Violência','Apoio a Animais','Ações de Voluntariado') NOT NULL,
   `created_at` datetime NOT NULL DEFAULT current_timestamp(),
-  `updated_at` datetime NOT NULL DEFAULT current_timestamp(),
+  `updated_at` datetime NULL DEFAULT current_timestamp(),
   `usuarios_id` int(11) DEFAULT NULL,
   `projetos_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -82,7 +82,7 @@ CREATE TABLE `projetos` (
   `telefone` varchar(15) NOT NULL,
   `categoria` enum('Cultura','Saúde','Educação','Meio Ambiente','Desenvolvimento Social','Assistência Social','Esportes','Apoio a Grupos Vulneráveis','Combate à Violência','Apoio a Animais','Ações de Voluntariado') NOT NULL,
   `created_at` datetime NOT NULL DEFAULT current_timestamp(),
-  `updated_at` datetime NOT NULL DEFAULT current_timestamp(),
+  `updated_at` datetime NULL DEFAULT current_timestamp(),
   `usuarios_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -98,7 +98,7 @@ CREATE TABLE `usuarios` (
   `email` varchar(50) NOT NULL,
   `senha` varchar(255) NOT NULL,
   `created_at` datetime NOT NULL DEFAULT current_timestamp(),
-  `updated_at` datetime NOT NULL DEFAULT current_timestamp()
+  `updated_at` datetime NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
