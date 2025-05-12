@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 07/05/2025 às 02:24
+-- Tempo de geração: 12/05/2025 às 14:42
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.2.12
 
@@ -34,7 +34,7 @@ CREATE TABLE `eventos` (
   `nome` varchar(100) NOT NULL,
   `descricao` varchar(300) NOT NULL,
   `data` date NOT NULL,
-  `hora` time NOT NULL, 
+  `hora` time NOT NULL,
   `CEP` varchar(9) NOT NULL,
   `rua` varchar(100) NOT NULL,
   `numero` varchar(10) NOT NULL,
@@ -42,7 +42,9 @@ CREATE TABLE `eventos` (
   `cidade` varchar(100) NOT NULL,
   `UF` char(2) NOT NULL,
   `telefone` varchar(15) NOT NULL,
-  `categoria` ENUM('Cultura','Saúde', 'Educação', 'Meio Ambiente', 'Desenvolvimento Social', 'Assistência Social', 'Esportes', 'Apoio a Grupos Vulneráveis', 'Combate à Violência', 'Apoio a Animais', 'Ações de Voluntariado') NOT NULL,
+  `categoria` enum('Cultura','Saúde','Educação','Meio Ambiente','Desenvolvimento Social','Assistência Social','Esportes','Apoio a Grupos Vulneráveis','Combate à Violência','Apoio a Animais','Ações de Voluntariado') NOT NULL,
+  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
+  `updated_at` datetime NOT NULL DEFAULT current_timestamp(),
   `usuarios_id` int(11) DEFAULT NULL,
   `projetos_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -56,6 +58,7 @@ CREATE TABLE `eventos` (
 CREATE TABLE `fotos` (
   `id` int(11) NOT NULL,
   `nome_arquivo` varchar(100) NOT NULL,
+  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
   `usuarios_id` int(11) NOT NULL,
   `projetos_id` int(11) DEFAULT NULL,
   `eventos_id` int(11) DEFAULT NULL
@@ -77,7 +80,9 @@ CREATE TABLE `projetos` (
   `cidade` varchar(100) NOT NULL,
   `UF` char(2) NOT NULL,
   `telefone` varchar(15) NOT NULL,
-  `categoria` ENUM('Cultura','Saúde', 'Educação', 'Meio Ambiente', 'Desenvolvimento Social', 'Assistência Social', 'Esportes', 'Apoio a Grupos Vulneráveis', 'Combate à Violência', 'Apoio a Animais', 'Ações de Voluntariado') NOT NULL,
+  `categoria` enum('Cultura','Saúde','Educação','Meio Ambiente','Desenvolvimento Social','Assistência Social','Esportes','Apoio a Grupos Vulneráveis','Combate à Violência','Apoio a Animais','Ações de Voluntariado') NOT NULL,
+  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
+  `updated_at` datetime NOT NULL DEFAULT current_timestamp(),
   `usuarios_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -92,6 +97,8 @@ CREATE TABLE `usuarios` (
   `nome` varchar(100) NOT NULL,
   `email` varchar(50) NOT NULL,
   `senha` varchar(255) NOT NULL,
+  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
+  `updated_at` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
