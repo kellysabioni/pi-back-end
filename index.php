@@ -5,7 +5,7 @@ use ProjetaBD\Services\EventoServicos;
 require_once "../pi-back-end/vendor/autoload.php";
 
 $eventoServico = new EventoServicos;
-$listarEventos = $eventoServico->listarTodos();
+$listarTodos = $eventoServico->listarTodos();
 ?>
 
 <!DOCTYPE html>
