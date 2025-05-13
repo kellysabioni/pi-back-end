@@ -19,9 +19,7 @@ class EventoServicos
     public function listarTodos(): array
     {
         $sql = "SELECT 
-    -- Campos da tabela usuarios
     usuarios.*,
-    -- Campos da tabela projetos
     projetos.id AS projeto_id,
     projetos.nome AS projeto_nome,
     projetos.CEP AS projeto_CEP,
@@ -34,7 +32,6 @@ class EventoServicos
     projetos.categoria AS projeto_categoria,
     projetos.usuarios_id AS projeto_usuarios_id,
 
-    -- Campos da tabela eventos
     eventos.id AS evento_id,
     eventos.nome AS evento_nome,
     eventos.descricao AS evento_descricao,
@@ -49,7 +46,6 @@ class EventoServicos
     eventos.categoria AS evento_categoria,
     eventos.usuarios_id AS evento_usuarios_id,
     eventos.projetos_id AS evento_projetos_id
-
 FROM 
     usuarios
 LEFT JOIN projetos ON projetos.usuarios_id = usuarios.id
