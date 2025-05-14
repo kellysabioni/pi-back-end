@@ -1,16 +1,15 @@
-<?php 
-foreach($listarTodos as $item) {
+<?php
+foreach($listarEventos as $evento) {
 ?>
-<?=$item["id"]?>
-<div class="post">
+<div class="post" id="<?=$evento["id"]?>">
                 <div class="post-card">
                     <div class="card-header">
                         <div class="card-icon">
                             <i class="far fa-user"></i>
                         </div>
                         <div class="card-header-info">
-                            <h3 class="card-titulo"><?= $item["evento_nome"]?></h3>
-                            <span class="card-data"><?=$item["evento_data"]?></span>
+                            <h3 class="card-titulo"><?= $evento["nome"]?></h3>
+                            <span class="card-data"><?=$evento["data"]?></span>
                         </div>
                     </div>
                     <div class="post-modal-banner">
@@ -19,10 +18,10 @@ foreach($listarTodos as $item) {
                     </div>
                     <div class="card-main">
                         <p class="card-conteudo">
-                            <strong>📍 Local:</strong><?=$item["evento_RUA"]?><br>
+                            <strong>📍 Local:</strong><?=$evento["RUA"]?><br>
                             <strong>🕒 Horário:</strong> 14:00<br>
-                            <strong>👥 Organizador:</strong> <?=$item["nome"]?><?=$item["projeto_nome"]?><br><br>
-                            <?=$item["evento_descricao"]?>
+                            <strong>👥 Organizador:</strong> <?=$evento["usuario_nome"]?><?=$evento["projeto_nome"]?><br><br>
+                            <?=$evento["descricao"]?>
                         </p>
                     </div>
                     <div class="card-footer">
