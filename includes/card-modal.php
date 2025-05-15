@@ -17,7 +17,7 @@ $listarUm = $eventoServico->listarUm($id);
             <div class="post-header-info">
                 <h2 class="post-modal-titulo"><?=$listarUm[0]["nome"]?></h2>
                 <div class="post-modal-meta">
-                    <span><i class="far fa-calendar"></i><?=$listarUm[0]["data"]?></span>
+                    <span><i class="far fa-calendar"></i> <?=$listarUm[0]["data"]?></span>
                     <span><i class="far fa-user"></i><?=$listarUm[0]["usuario_nome"]?></span>
                 </div>
             </div>
@@ -27,6 +27,7 @@ $listarUm = $eventoServico->listarUm($id);
             <div class="post-modal-main">
                 <div class="post-modal-descricao">
                     <h3>Sobre o Evento</h3>
+
                     <p><?=$listarUm[0]["descricao"]?></p>
                 </div>
             </div>
@@ -48,7 +49,7 @@ $listarUm = $eventoServico->listarUm($id);
                         </div>
                         <div class="info-item">
                             <i class="far fa-calendar"></i>
-                            <span><strong>Data:</strong><?=$listarUm[0]["data"]?></span>
+                            <span><strong>Data:</strong> <?=$listarUm[0]["data"]?></span>
                         </div>
                     </div>
 

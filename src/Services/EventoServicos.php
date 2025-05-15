@@ -47,18 +47,22 @@ class EventoServicos
         $sql = "SELECT 
     eventos.*,
 
-    usuarios.id AS usuario_id,
-    usuarios.nome AS usuario_nome,
+    -- IDs e nomes diretos
+    COALESCE(eventos.usuarios_id, projetos.usuarios_id) AS usuario_id,
+    COALESCE(usuario_evento.nome, usuario_projeto.nome) AS usuario_nome,
 
     projetos.id AS projeto_id,
     projetos.nome AS projeto_nome
 
-    FROM 
+FROM 
     eventos
-    LEFT JOIN usuarios ON eventos.usuarios_id = usuarios.id
-    LEFT JOIN projetos ON eventos.projetos_id = projetos.id
-    WHERE 
-    eventos.id = :id";
+LEFT JOIN usuarios AS usuario_evento ON eventos.usuarios_id = usuario_evento.id
+LEFT JOIN projetos ON eventos.projetos_id = projetos.id
+LEFT JOIN usuarios AS usuario_projeto ON projetos.usuarios_id = usuario_projeto.id
+
+WHERE 
+    eventos.id = :id;
+";
 
         try {
             $consulta = $this->conexao->prepare($sql);
