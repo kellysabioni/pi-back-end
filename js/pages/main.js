@@ -7,20 +7,26 @@ document.addEventListener('DOMContentLoaded', function () {
 
     postCard.forEach(card => {
         card.addEventListener('click', function () {
-            const id = card.id; 
-            window.location.href = `#evento_${id}?data-id=${id}`;
+           const id = card.dataset.id; 
+            window.location.href = `?id=${id}`;
         });
     });
 
     const urlParams = new URLSearchParams(window.location.search);
     const id = urlParams.get('id'); 
-    
+
     if (id) {
-        postModal.style.display = 'block';
-        postModal.offsetHeight;
-        postModal.classList.add('ativo');
-        document.body.style.overflow = 'hidden';
+    const card = document.getElementById(`evento_${id}`);
+    if (card) {
+        card.scrollIntoView();
     }
+
+    postModal.style.display = 'block';
+    postModal.offsetHeight;
+    postModal.classList.add('ativo');
+    document.body.style.overflow = 'hidden';
+}
+
 
   
     function fecharModal() {
