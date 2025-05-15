@@ -1,7 +1,7 @@
 <?php
 foreach($listarEventos as $evento) {
 ?>
-<div class="post" id="<?=$evento["id"]?>">
+<div class="post" id="evento_<?= $evento["id"]?>" data-id="<?=$evento["id"]?>">
                 <div class="post-card">
                     <div class="card-header">
                         <div class="card-icon">

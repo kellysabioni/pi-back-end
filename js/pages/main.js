@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', function () {
     postCard.forEach(card => {
         card.addEventListener('click', function () {
             const id = card.id; 
-            window.location.href = `?id=${id}`;
+            window.location.href = `#evento_${id}?data-id=${id}`;
         });
     });
 
