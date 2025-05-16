@@ -42,7 +42,7 @@ CREATE TABLE `eventos` (
   `cidade` varchar(100) NOT NULL,
   `UF` char(2) NOT NULL,
   `telefone` varchar(15) NOT NULL,
-  `categoria` enum('Cultura','Saúde','Educação','Meio Ambiente','Desenvolvimento Social','Assistência Social','Esportes','Apoio a Grupos Vulneráveis','Combate à Violência','Apoio a Animais','Ações de Voluntariado') NOT NULL,
+  `categoria` enum('Indefinido','Cultura','Saude', 'Educacao', 'MeioAmbiente', 'DesenvolvimentoSocial', 'AssistenciaSocial', 'Esportes', 'ApoioAGruposVulneraveis', 'CombateAViolencia', 'ApoioAAnimais', 'AcoesDeVoluntariado') NOT NULL,
   `created_at` datetime DEFAULT current_timestamp(),
   `updated_at` datetime DEFAULT NULL,
   `usuarios_id` int(11) DEFAULT NULL,
@@ -80,7 +80,7 @@ CREATE TABLE `projetos` (
   `cidade` varchar(100) NOT NULL,
   `UF` char(2) NOT NULL,
   `telefone` varchar(11) NOT NULL,
-  `categoria` enum('Cultura','Saúde','Educação','Meio Ambiente','Desenvolvimento Social','Assistência Social','Esportes','Apoio a Grupos Vulneráveis','Combate à Violência','Apoio a Animais','Ações de Voluntariado') NOT NULL,
+  `categoria` enum('Indefinido','Cultura','Saude', 'Educacao', 'MeioAmbiente', 'DesenvolvimentoSocial', 'AssistenciaSocial', 'Esportes', 'ApoioAGruposVulneraveis', 'CombateAViolencia', 'ApoioAAnimais', 'AcoesDeVoluntariado') NOT NULL,
   `created_at` datetime DEFAULT current_timestamp(),
   `updated_at` datetime DEFAULT NULL,
   `usuarios_id` int(11) NOT NULL
