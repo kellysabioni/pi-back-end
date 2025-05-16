@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 12/05/2025 às 14:42
+-- Tempo de geração: 17/05/2025 às 00:34
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.2.12
 
@@ -43,8 +43,8 @@ CREATE TABLE `eventos` (
   `UF` char(2) NOT NULL,
   `telefone` varchar(15) NOT NULL,
   `categoria` enum('Cultura','Saúde','Educação','Meio Ambiente','Desenvolvimento Social','Assistência Social','Esportes','Apoio a Grupos Vulneráveis','Combate à Violência','Apoio a Animais','Ações de Voluntariado') NOT NULL,
-  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
-  `updated_at` datetime NULL DEFAULT current_timestamp(),
+  `created_at` datetime DEFAULT current_timestamp(),
+  `updated_at` datetime DEFAULT NULL,
   `usuarios_id` int(11) DEFAULT NULL,
   `projetos_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -58,7 +58,7 @@ CREATE TABLE `eventos` (
 CREATE TABLE `fotos` (
   `id` int(11) NOT NULL,
   `nome_arquivo` varchar(100) NOT NULL,
-  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
+  `created_at` datetime DEFAULT current_timestamp(),
   `usuarios_id` int(11) NOT NULL,
   `projetos_id` int(11) DEFAULT NULL,
   `eventos_id` int(11) DEFAULT NULL
@@ -79,10 +79,10 @@ CREATE TABLE `projetos` (
   `bairro` varchar(50) NOT NULL,
   `cidade` varchar(100) NOT NULL,
   `UF` char(2) NOT NULL,
-  `telefone` varchar(15) NOT NULL,
+  `telefone` varchar(11) NOT NULL,
   `categoria` enum('Cultura','Saúde','Educação','Meio Ambiente','Desenvolvimento Social','Assistência Social','Esportes','Apoio a Grupos Vulneráveis','Combate à Violência','Apoio a Animais','Ações de Voluntariado') NOT NULL,
-  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
-  `updated_at` datetime NULL DEFAULT current_timestamp(),
+  `created_at` datetime DEFAULT current_timestamp(),
+  `updated_at` datetime DEFAULT NULL,
   `usuarios_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -96,9 +96,9 @@ CREATE TABLE `usuarios` (
   `id` int(11) NOT NULL,
   `nome` varchar(100) NOT NULL,
   `email` varchar(50) NOT NULL,
-  `senha` varchar(255) NOT NULL,
-  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
-  `updated_at` datetime NULL DEFAULT current_timestamp()
+  `senha` varchar(50) NOT NULL,
+  `created_at` datetime DEFAULT current_timestamp(),
+  `updated_at` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
