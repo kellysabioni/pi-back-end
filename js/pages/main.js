@@ -1,4 +1,3 @@
-
 document.addEventListener('DOMContentLoaded', function () {
 
     const postCard = document.querySelectorAll(".post");  
@@ -52,8 +51,6 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 
-
-
 function barraPesquisar() {
     const pesquisar = document.querySelector('.barra-pesquisar');
     const criar = document.querySelector('.barra-criar');
@@ -85,6 +82,24 @@ document.addEventListener('DOMContentLoaded', () => {
     const input = document.querySelector('.barra-criar');
     input.addEventListener('keydown', aoPressionar);
 });
+
+function fecharLoginModal() {
+    const loginModal = document.getElementById('loginModal');
+    loginModal.classList.remove('ativo');
+    setTimeout(() => {
+        loginModal.style.display = 'none';
+        document.body.style.overflow = 'auto';
+    }, 300);
+}
+
+function abrirLoginModal() {
+    const loginModal = document.getElementById('loginModal');
+    loginModal.style.display = 'block';
+    loginModal.offsetHeight;
+    loginModal.classList.add('ativo');
+    document.body.style.overflow = 'hidden';
+}
+
 
 
 
