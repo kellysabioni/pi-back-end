@@ -208,6 +208,136 @@ header {
     }
 } */
 
+.login-modal {
+    display: block;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    overflow-y: auto;
+}
+
+.login-modal.ativo {
+    display: block;
+    animation: fadeIn 0.3s ease-out;
+}
+
+.login-container {
+    position: relative;
+    background-color: var(--branco);
+    margin: 2rem auto;
+    width: 90%;
+    max-width: 500px;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+}
+
+.login-fechar {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    font-size: 28px;
+    font-weight: bold;
+    color: var(--cor-texto);
+    cursor: pointer;
+    z-index: 10;
+}
+
+.login-fechar:hover {
+    color: #ff4444;
+}
+
+.login-header {
+    text-align: center;
+    padding: 2rem 1rem;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.login-titulo {
+    color: var(--cor-texto);
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 0;
+}
+
+.login-form {
+    padding: 1.5rem;
+}
+
+.login-grupo {
+    margin-bottom: 1.5rem;
+}
+
+.login-grupo label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--cor-texto);
+    font-weight: 500;
+}
+
+.login-grupo input {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.login-grupo input:focus {
+    outline: none;
+    border-color: var(--cor-primaria);
+    box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.1);
+}
+
+.login-acoes {
+    padding: 1.5rem;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+.login-botao {
+    width: 100%;
+    padding: 0.8rem;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.login-botao.primario {
+    background-color: var(--cor-primaria);
+    color: var(--branco);
+}
+
+.login-botao.primario:hover {
+    background-color: #45a049;
+}
+
+.login-botao.secundario {
+    background-color: white;
+    color: var(--cor-texto);
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+} 
+
 .nav {
     border-top: 1px solid rgba(0, 0, 0, 0.144) ;
     width:600px;
