@@ -38,8 +38,8 @@
 
             <div class="perfil-botoes">
                 <button id="meusProjetosBtn" class="perfil-botao">Meus Projetos</button>
-                <button id="projetosSeguidosBtn" class="perfil-botao">Projetos Seguidos</button>
-                <button id="projetosCriadosBtn" class="perfil-botao">Projetos Criados</button>
+                <button id="projetosSeguidosBtn" class="perfil-botao"  style="display: none;">Projetos Seguidos</button>
+                <button id="projetosCriadosBtn" class="perfil-botao" style="display: none;">Projetos Criados</button>
             </div>
 
             <div class="perfil-conteudo">

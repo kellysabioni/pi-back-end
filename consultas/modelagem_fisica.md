@@ -15,7 +15,8 @@ CREATE TABLE usuarios(
     nome VARCHAR(100) NOT NULL,
     email VARCHAR(50) NOT NULL UNIQUE,
     senha VARCHAR(255) NOT NULL,
-    tipo_usuario ENUM('usuario', 'evento', 'projeto') NOT NULL
+    created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at DATETIME NULL DEFAULT CURRENT_TIMESTAMP
 );
 ```
 ---
@@ -25,13 +26,15 @@ CREATE TABLE projetos(
     id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
     nome VARCHAR(100) NOT NULL,
     CEP VARCHAR(9) NOT NULL,
-    RUA VARCHAR(100) NOT NULL,
+    rua VARCHAR(100) NOT NULL,
     numero VARCHAR(10) NOT NULL,
     bairro VARCHAR(50) NOT NULL,
     cidade VARCHAR(100) NOT NULL,
     UF CHAR(2) NOT NULL,
     telefone VARCHAR(15) NOT NULL,
-    categoria VARCHAR(50) NOT NULL,
+    categoria ENUM('Cultura','Saúde', 'Educação', 'Meio Ambiente', 'Desenvolvimento Social', 'Assistência Social', 'Esportes', 'Apoio a Grupos Vulneráveis', 'Combate à Violência', 'Apoio a Animais', 'Ações de Voluntariado') NOT NULL,
+    created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at DATETIME NULL DEFAULT CURRENT_TIMESTAMP,
     usuarios_id INT NOT NULL,
     FOREIGN KEY (usuarios_id) REFERENCES usuarios(id)
 );
@@ -43,15 +46,18 @@ CREATE TABLE eventos(
     id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
     nome VARCHAR(100) NOT NULL,
     descricao VARCHAR(300) NOT NULL,
-    data DATE NOT NULL, 
+    data DATE NOT NULL,
+    hora TIME NOT NULL, 
     CEP VARCHAR(9) NOT NULL,
-    RUA VARCHAR(100) NOT NULL,
+    rua VARCHAR(100) NOT NULL,
     numero VARCHAR(10) NOT NULL,
     bairro VARCHAR(50) NOT NULL,
     cidade VARCHAR(100) NOT NULL,
     UF CHAR(2) NOT NULL,
     telefone VARCHAR(15) NOT NULL,
-    categoria VARCHAR(50) NOT NULL,
+    categoria ENUM('Cultura','Saúde', 'Educação', 'Meio Ambiente', 'Desenvolvimento Social', 'Assistência Social', 'Esportes', 'Apoio a Grupos Vulneráveis', 'Combate à Violência', 'Apoio a Animais', 'Ações de Voluntariado') NOT NULL,
+    created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at DATETIME NULL DEFAULT CURRENT_TIMESTAMP,
     usuarios_id INT,
     projetos_id INT,
     FOREIGN KEY (usuarios_id) REFERENCES usuarios(id),
@@ -63,6 +69,7 @@ CREATE TABLE eventos(
 CREATE TABLE fotos( 
     id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
     nome_arquivo VARCHAR(100) NOT NULL,
+    created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     usuarios_id INT NOT NULL,
     projetos_id INT NULL,
     eventos_id INT NULL,
