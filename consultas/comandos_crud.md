@@ -4,12 +4,13 @@
 ---
 > Usuarios
 ```sql
-INSERT INTO usuarios (nome, email, senha, tipo_usuario, created_at, updated_at) VALUES
-('Ana Souza', 'ana.souza@email.com', 'senhaCriptografada123', 'usuario', '', NULL),
-('Bruno Lima', 'bruno.lima@email.com', 'seguraSenha456', 'usuario', '', NULL),
-('Carla Mendes', 'carla.mendes@email.com', 'senhaForte789', 'usuario', '', NULL),
-('Diego Rocha', 'diego.rocha@email.com', 'minhaSenha321', 'usuario', '', NULL),
-('Eduarda Castro', 'eduarda.castro@email.com', 'outraSenha654', 'usuario', '', NULL);
+INSERT INTO usuarios (nome, email, senha) 
+VALUES
+('Ana Souza', 'ana.souza@email.com', 'senhaCriptografada123'),
+('Bruno Lima', 'bruno.lima@email.com', 'seguraSenha456'),
+('Carla Mendes', 'carla.mendes@email.com', 'senhaForte789'),
+('Diego Rocha', 'diego.rocha@email.com', 'minhaSenha321'),
+('Eduarda Castro', 'eduarda.castro@email.com', 'outraSenha654');
 ```
 ---
 > Projetos

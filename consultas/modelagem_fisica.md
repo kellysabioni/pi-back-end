@@ -1,9 +1,13 @@
 # Comandos utilizados
-0
-## Criando banco de dados 
 
+## Criando banco de dados 
 ``` sql
-CREATE DATABASE projeta_bd CHARACTER SET utf8mb4 ;
+CREATE DATABASE projeta_bd CHARACTER SET utf8mb4;
+```
+
+## Selecionando banco 
+``` sql
+USE projeta_bd;
 ```
 
 ## Criando Tabelas 
@@ -14,9 +18,10 @@ CREATE TABLE usuarios(
     id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
     nome VARCHAR(100) NOT NULL,
     email VARCHAR(50) NOT NULL UNIQUE,
-    senha VARCHAR(255) NOT NULL,
-    created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    updated_at DATETIME NULL DEFAULT CURRENT_TIMESTAMP
+    senha VARCHAR(50) NOT NULL,
+    created_at DATE NULL DEFAULT CURRENT_TIMESTAMP,
+    hora_criacao TIME NULL DEFAULT CURRENT_TIME,
+    updated_at DATE NULL
 );
 ```
 ---
@@ -31,10 +36,11 @@ CREATE TABLE projetos(
     bairro VARCHAR(50) NOT NULL,
     cidade VARCHAR(100) NOT NULL,
     UF CHAR(2) NOT NULL,
-    telefone VARCHAR(15) NOT NULL,
+    telefone VARCHAR(11) NOT NULL,
     categoria ENUM('Cultura','Saúde', 'Educação', 'Meio Ambiente', 'Desenvolvimento Social', 'Assistência Social', 'Esportes', 'Apoio a Grupos Vulneráveis', 'Combate à Violência', 'Apoio a Animais', 'Ações de Voluntariado') NOT NULL,
-    created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    updated_at DATETIME NULL DEFAULT CURRENT_TIMESTAMP,
+    created_at DATE NULL DEFAULT CURRENT_TIMESTAMP,
+    hora_criacao TIME NULL DEFAULT CURRENT_TIME,
+    updated_at DATE NULL,
     usuarios_id INT NOT NULL,
     FOREIGN KEY (usuarios_id) REFERENCES usuarios(id)
 );
@@ -56,8 +62,9 @@ CREATE TABLE eventos(
     UF CHAR(2) NOT NULL,
     telefone VARCHAR(15) NOT NULL,
     categoria ENUM('Cultura','Saúde', 'Educação', 'Meio Ambiente', 'Desenvolvimento Social', 'Assistência Social', 'Esportes', 'Apoio a Grupos Vulneráveis', 'Combate à Violência', 'Apoio a Animais', 'Ações de Voluntariado') NOT NULL,
-    created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    updated_at DATETIME NULL DEFAULT CURRENT_TIMESTAMP,
+    created_at DATE NULL DEFAULT CURRENT_TIMESTAMP,
+    hora_criacao TIME NULL DEFAULT CURRENT_TIME,
+    updated_at DATE NULL,
     usuarios_id INT,
     projetos_id INT,
     FOREIGN KEY (usuarios_id) REFERENCES usuarios(id),
