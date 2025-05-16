@@ -40,9 +40,22 @@ if( isset($_POST['enviar']) ){
         </div>
 
         <div class="form">
+            <label for="categoriaEvento">Categoria</label>
+            <select name="categoriaEvento" id="categoriaEvento">
+                <?php foreach (\ProjetaBD\Enums\Categoria::cases() as $categoria): ?>
+                    <option value="<?= $categoria->name ?>">
+                        <?= $categoria->value ?>
+                    </option>
+                <?php endforeach; ?>
+            </select>
+        </div>
+
+
+        <div class="form">
             <label for="descricaoEvento">Descrição</label>
             <textarea name="descricao" id="descricaoEvento" placeholder="Descreva o Evento" required></textarea>
         </div>
+
 
         <div class="form">
             <label for="dataEvento">Data</label>

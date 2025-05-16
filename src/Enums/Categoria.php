@@ -7,7 +7,7 @@ enum Categoria: string {
     case Saude = 'Saúde'; 
     case Educacao = 'Educação';
     case MeioAmbiente = 'Meio Ambiente';
-    case DesenvolvimentoSocial = 'DesenvolvimentoSocial';
+    case DesenvolvimentoSocial = 'Desenvolvimento Social';
     case AssistenciaSocial = 'Assistência Social';
     case Esportes = 'Esportes';
     case ApoioAGruposVulneraveis = 'Apoio a Grupos Vulneráveis';

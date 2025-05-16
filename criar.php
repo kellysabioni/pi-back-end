@@ -1,3 +1,6 @@
+<?php
+require_once "../pi-back-end/vendor/autoload.php";
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 
