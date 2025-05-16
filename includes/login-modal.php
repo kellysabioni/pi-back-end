@@ -16,18 +16,18 @@
                 <label for="senha">Senha</label>
                 <input type="password" id="senha" name="senha" required>
             </div>
+            <a class="login-link" >
+                Cadastrar-se
+            </a>
         </form>
 
         <div class="login-acoes">
-            <button class="login-botao primario" onclick="fazerLogin()">
+            <button class="login-botao primario" >
                 Entrar
             </button>
-            <button class="login-botao primario" onclick="fazerLogin()">
-                Cadastrar-se
-            </button>
-            <button class="login-botao secundario" onclick="continuarSemLogin()">
+            <a class="login-link">
                 Continuar sem login
-            </button>
+            </a>
         </div>
     </div>
 </div> 
