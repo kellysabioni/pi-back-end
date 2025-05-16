@@ -1,9 +1,13 @@
 # Comandos utilizados
-0
-## Criando banco de dados 
 
+## Criando banco de dados 
 ``` sql
-CREATE DATABASE projeta_bd CHARACTER SET utf8mb4 ;
+CREATE DATABASE projeta_bd CHARACTER SET utf8mb4;
+```
+
+## Selecionando banco 
+``` sql
+USE projeta_bd;
 ```
 
 ## Criando Tabelas 
@@ -16,6 +20,7 @@ CREATE TABLE usuarios(
     email VARCHAR(50) NOT NULL UNIQUE,
     senha VARCHAR(255) NOT NULL,
     created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    
     updated_at DATETIME NULL DEFAULT CURRENT_TIMESTAMP
 );
 ```
