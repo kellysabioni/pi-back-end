@@ -1,5 +1,6 @@
-<?php 
+<?php
 
+use ProjetaBD\Enums\Categoria;
 use ProjetaBD\Models\Evento;
 use ProjetaBD\Services\EventoServico;
 
@@ -11,18 +12,19 @@ if( isset($_POST['enviar']) ){
     $nome = filter_input(INPUT_POST, "nome", FILTER_SANITIZE_SPECIAL_CHARS);
     $descricao = filter_input(INPUT_POST, "descricao", FILTER_SANITIZE_SPECIAL_CHARS);
     $data = filter_input(INPUT_POST, "data", FILTER_SANITIZE_SPECIAL_CHARS);
-    $CEP = filter_input(INPUT_POST, "CEP", FILTER_VALIDATE_REGEXP);
+    $CEP = filter_input(INPUT_POST, "CEP", FILTER_SANITIZE_SPECIAL_CHARS);
     $rua = filter_input(INPUT_POST, "rua", FILTER_SANITIZE_SPECIAL_CHARS);
     $numero = filter_input(INPUT_POST, "numero", FILTER_SANITIZE_SPECIAL_CHARS);
     $bairro = filter_input(INPUT_POST, "bairro", FILTER_SANITIZE_SPECIAL_CHARS);
     $cidade = filter_input(INPUT_POST, "cidade", FILTER_SANITIZE_SPECIAL_CHARS);
     $UF = filter_input(INPUT_POST, "UF", FILTER_SANITIZE_SPECIAL_CHARS);
-    $telefone = filter_input(INPUT_POST, "telefone",FILTER_VALIDATE_REGEXP);
-    $categoria = filter_input(INPUT_POST, "categoria", FILTER_SANITIZE_SPECIAL_CHARS);
+    $telefone = filter_input(INPUT_POST, "telefone", FILTER_SANITIZE_SPECIAL_CHARS);
+    $categoria = filter_input(INPUT_POST, "categoriaEvento", FILTER_SANITIZE_SPECIAL_CHARS);
     $usuarios_id = filter_input(INPUT_POST, "usuarios_id", FILTER_SANITIZE_SPECIAL_CHARS);
     $projetos_id = filter_input(INPUT_POST,"projetos_id", FILTER_SANITIZE_SPECIAL_CHARS);
 
-    $evento = new Evento(null, $nome, $descricao, $data, $hora, $CEP, $rua, $numero, $bairro, $cidade, $UF, $telefone, $categoria, null,  1);
+
+    $evento = new Evento(null, $nome, $descricao, $data, $CEP, $rua, $numero, $bairro, $cidade, $UF, $telefone, Categoria::Indefinido, null,  1);
     $eventoServico->inserir($evento);
 
     header("location:index.php");
@@ -64,7 +66,7 @@ if( isset($_POST['enviar']) ){
 
         <div class="form">
             <label for="horarioEvento">Horario</label>
-            <input type="time" name="horario" id="horarioEvento" required>
+            <input type="time" name="horario" id="horarioEvento">
         </div>
 
         <div class="form">
@@ -108,7 +110,7 @@ if( isset($_POST['enviar']) ){
 
         <div class="form">
             <label for="imagemEvento">Imagem do Evento</label>
-            <input type="file" id="imagemEvento" name="imagemEvento" accept="image/*" required>
+            <input type="file" id="imagemEvento" name="imagemEvento" accept="image/*" >
         </div>
 
         <div class="form">
