@@ -23,7 +23,7 @@
                 Entrar
             </button>
             <button class="login-botao primario" onclick="fazerLogin()">
-                Cadastra-se
+                Cadastrar-se
             </button>
             <button class="login-botao secundario" onclick="continuarSemLogin()">
                 Continuar sem login
