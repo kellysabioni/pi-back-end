@@ -41,7 +41,7 @@ $listarUm = $eventoServico->listarUm($id);
                         </h4>
                         <div class="info-item">
                             <i class="fas fa-map-marker-alt"></i>
-                            <span><strong>Local:</strong> <?=$listarUm[0]["RUA"]?>, <?=$listarUm[0]["numero"]?> - <?=$listarUm[0]["bairro"]?>. CEP: <?=$listarUm[0]["CEP"]?>. <?=$listarUm[0]["cidade"]?> - <?=$listarUm[0]["UF"]?></span>
+                            <span><strong>Local:</strong> <?=$listarUm[0]["rua"]?>, <?=$listarUm[0]["numero"]?> - <?=$listarUm[0]["bairro"]?>. CEP: <?=$listarUm[0]["CEP"]?>. <?=$listarUm[0]["cidade"]?> - <?=$listarUm[0]["UF"]?></span>
                         </div>
                         <div class="info-item">
                             <i class="far fa-clock"></i>
