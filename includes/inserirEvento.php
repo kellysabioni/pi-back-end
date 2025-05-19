@@ -12,6 +12,7 @@ if (isset($_POST['enviar'])) {
     $nome = filter_input(INPUT_POST, "nome", FILTER_SANITIZE_SPECIAL_CHARS);
     $descricao = filter_input(INPUT_POST, "descricao", FILTER_SANITIZE_SPECIAL_CHARS);
     $data = filter_input(INPUT_POST, "data", FILTER_SANITIZE_SPECIAL_CHARS);
+    $hora = filter_input(INPUT_POST, "hora", FILTER_SANITIZE_SPECIAL_CHARS);
     $CEP = filter_input(INPUT_POST, "CEP", FILTER_SANITIZE_SPECIAL_CHARS);
     $rua = filter_input(INPUT_POST, "rua", FILTER_SANITIZE_SPECIAL_CHARS);
     $numero = filter_input(INPUT_POST, "numero", FILTER_SANITIZE_SPECIAL_CHARS);
@@ -30,7 +31,7 @@ if (isset($_POST['enviar'])) {
     }
 
 
-    $evento = new Evento($nome, $descricao, $data, $CEP, $rua, $numero, $bairro, $cidade, $UF, $telefone, $categoria, 1, "", "");
+    $evento = new Evento($nome, $descricao, $data, $hora, $CEP, $rua, $numero, $bairro, $cidade, $UF, $telefone, $categoria, 1, "", "");
     $eventoServico->inserir($evento);
 
     header("location:index.php");
@@ -72,7 +73,7 @@ if (isset($_POST['enviar'])) {
 
         <div class="form">
             <label for="horarioEvento">Horario</label>
-            <input type="time" name="horario" id="horarioEvento">
+            <input type="time" name="hora" id="horarioEvento">
         </div>
 
         <div class="form">

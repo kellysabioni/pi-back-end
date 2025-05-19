@@ -6,6 +6,7 @@ class Evento {
     private string $nome;
     private string $descricao;
     private string $data;
+    private string $hora;
     private string $CEP;
     private string $rua;
     private string $numero;
@@ -20,12 +21,13 @@ class Evento {
     private ?string $updated_at;
     private ?int $id;
 
-    public function __construct(string $nome, string $descricao, string $data, string $CEP, string $rua, string $numero, string $bairro, string $cidade, string $UF, string $telefone, Categoria $categoria = Categoria::Indefinido, ?int $projetos_id = null, string $created_at, string $updated_at,  ?int $usuarios_id = null, ?int $id = null)
+    public function __construct(string $nome, string $descricao, string $data, string $hora, string $CEP, string $rua, string $numero, string $bairro, string $cidade, string $UF, string $telefone, Categoria $categoria = Categoria::Indefinido, ?int $projetos_id = null, string $created_at, string $updated_at,  ?int $usuarios_id = null, ?int $id = null)
     {
         $this->setId($id);
         $this->setNome($nome);
         $this->setDescricao($descricao);
         $this->setData($data);
+        $this->setHora($hora);
         $this->setCEP($CEP);
         $this->setRua($rua);
         $this->setNumero($numero);
@@ -44,6 +46,7 @@ class Evento {
     public function getNome(): string {return $this->nome;}
     public function getDescricao(): string {return $this->descricao;}
     public function getData(): string {return $this->data;}
+    public function getHora(): string {return $this->hora;}
     public function getCEP(): string {return $this->CEP;}
     public function getRua(): string {return $this->rua;}
     public function getNumero(): string {return $this->numero;}
@@ -61,6 +64,7 @@ class Evento {
     private function setNome(string $nome): void {$this->nome = $nome;}
     private function setDescricao(string $descricao): void {$this->descricao= $descricao;}
     private function setData(string $data): void {$this->data = $data;}
+    private function setHora(string $hora): void {$this->hora = $hora;}
     private function setCEP(string $CEP): void {$this->CEP = $CEP;}
     private function setRua(string $rua): void { $this->rua = $rua;}
     private function setNumero(string $numero): void {$this->numero = $numero;}

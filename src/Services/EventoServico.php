@@ -29,7 +29,7 @@ class EventoServico
         eventos
         LEFT JOIN usuarios ON eventos.usuarios_id = usuarios.id
         LEFT JOIN projetos ON eventos.projetos_id = projetos.id
-        ORDER BY eventos.data DESC";
+        ORDER BY eventos.created_at DESC";
 
         try {
             $consulta = $this->conexao->prepare($sql);
@@ -72,9 +72,9 @@ class EventoServico
 
     public function inserir(Evento $evento): void {
         $sql = "INSERT INTO eventos(
-        nome, descricao, data, CEP, rua, numero, bairro, cidade, UF, telefone, categoria, usuarios_id, projetos_id)
+        nome, descricao, data, hora, CEP, rua, numero, bairro, cidade, UF, telefone, categoria, usuarios_id, projetos_id)
         VALUES (
-        :nome, :descricao, :data, :CEP, :rua, :numero, :bairro, :cidade, :UF, :telefone, :categoria, :usuarios_id, :projetos_id)";
+        :nome, :descricao, :data, :hora, :CEP, :rua, :numero, :bairro, :cidade, :UF, :telefone, :categoria, :usuarios_id, :projetos_id)";
 
         try {
             $consulta = $this->conexao->prepare($sql);
@@ -82,6 +82,7 @@ class EventoServico
             $consulta->bindValue(":nome", $evento->getNome(), PDO::PARAM_STR);
             $consulta->bindValue(":descricao", $evento->getDescricao(), PDO::PARAM_STR);
             $consulta->bindValue(":data", $evento->getData(), PDO::PARAM_STR);
+            $consulta->bindValue(":hora", $evento->getHora(), PDO::PARAM_STR);
             $consulta->bindValue(":CEP", $evento->getCEP(), PDO::PARAM_STR);
             $consulta->bindValue(":rua", $evento->getRua(), PDO::PARAM_STR);
             $consulta->bindValue(":numero", $evento->getNumero(), PDO::PARAM_STR);
