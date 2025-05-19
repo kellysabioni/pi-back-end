@@ -19,7 +19,7 @@ if (isset($_POST['enviar'])) {
     $usuario = new Usuario($nome, $email, $senha);
     $usuarioServico->inserir($usuario);
 
-    header("index.php");
+    header("location:index.php");
     exit;
 }
 ?>
