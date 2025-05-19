@@ -30,7 +30,6 @@ if (isset($_POST['enviar'])) {
         die("Categoria inválida.");
     }
 
-
     $evento = new Evento($nome, $descricao, $data, $hora, $CEP, $rua, $numero, $bairro, $cidade, $UF, $telefone, $categoria, 1, "", "");
     $eventoServico->inserir($evento);
 
