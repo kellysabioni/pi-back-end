@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 17/05/2025 às 00:34
+-- Tempo de geração: 19/05/2025 às 14:39
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.2.12
 
@@ -42,7 +42,7 @@ CREATE TABLE `eventos` (
   `cidade` varchar(100) NOT NULL,
   `UF` char(2) NOT NULL,
   `telefone` varchar(15) NOT NULL,
-  `categoria` enum('Indefinido','Cultura','Saude', 'Educacao', 'MeioAmbiente', 'DesenvolvimentoSocial', 'AssistenciaSocial', 'Esportes', 'ApoioAGruposVulneraveis', 'CombateAViolencia', 'ApoioAAnimais', 'AcoesDeVoluntariado') NOT NULL,
+  `categoria` enum('Indefinido','Cultura','Saude','Educacao','MeioAmbiente','DesenvolvimentoSocial','AssistenciaSocial','Esportes','ApoioAGruposVulneraveis','CombateAViolencia','ApoioAAnimais','AcoesDeVoluntariado') NOT NULL,
   `created_at` datetime DEFAULT current_timestamp(),
   `updated_at` datetime DEFAULT NULL,
   `usuarios_id` int(11) DEFAULT NULL,
@@ -80,7 +80,7 @@ CREATE TABLE `projetos` (
   `cidade` varchar(100) NOT NULL,
   `UF` char(2) NOT NULL,
   `telefone` varchar(11) NOT NULL,
-  `categoria` enum('Indefinido','Cultura','Saude', 'Educacao', 'MeioAmbiente', 'DesenvolvimentoSocial', 'AssistenciaSocial', 'Esportes', 'ApoioAGruposVulneraveis', 'CombateAViolencia', 'ApoioAAnimais', 'AcoesDeVoluntariado') NOT NULL,
+  `categoria` enum('Indefinido','Cultura','Saude','Educacao','MeioAmbiente','DesenvolvimentoSocial','AssistenciaSocial','Esportes','ApoioAGruposVulneraveis','CombateAViolencia','ApoioAAnimais','AcoesDeVoluntariado') NOT NULL,
   `created_at` datetime DEFAULT current_timestamp(),
   `updated_at` datetime DEFAULT NULL,
   `usuarios_id` int(11) NOT NULL
