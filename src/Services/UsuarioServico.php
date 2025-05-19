@@ -60,6 +60,7 @@ class UsuarioServico
             throw new Exception("Erro ao tentar efetuar login. Tente novamente.");
         }
 
+        return null; // Retorna null se o login falhar
     }
 }
 
