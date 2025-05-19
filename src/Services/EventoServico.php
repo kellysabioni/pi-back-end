@@ -81,15 +81,15 @@ class EventoServico
 
             $consulta->bindValue(":nome", $evento->getNome(), PDO::PARAM_STR);
             $consulta->bindValue(":descricao", $evento->getDescricao(), PDO::PARAM_STR);
-            $consulta->bindValue(":data", $evento->getData(), PDO::PARAM_INT);
-            $consulta->bindValue(":CEP", $evento->getCEP(), PDO::PARAM_INT);
+            $consulta->bindValue(":data", $evento->getData(), PDO::PARAM_STR);
+            $consulta->bindValue(":CEP", $evento->getCEP(), PDO::PARAM_STR);
             $consulta->bindValue(":rua", $evento->getRua(), PDO::PARAM_STR);
             $consulta->bindValue(":numero", $evento->getNumero(), PDO::PARAM_STR);
             $consulta->bindValue(":bairro", $evento->getBairro(), PDO::PARAM_STR);
             $consulta->bindValue(":cidade", $evento->getCidade(), PDO::PARAM_STR);
             $consulta->bindValue(":UF", $evento->getUF(), PDO::PARAM_STR);
             $consulta->bindValue(":telefone", $evento->getTelefone(), PDO::PARAM_STR);
-            $consulta->bindValue(":categoria", $evento->getCategoria(), PDO::PARAM_STR);
+            $consulta->bindValue(":categoria", $evento->getCategoria()->value, PDO::PARAM_STR);
             $consulta->bindValue(":usuarios_id", $evento->getUsuarios_id(), PDO::PARAM_STR);
             $consulta->bindValue(":projetos_id", $evento->getProjetos_id(), PDO::PARAM_STR);
             

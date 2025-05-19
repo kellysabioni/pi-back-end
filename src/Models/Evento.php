@@ -3,7 +3,6 @@ namespace ProjetaBD\Models;
 use ProjetaBD\Enums\Categoria;
 
 class Evento {
-    private ?int $id;
     private string $nome;
     private string $descricao;
     private string $data;
@@ -15,12 +14,13 @@ class Evento {
     private string $UF;
     private string $telefone;
     private Categoria $categoria;
-    private string $created_at;
-    private string $updated_at;
-    private ?int $usuarios_id;
     private ?int $projetos_id;
+    private ?int $usuarios_id;
+    private ?string $created_at;
+    private ?string $updated_at;
+    private ?int $id;
 
-    public function __construct( ?int $id = null, string $nome, string $descricao, string $data, string $CEP, string $rua, string $numero, string $bairro, string $cidade, string $UF, string $telefone, Categoria $categoria = Categoria::Indefinido, string $created_at, string $updated_at,  ?int $usuarios_id = null, ?int $projetos_id = null )
+    public function __construct(string $nome, string $descricao, string $data, string $CEP, string $rua, string $numero, string $bairro, string $cidade, string $UF, string $telefone, Categoria $categoria = Categoria::Indefinido, ?int $projetos_id = null, string $created_at, string $updated_at,  ?int $usuarios_id = null, ?int $id = null)
     {
         $this->setId($id);
         $this->setNome($nome);

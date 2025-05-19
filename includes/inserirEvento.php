@@ -8,7 +8,7 @@ require_once "../pi-back-end/vendor/autoload.php";
 
 $eventoServico = new EventoServico();
 
-if( isset($_POST['enviar']) ){
+if (isset($_POST['enviar'])) {
     $nome = filter_input(INPUT_POST, "nome", FILTER_SANITIZE_SPECIAL_CHARS);
     $descricao = filter_input(INPUT_POST, "descricao", FILTER_SANITIZE_SPECIAL_CHARS);
     $data = filter_input(INPUT_POST, "data", FILTER_SANITIZE_SPECIAL_CHARS);
@@ -19,12 +19,18 @@ if( isset($_POST['enviar']) ){
     $cidade = filter_input(INPUT_POST, "cidade", FILTER_SANITIZE_SPECIAL_CHARS);
     $UF = filter_input(INPUT_POST, "UF", FILTER_SANITIZE_SPECIAL_CHARS);
     $telefone = filter_input(INPUT_POST, "telefone", FILTER_SANITIZE_SPECIAL_CHARS);
-    $categoria = filter_input(INPUT_POST, "categoriaEvento", FILTER_SANITIZE_SPECIAL_CHARS);
+    $categoriaStr = filter_input(INPUT_POST, "categoriaEvento", FILTER_SANITIZE_SPECIAL_CHARS);
     $usuarios_id = filter_input(INPUT_POST, "usuarios_id", FILTER_SANITIZE_SPECIAL_CHARS);
-    $projetos_id = filter_input(INPUT_POST,"projetos_id", FILTER_SANITIZE_SPECIAL_CHARS);
+    $projetos_id = filter_input(INPUT_POST, "projetos_id", FILTER_SANITIZE_SPECIAL_CHARS);
+
+    try {
+        $categoria = Categoria::from($categoriaStr);
+    } catch (ValueError $e) {
+        die("Categoria inválida.");
+    }
 
 
-    $evento = new Evento(null, $nome, $descricao, $data, $CEP, $rua, $numero, $bairro, $cidade, $UF, $telefone, Categoria::Indefinido, null,  1);
+    $evento = new Evento($nome, $descricao, $data, $CEP, $rua, $numero, $bairro, $cidade, $UF, $telefone, $categoria, 1, "", "");
     $eventoServico->inserir($evento);
 
     header("location:index.php");
@@ -45,7 +51,7 @@ if( isset($_POST['enviar']) ){
             <label for="categoriaEvento">Categoria</label>
             <select name="categoriaEvento" id="categoriaEvento">
                 <?php foreach (\ProjetaBD\Enums\Categoria::cases() as $categoria): ?>
-                    <option value="<?= $categoria->name ?>">
+                    <option value="<?=$categoria->value?>">
                         <?= $categoria->value ?>
                     </option>
                 <?php endforeach; ?>
@@ -110,7 +116,7 @@ if( isset($_POST['enviar']) ){
 
         <div class="form">
             <label for="imagemEvento">Imagem do Evento</label>
-            <input type="file" id="imagemEvento" name="imagemEvento" accept="image/*" >
+            <input type="file" id="imagemEvento" name="imagemEvento" accept="image/*">
         </div>
 
         <div class="form">
