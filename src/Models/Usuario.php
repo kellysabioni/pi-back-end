@@ -23,8 +23,8 @@ class Usuario {
     public function getNome(): string {return $this->nome;}
     public function getEmail(): string {return $this->email;}
     public function getSenha(): string {return $this->senha;}
-    public function getCreatedAt(): string {return $this->created_at; }
-    public function getUpdatedAt(): string {return $this->updated_at;}
+    public function getCreatedAt(): ?string {return $this->created_at; }
+    public function getUpdatedAt(): ?string {return $this->updated_at;}
 
     private function setId(?int $id): void {$this->id = $id;}
     private function setNome(string $nome): void {$this->nome = $nome;}
