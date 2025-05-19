@@ -29,7 +29,7 @@ class EventoServico
         eventos
         LEFT JOIN usuarios ON eventos.usuarios_id = usuarios.id
         LEFT JOIN projetos ON eventos.projetos_id = projetos.id
-        ORDER BY eventos.data DESC";
+        ORDER BY eventos.created_at DESC";
 
         try {
             $consulta = $this->conexao->prepare($sql);
