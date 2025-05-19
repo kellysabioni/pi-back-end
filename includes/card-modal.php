@@ -18,7 +18,7 @@ $listarUm = $eventoServico->listarUm($id);
                 <h2 class="post-modal-titulo"><?=$listarUm[0]["nome"]?></h2>
                 <div class="post-modal-meta">
                     <span><i class="far fa-calendar"></i> <?=$listarUm[0]["data"]?></span>
-                    <span><i class="far fa-user"></i><?=$listarUm[0]["usuario_nome"]?></span>
+                    <span><i class="far fa-user"></i> <?=$listarUm[0]["usuario_nome"]?></span>
                 </div>
             </div>
         </div>
@@ -45,7 +45,7 @@ $listarUm = $eventoServico->listarUm($id);
                         </div>
                         <div class="info-item">
                             <i class="far fa-clock"></i>
-                            <span><strong>Horário:</strong> 14:00</span>
+                            <span><strong>Horário:</strong> <?=$listarUm[0]["hora"]?></span>
                         </div>
                         <div class="info-item">
                             <i class="far fa-calendar"></i>
