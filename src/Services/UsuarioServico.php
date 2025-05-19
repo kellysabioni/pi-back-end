@@ -2,9 +2,11 @@
 
 namespace ProjetaBD\Services;
 
+use Exception;
 use PDO;
 use ProjetaBD\Database\ConexaoBD;
 use ProjetaBD\Models\Usuario;
+use Throwable;
 
 class UsuarioServico
 {
@@ -19,12 +21,12 @@ class UsuarioServico
     public function inserir(Usuario $usuario): void{
         $sql = "
         INSERT INTO usuarios (nome,email,senha)
-        VALUES (:nome,:usuario,:senha)";
+        VALUES (:nome,:email,:senha)";
 
         try {
             $consulta = $this->conexao->prepare($sql);
             $consulta->bindValue(":nome", $usuario->getNome(), PDO::PARAM_STR);
-            $consulta->bindValue(":usuario", $usuario->getEmail(), PDO::PARAM_STR);
+            $consulta->bindValue(":email", $usuario->getEmail(), PDO::PARAM_STR);
             $consulta->bindValue(":senha", password_hash($usuario->getSenha(), PASSWORD_DEFAULT), PDO::PARAM_STR);
             $consulta->execute();
         } catch (Throwable $erro) {
