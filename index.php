@@ -11,7 +11,16 @@ use ProjetaBD\Services\UsuarioServico;
 
 $usuarioServico = new UsuarioServico();
 
-if (isset($_POST['enviar'])) {
+if (isset($_POST['entrar'])) {
+    $email = filter_input(INPUT_POST, "email", FILTER_VALIDATE_EMAIL);
+    $senha = filter_input(INPUT_POST, 'senha', FILTER_SANITIZE_SPECIAL_CHARS);
+
+    $usuario = $usuarioServico->validarLogin($email, $senha);
+
+}
+ 
+
+/* if (isset($_POST['enviar'])) {
      $nome = filter_input(INPUT_POST, "nome", FILTER_SANITIZE_SPECIAL_CHARS);
      $email = filter_input(INPUT_POST, "email", FILTER_VALIDATE_EMAIL);
      $senha = filter_input(INPUT_POST, 'senha', FILTER_SANITIZE_SPECIAL_CHARS);
@@ -21,7 +30,7 @@ if (isset($_POST['enviar'])) {
 
     header("location:index.php");
     exit;
-}
+} */
 ?>
 
 <!DOCTYPE html>
