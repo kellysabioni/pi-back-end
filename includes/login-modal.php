@@ -7,10 +7,10 @@
             <h2 class="login-titulo">Cadastrar</h2>
         </div>
 
-        <form id="cadastroForm" class="login-form">
+        <form id="cadastroForm" class="login-form" method="POST" action="">
             <div class="login-grupo">
                 <label for="nome">Nome</label>
-                <input type="text" id="nome" name="usuario" required>
+                <input type="text" id="nome" name="nome" required>
             </div>
             <div class="login-grupo">
                 <label for="email">Email</label>
