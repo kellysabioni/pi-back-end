@@ -50,6 +50,7 @@ if (isset($_POST['entrar'])) {
             <div class="header-links">
                 <a href="" class="header-link">Para você</a>
                 <a href="" class="header-link">Seguindo</a>
+                <a href="index.php?tipo=login" class="header-link">Login</a>
             </div>
         </div>
     </header>

@@ -1,13 +1,10 @@
-
 <div id="loginModal" class="login-modal">
     <div class="login-container">
         <span class="login-fechar" onclick="fecharLoginModal()">&times;</span>
-        
         <div class="login-header">
             <h2 class="login-titulo">Entrar</h2>
         </div>
-
-        <form id="cadastroForm" class="login-form" method="POST" action="">
+        <form id="loginForm" class="login-form" method="POST" action="">
             <div class="login-grupo">
                 <label for="email">Email</label>
                 <input type="email" id="email" name="email" required>
@@ -16,13 +13,12 @@
                 <label for="senha">Senha</label>
                 <input type="password" id="senha" name="senha" required>
             </div>
-
             <div class="login-acoes">
-                <button name="enviar" type="submit" class="login-botao primario" >
-                    Enviar
-                </button>
+                <p>Ainda não tem uma conta?
+                    <a href="?tipo=cadastro" class="login-link <?php echo (!isset($_GET['tipo']) || $_GET['tipo'] === 'cadastro') ? 'ativo' : ''; ?>">Cadastrar-se</a> agora e aproveite todos os recursos!
+                </p>
+                <button name="enviar" type="submit" class="login-botao primario">Enviar</button>
             </div>
         </form>
-
     </div>
-</div> 
+</div>
