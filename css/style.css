@@ -1,8 +1,8 @@
 :root {
-    --cor-primaria: #4CAF50;
-    --cor-segundaria: #2196F3;
-    --cor-fundo: #f5f5f5;
-    --cor-texto: #333;
+    --cor-primaria: #222; /* preto escuro */
+    --cor-segundaria: #888; /* cinza médio */
+    --cor-fundo: #fff; /* branco */
+    --cor-texto: #222; /* preto escuro */
     --branco: #ffffff;
 }
 
@@ -52,7 +52,7 @@ header {
 }
 
 .header-link:hover {
-    color: #4CAF50;
+    color: #222;
     transition: 0.4s all ease;
 }
 
@@ -64,7 +64,7 @@ header {
     height: 5px;
     bottom: -5px;
     left: 0;
-    background-color: #4CAF50;
+    background-color: #222;
     transform-origin: bottom right;
     transition: transform 0.5s ease-out;
 }
@@ -101,7 +101,8 @@ header {
 }
 
 .botao-pesquisa {
-    background-color: white;
+    background-color: #fff;
+    color: #222;
 }
 
 .botao-criar {
@@ -194,7 +195,8 @@ header {
 }
 
 .botao-pesquisa:hover {
-    background-color: #4CAF50;
+    background-color: #222;
+    color: #fff;
 }
 
 @keyframes slideDown {
@@ -319,12 +321,12 @@ header {
 }
 
 .login-botao.primario {
-    background-color: var(--cor-primaria);
-    color: var(--branco);
+    background-color: #222;
+    color: #fff;
 }
 
 .login-botao.primario:hover {
-    background-color: #45a049;
+    background-color: #444;
 }
 
 .login-botao.secundario {
@@ -492,7 +494,7 @@ header {
 }
 
 .card-acao:hover {
-    color: var(--cor-primaria);
+    color: #222;
 }
 
 .post-modal {
@@ -677,12 +679,12 @@ header {
 }
 
 .acoes-botao.primeiro {
-    background-color: #2196F3;
-    color: white;
+    background-color: #222;
+    color: #fff;
 }
 
 .acoes-botao.primeiro:hover {
-    background-color: #0056b3;
+    background-color: #444;
 }
 
 .acoes-botao.segundo {
@@ -822,31 +824,40 @@ header {
     flex: 1;
     padding: 1rem;
     border: none;
-    background-color: var(--cor-primaria);
-    color: var(--branco);
+    background-color: #222;
+    color: #fff;
     font-size: 1.1rem;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: background 0.3s, color 0.3s;
     border-radius: 5px;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
+
+.btnEnviar:hover {
+    background-color: #444;
+    color: #fff;
+}
+
 /* estilo pag perfil */
 .perfil-container {
     max-width: 600px;
     margin: 2rem auto;
     padding: 0 1rem;
+    background: #fff;
 }
 
 .perfil-header {
     display: flex;
-    flex-direction: column;
-    text-align: center;
+    flex-direction: row;
+    align-items: center;
+    text-align: left;
     gap: 2rem;
     margin-bottom: 2rem;
-    background-color: white;
-    padding: 2rem;
-    border-radius: 10px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    background-color: transparent;
+    padding: 2rem 0 1rem 0;
+    border-radius: 0;
+    box-shadow: none;
+    border-bottom: 1px solid #ececec;
 }
 
 .perifl-img {
@@ -854,74 +865,83 @@ header {
 }
 
 .perfil-img img {
-    width: 150px;
+    width: 90px;
+    height: 90px;
+    object-fit: cover;
     border-radius: 50%;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.08);
 }
 
 .perfil-info {
     flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
 }
 
 .perfil-info h2 {
-    font-size: 2rem;
-    margin-bottom: .5rem;
-    color: var(--cor-primaria);
+    font-size: 1.2rem;
+    margin-bottom: .2rem;
+    color: #222;
 }
 
 .perfil-status {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     gap: 2rem;
-    margin-top: 1rem;
+    margin-top: 0.5rem;
 }
 
 .status {
-    text-align: center;
+    text-align: left;
 }
 
 .status .numero {
-    font-size: 1.5rem;
+    font-size: 1.1rem;
     font-weight: bold;
-    color: black;
+    color: #222;
 }
 
 .status .label {
-    font-size: 0.9rem;
-    color: black;
+    font-size: 0.85rem;
+    color: #888;
 }
 
 .perfil-botoes {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     gap: 1rem;
     margin-bottom: 2rem;
-    border-bottom: 2px solid #eee;
-    padding-bottom: 1rem;
+    border-bottom: none;
+    padding-bottom: 0;
+    justify-content: flex-start;
 }
 
 .perfil-botao {
-    padding: 0.8rem 1.5rem;
-    border: none;
-    background: none;
+    padding: 0.5rem 1.2rem;
+    border: 1px solid #e0e0e0;
+    background: #fafafa;
     color: #333;
-    font-size: 1.1rem;
+    font-size: 1rem;
     cursor: pointer;
     transition: all 0.3s ease;
     border-radius: 5px;
+    font-weight: 500;
 }
 .perfil-botao:hover {
-    background-color: rgba(76, 175, 80, 0.1);
+    background-color: #f0f0f0;
 }
 
 .perfil-botao.ativo {
-    background-color: var(--cor-primaria);
-    color: var(--branco);
+    background-color: #222;
+    color: #fff;
+    border: 1px solid #222;
 }
 
 .aba-conteudo {
     display: none;
-    animation: fadeIn 0.5 ease-out;
+    animation: fadeIn 0.5s ease-out;
+    margin-top: 1.5rem;
 }
 
 .aba-conteudo.ativo {
@@ -929,17 +949,19 @@ header {
 }
 
 .projetos {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
 }
 
 .projeto-card {
-    background-color: var(--branco);
+    background-color: #fff;
     border-radius: 10px;
     overflow: hidden;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    transition: transform 0.3 ease;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.07);
+    transition: transform 0.2s ease;
+    border: 1px solid #ececec;
+    width: 100%;
 }
 
 .projeto-card:hover {
@@ -948,38 +970,34 @@ header {
 
 .projeto-card img {
     width: 100%;
-    height: 200px;
+    height: 180px;
     object-fit: cover;
 }
 
 .projeto-info {
-    padding: 1.5rem;
+    padding: 1rem 1.2rem 1.2rem 1.2rem;
 }
 
 .projeto-info h3 {
-    font-size: 1.2rem;
-    margin-bottom: 0.5rem;
-    color: var(--cor-primaria);
+    font-size: 1.1rem;
+    margin-bottom: 0.3rem;
+    color: #222;
 }
 
 .projeto-info p {
     color: var(--cor-texto);
-    margin-bottom: 1rem;
+    margin-bottom: 0.7rem;
+    font-size: 0.97rem;
 }
 
 .projeto-status {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
+    gap: 1.5rem;
     color: var(--cor-texto);
     font-size: 0.9rem;
 }
 
-.projeto-status span {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-}
-
 .projeto-status i {
-    color: var(--cor-segundaria);
+    color: #888;
 }
