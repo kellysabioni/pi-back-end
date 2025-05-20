@@ -20,17 +20,7 @@ if (isset($_POST['entrar'])) {
 }
  
 
-/* if (isset($_POST['enviar'])) {
-     $nome = filter_input(INPUT_POST, "nome", FILTER_SANITIZE_SPECIAL_CHARS);
-     $email = filter_input(INPUT_POST, "email", FILTER_VALIDATE_EMAIL);
-     $senha = filter_input(INPUT_POST, 'senha', FILTER_SANITIZE_SPECIAL_CHARS);
 
-    $usuario = new Usuario($nome, $email, $senha);
-    $usuarioServico->inserir($usuario);
-
-    header("location:index.php");
-    exit;
-} */
 ?>
 
 <!DOCTYPE html>
