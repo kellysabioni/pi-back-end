@@ -84,31 +84,6 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // Função para abrir o modal de login
 function abrirLoginModal() {
     const loginModal = document.getElementById('loginModal');
@@ -125,53 +100,6 @@ function fecharLoginModal() {
     setTimeout(() => {
         loginModal.style.display = 'none';
         document.body.style.overflow = 'auto';
-        // Remove o parâmetro "tipo" da URL
-        const url = new URL(window.location);
-        url.searchParams.delete('tipo');
-        window.history.replaceState({}, '', url.toString());
     }, 300);
 }
-
-// Função para abrir o modal de cadastro
-function abrirCadastroModal() {
-    const cadastroModal = document.getElementById('cadastroModal');
-    cadastroModal.style.display = 'block';
-    cadastroModal.offsetHeight; // Força o recálculo da altura
-    cadastroModal.classList.add('ativo');
-    document.body.style.overflow = 'hidden';
-}
-
-// Função para fechar o modal de cadastro
-function fecharCadastroModal() {
-    const cadastroModal = document.getElementById('cadastroModal');
-    cadastroModal.classList.remove('ativo');
-    setTimeout(() => {
-        cadastroModal.style.display = 'none';
-        document.body.style.overflow = 'auto';
-        // Remove o parâmetro "tipo" da URL
-        const url = new URL(window.location);
-        url.searchParams.delete('tipo');
-        window.history.replaceState({}, '', url.toString());
-    }, 300);
-}
-
-// Executa o código ao carregar a página
-document.addEventListener('DOMContentLoaded', function () {
-    const urlParams = new URLSearchParams(window.location.search);
-    const tipo = urlParams.get('tipo');
-
-    // Verifica se a URL tem o parâmetro 'tipo' e abre o modal correspondente
-    if (tipo === 'login') {
-        abrirLoginModal();
-    } else if (tipo === 'cadastro') {
-        abrirCadastroModal();
-    }
-});
-
-
-
-
-
-
-
 

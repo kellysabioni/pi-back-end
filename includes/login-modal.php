@@ -15,7 +15,7 @@
             </div>
             <div class="login-acoes">
                 <p>Ainda não tem uma conta?
-                    <a href="?tipo=cadastro" class="login-link <?php echo (!isset($_GET['tipo']) || $_GET['tipo'] === 'cadastro') ? 'ativo' : ''; ?>">Cadastrar-se</a> agora e aproveite todos os recursos!
+                    <a href="cadastrar.php" class="login-link >">Cadastrar-se</a> agora e aproveite todos os recursos!
                 </p>
                 <button name="enviar" type="submit" class="login-botao primario">Enviar</button>
             </div>
