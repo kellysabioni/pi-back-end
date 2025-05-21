@@ -99,5 +99,23 @@ class EventoServico
             throw new Exception("Erro ao inserir evento: ".$erro->getMessage());
         }
     }
+
+        public function buscar(string $termo): array {
+        $sql = "SELECT id, nome, data, descricao 
+                FROM eventos
+                WHERE nome LIKE :termo
+                   OR descricao LIKE :termo 
+                ORDER BY data DESC";
+    
+        try {
+            $consulta = $this->conexao->prepare($sql);
+            $consulta->bindValue(':termo', '%' . $termo . '%', PDO::PARAM_STR);
+            $consulta->execute();
+            return $consulta->fetchAll(PDO::FETCH_ASSOC);
+        } catch (Throwable $erro) {
+            throw new Exception("Erro ao buscar notícias: ".$erro->getMessage());
+        }
+    }
+
 }
 

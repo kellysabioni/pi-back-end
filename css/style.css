@@ -1001,3 +1001,7 @@ header {
 .projeto-status i {
     color: #888;
 }
+
+.visually-hidden {
+    display: none;
+}
