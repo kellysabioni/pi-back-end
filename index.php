@@ -1,4 +1,5 @@
 <?php
+
 use ProjetaBD\Services\EventoServico;
 
 require_once "../pi-back-end/vendor/autoload.php";
@@ -16,9 +17,8 @@ if (isset($_POST['entrar'])) {
     $senha = filter_input(INPUT_POST, 'senha', FILTER_SANITIZE_SPECIAL_CHARS);
 
     $usuario = $usuarioServico->validarLogin($email, $senha);
-
 }
- 
+
 
 
 ?>
@@ -50,8 +50,15 @@ if (isset($_POST['entrar'])) {
                 <button class="botao botao-pesquisa" onclick="barraPesquisar()">
                     <i class="fas fa-search"></i>
                 </button>
-                <input type="text" class="barra-pesquisar ativo" placeholder="Digite sua pesquisa...">
+
+                <form id="form-busca" class="d-flex" autocomplete="off" method="POST" onsubmit="return false;">
+                    <input id="campo-busca" type="text" name="busca" class="barra-pesquisar ativo" placeholder="Digite sua pesquisa...">
+                </form>
             </div>
+
+            <div id="resultados" class="visually-hidden"></div>
+
+
             <div class="botoes-container">
                 <button class="botao botao-criar" onclick="barraCriar()">
                     <i class="fas fa-plus"></i>
@@ -69,6 +76,7 @@ if (isset($_POST['entrar'])) {
     <?php include 'includes/login-modal.php' ?>
 
     <script src="js/pages/main.js"></script>
+    <script src="js/pages/busca.js"></script>
 </body>
 
 </html>
