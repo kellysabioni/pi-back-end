@@ -19,7 +19,7 @@ class Projeto{
     private ?int $usuarios_id;
     private ?int $eventos_id;
 
-    public function __construct(?int $id = null , string $nome, string $CEP, string $rua, string $numero, string $bairro, string $cidade, string $UF, string $telefone, Categoria $categoria = Categoria::Indefinido , string $created_at, string $updated_at , ?int $usuarios_id = null, ?int $eventos_id = null) {
+    public function __construct( string $nome, string $CEP, string $rua, string $numero, string $bairro, string $cidade, string $UF, string $telefone, Categoria $categoria = Categoria::Indefinido , string $created_at, string $updated_at , ?int $usuarios_id = null, ?int $eventos_id = null, ?int $id = null ,) {
         $this-> setId ($id);
         $this-> setNome ($nome);
         $this-> setCEP ($CEP);
