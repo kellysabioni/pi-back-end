@@ -17,9 +17,9 @@ class ProjetoServico
 
     public function inserir(Projeto $projeto): void {
         $sql = "INSERT INTO projetos(
-        nome, CEP, rua, numero, bairro, cidade, UF, telefone, categoria, usuarios_id, eventos_id)
+        nome, CEP, rua, numero, bairro, cidade, UF, telefone, categoria, usuarios_id)
         VALUES (
-        :nome, :CEP, :rua, :numero, :bairro, :cidade, :UF, :telefone, :categoria, :usuarios_id, :eventos_id)";
+        :nome, :CEP, :rua, :numero, :bairro, :cidade, :UF, :telefone, :categoria, :usuarios_id)";
 
         try {
             $consulta = $this->conexao->prepare($sql);
@@ -34,7 +34,6 @@ class ProjetoServico
             $consulta->bindValue(":telefone", $projeto->getTelefone(), PDO::PARAM_STR);
             $consulta->bindValue(":categoria", $projeto->getCategoria()->value, PDO::PARAM_STR);
             $consulta->bindValue(":usuarios_id", $projeto->getUsuariosId(), PDO::PARAM_STR);
-            $consulta->bindValue(":eventos_id", $projeto->getEventosId(), PDO::PARAM_STR);
             
             $consulta->execute();
         } catch (Throwable $erro) {

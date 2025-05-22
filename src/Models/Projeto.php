@@ -17,9 +17,8 @@ class Projeto{
     private string $created_at;
     private string $updated_at; 
     private ?int $usuarios_id;
-    private ?int $eventos_id;
 
-    public function __construct( string $nome, string $CEP, string $rua, string $numero, string $bairro, string $cidade, string $UF, string $telefone, Categoria $categoria = Categoria::Indefinido , string $created_at, string $updated_at , ?int $usuarios_id = null, ?int $eventos_id = null, ?int $id = null ,) {
+    public function __construct( string $nome, string $CEP, string $rua, string $numero, string $bairro, string $cidade, string $UF, string $telefone, Categoria $categoria = Categoria::Indefinido , string $created_at, string $updated_at , ?int $usuarios_id = null, ?int $id = null ,) {
         $this-> setId ($id);
         $this-> setNome ($nome);
         $this-> setCEP ($CEP);
@@ -33,7 +32,6 @@ class Projeto{
         $this-> setCreatedAt (date('d/m/Y H:i:s'));
         $this-> setUpdatedAt (date('d/m/Y H:i:s'));
         $this-> setUsuariosId ($usuarios_id);
-        $this-> setEventosId ($eventos_id);
     }
 
     public function getId(): ?int {return $this->id;}
@@ -49,7 +47,6 @@ class Projeto{
     public function getCreatedAt(): string {return $this->created_at;}
     public function getUpdatedAt(): string {return $this->updated_at;}
     public function getUsuariosId(): ?int {return $this->usuarios_id;}
-    public function getEventosId(): ?int {return $this->eventos_id;}
 
     private function setId(?int $id): void { $this->id = $id;}
     private function setNome(string $nome): void { $this->nome = $nome;}
@@ -64,5 +61,4 @@ class Projeto{
     private function setCreatedAt(string $created_at): void { $this->created_at = $created_at;}
     private function setUpdatedAt(string $updated_at): void { $this->updated_at = $updated_at;}
     private function setUsuariosId(?int $usuarios_id): void { $this->usuarios_id = $usuarios_id;}
-    private function setEventosId(?int $eventos_id): void { $this->eventos_id = $eventos_id;}
 }

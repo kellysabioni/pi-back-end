@@ -17,9 +17,8 @@ if (isset($_POST['enviar'])) {
     $cidade = filter_input(INPUT_POST, "cidade", FILTER_SANITIZE_SPECIAL_CHARS);
     $UF = filter_input(INPUT_POST, "UF", FILTER_SANITIZE_SPECIAL_CHARS);
     $telefone = filter_input(INPUT_POST, "telefone", FILTER_SANITIZE_SPECIAL_CHARS);
-    $categoria = Categoria::from(filter_input(INPUT_POST, "categoriaEvento", FILTER_SANITIZE_SPECIAL_CHARS));
+    $categoria = Categoria::from(filter_input(INPUT_POST, "categoria", FILTER_SANITIZE_SPECIAL_CHARS));
     $usuarios_id = 1; // Temporariamente fixo em 1
-    $eventos_id = null;
 
     try {
         $projeto = new Projeto(
@@ -34,8 +33,7 @@ if (isset($_POST['enviar'])) {
             $categoria,
             date('Y-m-d H:i:s'), // created_at
             date('Y-m-d H:i:s'), // updated_at
-            $usuarios_id,
-            $eventos_id
+            $usuarios_id
         );
 
         $projetoServico->inserir($projeto);
@@ -53,7 +51,7 @@ if (isset($_POST['enviar'])) {
 <div class="formularios" id="formProjeto">
     <h2>Criar Novo Projeto</h2>
 
-    <form action="" method="">
+    <form action="" method="post">
         <div class="form">
             <label for="nomeProjeto">Nome do Projeto</label>
             <input type="text" id="nomeProjeto" name="nome" placeholder="Digite o nome do Projeto" required>
@@ -61,7 +59,7 @@ if (isset($_POST['enviar'])) {
 
         <div class="form">
             <label for="categoriaProjeto">Categoria</label>
-            <select name="categoriaProjeto" id="categoriaProjeto">
+            <select name="categoria" id="categoriaProjeto">
                 <?php foreach (\ProjetaBD\Enums\Categoria::cases() as $categoria): ?>
                     <option value="<?=$categoria->value?>">
                         <?= $categoria->value ?>
@@ -105,7 +103,7 @@ if (isset($_POST['enviar'])) {
         </div>
 
         <div class="form">
-            <label for="celulaProjeto">Telefone</label>
+            <label for="celular">Telefone</label>
             <input type="text" id="celular" name="telefone" maxlength="15" placeholder="(00) 00000-0000" required>
         </div>
 
