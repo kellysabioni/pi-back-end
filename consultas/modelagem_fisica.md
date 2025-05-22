@@ -18,7 +18,7 @@ CREATE TABLE usuarios(
     nome VARCHAR(100) NOT NULL,
     email VARCHAR(50) NOT NULL UNIQUE,
     senha VARCHAR(50) NOT NULL,
-    tipo_usuario ENUM('usuario', 'admin') NOT NULL DEFAULT 'usuario',
+    tipo_usuario ENUM('usuario', 'cadastro', 'admin') NOT NULL DEFAULT 'usuario',
     cpf VARCHAR(11) NULL UNIQUE,
     created_at DATETIME NULL DEFAULT CURRENT_TIMESTAMP,
     updated_at DATETIME NULL
