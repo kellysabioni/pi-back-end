@@ -154,7 +154,7 @@ if (isset($_POST['enviar'])) {
         </div>
 
         <div class="form">
-            <label for="celularEvento">Telefone</label>
+            <label for="celular">Telefone</label>
             <input type="tel" id="celular" name="telefone" required placeholder="(00) 00000-0000">
         </div>
 

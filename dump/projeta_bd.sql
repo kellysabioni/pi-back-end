@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 19/05/2025 às 14:39
+-- Tempo de geração: 22/05/2025 às 14:57
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.2.12
 
@@ -97,6 +97,9 @@ CREATE TABLE `usuarios` (
   `nome` varchar(100) NOT NULL,
   `email` varchar(50) NOT NULL,
   `senha` varchar(50) NOT NULL,
+  `tipo_usuario` enum('usuario','cadastro','admin') NOT NULL DEFAULT 'usuario',
+  `cpf` varchar(11) DEFAULT NULL,
+  `data_nascimento` date NULL,
   `created_at` datetime DEFAULT current_timestamp(),
   `updated_at` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -134,7 +137,8 @@ ALTER TABLE `projetos`
 --
 ALTER TABLE `usuarios`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `email` (`email`);
+  ADD UNIQUE KEY `email` (`email`),
+  ADD UNIQUE KEY `cpf` (`cpf`);
 
 --
 -- AUTO_INCREMENT para tabelas despejadas

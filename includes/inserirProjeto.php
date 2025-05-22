@@ -1,12 +1,15 @@
 <?php
 
 use ProjetaBD\Enums\Categoria;
+use ProjetaBD\Helpers\Utils;
 use ProjetaBD\Models\Projeto;
 use ProjetaBD\Services\ProjetoServico;
+use ProjetaBD\Services\FotoServico;
 
 require_once "../pi-back-end/vendor/autoload.php";
 
-$projetoServico = new ProjetoServico;
+$projetoServico = new ProjetoServico();
+$fotoServico = new FotoServico();
 
 if (isset($_POST['enviar'])) {
     $nome = filter_input(INPUT_POST, "nome", FILTER_SANITIZE_SPECIAL_CHARS);
@@ -17,28 +20,61 @@ if (isset($_POST['enviar'])) {
     $cidade = filter_input(INPUT_POST, "cidade", FILTER_SANITIZE_SPECIAL_CHARS);
     $UF = filter_input(INPUT_POST, "UF", FILTER_SANITIZE_SPECIAL_CHARS);
     $telefone = filter_input(INPUT_POST, "telefone", FILTER_SANITIZE_SPECIAL_CHARS);
-    $categoriaStr = filter_input(INPUT_POST, "categoriaProjeto", FILTER_SANITIZE_SPECIAL_CHARS);
-    $usuarios_id = filter_input(INPUT_POST, "usuarios_id", FILTER_SANITIZE_SPECIAL_CHARS);
-    $projetos_id = filter_input(INPUT_POST, "projetos_id", FILTER_SANITIZE_SPECIAL_CHARS);
+    $categoria = Categoria::from(filter_input(INPUT_POST, "categoria", FILTER_SANITIZE_SPECIAL_CHARS));
+    $usuarios_id = 1; // Temporariamente fixo em 1
 
     try {
-        $categoria = Categoria::from($categoriaStr);
-    } catch (ValueError $e) {
-        die("Categoria inválida.");
+        $projeto = new Projeto(
+            $nome, 
+            $CEP, 
+            $rua, 
+            $numero, 
+            $bairro, 
+            $cidade, 
+            $UF, 
+            $telefone, 
+            $categoria,
+            date('Y-m-d H:i:s'), // created_at
+            date('Y-m-d H:i:s'), // updated_at
+            $usuarios_id
+        );
+
+        $projetoServico->inserir($projeto);
+
+        $projetoId = $projetoServico->getConexao()->lastInsertId();
+        
+        // Se houver imagem, faz o upload e salva na tabela fotos
+        if (isset($_FILES['imagem'])) {
+            error_log("Arquivo recebido: " . print_r($_FILES['imagem'], true));
+            
+            if ($_FILES['imagem']['error'] === UPLOAD_ERR_OK) {
+                $nomeDaImagem = Utils::upload($_FILES['imagem']);
+                error_log("Nome da imagem após upload: " . $nomeDaImagem);
+                
+                if ($nomeDaImagem) {
+                    $fotoServico->inserir($nomeDaImagem, $usuarios_id, null, $projetoId);
+                    error_log("Foto inserida no banco com sucesso");
+                }
+            } else {
+                error_log("Erro no upload: " . $_FILES['imagem']['error']);
+            }
+        } else {
+            error_log("Nenhum arquivo foi enviado");
+        }
+
+        header("location:index.php");
+        exit;
+
+    } catch (Throwable $erro) {
+        throw new Exception("Erro ao inserir projeto: " . $erro->getMessage());
     }
-
-    $projeto = new Projeto($nome, $CEP, $rua, $numero, $bairro, $cidade, $UF, $telefone, $categoria, "", "",1,null);
-    $projetoServico->inserir($projeto);
-
-    header("location:index.php");
-    exit;
 }
 ?>
 
 <div class="formularios" id="formProjeto">
     <h2>Criar Novo Projeto</h2>
 
-    <form action="" method="">
+    <form action="" method="post" enctype="multipart/form-data">
         <div class="form">
             <label for="nomeProjeto">Nome do Projeto</label>
             <input type="text" id="nomeProjeto" name="nome" placeholder="Digite o nome do Projeto" required>
@@ -46,7 +82,7 @@ if (isset($_POST['enviar'])) {
 
         <div class="form">
             <label for="categoriaProjeto">Categoria</label>
-            <select name="categoriaProjeto" id="categoriaProjeto">
+            <select name="categoria" id="categoriaProjeto">
                 <?php foreach (\ProjetaBD\Enums\Categoria::cases() as $categoria): ?>
                     <option value="<?=$categoria->value?>">
                         <?= $categoria->value ?>
@@ -90,13 +126,13 @@ if (isset($_POST['enviar'])) {
         </div>
 
         <div class="form">
-            <label for="celulaProjeto">Telefone</label>
+            <label for="celular">Telefone</label>
             <input type="text" id="celular" name="telefone" maxlength="15" placeholder="(00) 00000-0000" required>
         </div>
 
         <div class="form">
             <label for="imagemProjeto">Imagem do Projeto</label>
-            <input type="file" id="imagemProjeto" name="imagemProjeto" accept="image/*">
+            <input type="file" id="imagemProjeto" name="imagem" accept="image/png, image/jpeg, image/gif, image/svg+xml" required>
         </div>
 
         <div class="form">
