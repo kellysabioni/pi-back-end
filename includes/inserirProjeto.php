@@ -6,7 +6,7 @@ use ProjetaBD\Services\ProjetoServico;
 
 require_once "../pi-back-end/vendor/autoload.php";
 
-$projetoServico = new ProjetoServico;
+$projetoServico = new ProjetoServico();
 
 if (isset($_POST['enviar'])) {
     $nome = filter_input(INPUT_POST, "nome", FILTER_SANITIZE_SPECIAL_CHARS);
