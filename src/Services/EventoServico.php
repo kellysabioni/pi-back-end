@@ -15,6 +15,10 @@ class EventoServico
         $this->conexao = ConexaoBD::getConexao();
     }
 
+    public function getConexao(): PDO {
+        return $this->conexao;
+    }
+
     public function listarTodos(): array
     {
         $sql = "SELECT eventos.*,
