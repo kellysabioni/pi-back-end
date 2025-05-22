@@ -17,21 +17,36 @@ if (isset($_POST['enviar'])) {
     $cidade = filter_input(INPUT_POST, "cidade", FILTER_SANITIZE_SPECIAL_CHARS);
     $UF = filter_input(INPUT_POST, "UF", FILTER_SANITIZE_SPECIAL_CHARS);
     $telefone = filter_input(INPUT_POST, "telefone", FILTER_SANITIZE_SPECIAL_CHARS);
-    $categoriaStr = filter_input(INPUT_POST, "categoriaProjeto", FILTER_SANITIZE_SPECIAL_CHARS);
-    $usuarios_id = filter_input(INPUT_POST, "usuarios_id", FILTER_SANITIZE_SPECIAL_CHARS);
-    $projetos_id = filter_input(INPUT_POST, "projetos_id", FILTER_SANITIZE_SPECIAL_CHARS);
+    $categoria = Categoria::from(filter_input(INPUT_POST, "categoriaEvento", FILTER_SANITIZE_SPECIAL_CHARS));
+    $usuarios_id = 1; // Temporariamente fixo em 1
+    $eventos_id = null;
 
     try {
-        $categoria = Categoria::from($categoriaStr);
+        $projeto = new Projeto(
+            $nome, 
+            $CEP, 
+            $rua, 
+            $numero, 
+            $bairro, 
+            $cidade, 
+            $UF, 
+            $telefone, 
+            $categoria,
+            date('Y-m-d H:i:s'), // created_at
+            date('Y-m-d H:i:s'), // updated_at
+            $usuarios_id,
+            $eventos_id
+        );
+
+        $projetoServico->inserir($projeto);
+
+        header("location:index.php");
+        exit;
+
     } catch (Throwable $erro) {
-            throw new Exception("ERRO: " . $erro->getMessage());
-        }
+        throw new Exception("Erro ao inserir projeto: " . $erro->getMessage());
+    }
 
-    $projeto = new Projeto($nome, $CEP, $rua, $numero, $bairro, $cidade, $UF, $telefone, $categoria, "", "",1,null);
-    $projetoServico->inserir($projeto);
-
-    header("location:index.php");
-    exit;
 }
 ?>
 
