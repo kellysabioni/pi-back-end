@@ -1,12 +1,15 @@
 <?php
 
 use ProjetaBD\Enums\Categoria;
+use ProjetaBD\Helpers\Utils;
 use ProjetaBD\Models\Projeto;
 use ProjetaBD\Services\ProjetoServico;
+use ProjetaBD\Services\FotoServico;
 
 require_once "../pi-back-end/vendor/autoload.php";
 
 $projetoServico = new ProjetoServico();
+$fotoServico = new FotoServico();
 
 if (isset($_POST['enviar'])) {
     $nome = filter_input(INPUT_POST, "nome", FILTER_SANITIZE_SPECIAL_CHARS);
@@ -38,20 +41,40 @@ if (isset($_POST['enviar'])) {
 
         $projetoServico->inserir($projeto);
 
+        $projetoId = $projetoServico->getConexao()->lastInsertId();
+        
+        // Se houver imagem, faz o upload e salva na tabela fotos
+        if (isset($_FILES['imagem'])) {
+            error_log("Arquivo recebido: " . print_r($_FILES['imagem'], true));
+            
+            if ($_FILES['imagem']['error'] === UPLOAD_ERR_OK) {
+                $nomeDaImagem = Utils::upload($_FILES['imagem']);
+                error_log("Nome da imagem após upload: " . $nomeDaImagem);
+                
+                if ($nomeDaImagem) {
+                    $fotoServico->inserir($nomeDaImagem, $usuarios_id, null, $projetoId);
+                    error_log("Foto inserida no banco com sucesso");
+                }
+            } else {
+                error_log("Erro no upload: " . $_FILES['imagem']['error']);
+            }
+        } else {
+            error_log("Nenhum arquivo foi enviado");
+        }
+
         header("location:index.php");
         exit;
 
     } catch (Throwable $erro) {
         throw new Exception("Erro ao inserir projeto: " . $erro->getMessage());
     }
-
 }
 ?>
 
 <div class="formularios" id="formProjeto">
     <h2>Criar Novo Projeto</h2>
 
-    <form action="" method="post">
+    <form action="" method="post" enctype="multipart/form-data">
         <div class="form">
             <label for="nomeProjeto">Nome do Projeto</label>
             <input type="text" id="nomeProjeto" name="nome" placeholder="Digite o nome do Projeto" required>
@@ -109,7 +132,7 @@ if (isset($_POST['enviar'])) {
 
         <div class="form">
             <label for="imagemProjeto">Imagem do Projeto</label>
-            <input type="file" id="imagemProjeto" name="imagemProjeto" accept="image/*">
+            <input type="file" id="imagemProjeto" name="imagem" accept="image/png, image/jpeg, image/gif, image/svg+xml" required>
         </div>
 
         <div class="form">
