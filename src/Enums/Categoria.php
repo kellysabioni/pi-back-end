@@ -2,7 +2,7 @@
 namespace ProjetaBD\Enums;
 
 enum Categoria: string {
-    case Indefinido = 'Indefinido';
+    case Indefinido = 'Selecione uma categoria';
     case Cultura = 'Cultura';
     case Saude = 'Saúde'; 
     case Educacao = 'Educação';

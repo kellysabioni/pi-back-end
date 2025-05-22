@@ -11,10 +11,10 @@ $eventoServico = new EventoServico;
 $categoria = $_GET['categoria'] ?? null;
 
 if ($categoria && $categoria !== Categoria::Indefinido->value) {
-    // Aplica o filtro normalmente, exceto se for "Indefinido"
+  
     $listarEventos = $eventoServico->filtro($categoria);
 } else {
-    // Se for "Indefinido" ou nulo, mostra todos
+   
     $listarEventos = $eventoServico->listarTodos();
 }
 
@@ -76,16 +76,16 @@ if (isset($_POST['entrar'])) {
                 <input type="text" class="barra-criar" placeholder="Digite o nome do Projeto" onkeypress="">
             </div>
 
-            <form method="GET" id="formFiltro">
-                <div class="botoes-container">
-                    <select name="categoria" id="categoriaProjeto" onchange="document.getElementById('formFiltro').submit();">
+            <form method="GET" id="formFiltro" class="filtro-form">
+                <div class="botoes-container filtro-container">
+                    <select name="categoria" id="categoriaProjeto" class="filtro-select" onchange="if(this.value === 'Selecione uma categoria') { window.location.href = 'index.php'; } else { document.getElementById('formFiltro').submit(); }">
                         <?php foreach (\ProjetaBD\Enums\Categoria::cases() as $categoria): ?>
-                            <option value="<?= $categoria->value ?>" <?= isset($_GET['categoria']) && $_GET['categoria'] === $categoria->value ? 'selected' : '' ?>>
+                            <option value="<?= $categoria->value ?>" class="filtro-option" <?= isset($_GET['categoria']) && $_GET['categoria'] === $categoria->value ? 'selected' : '' ?>>
                                 <?= $categoria->value ?>
                             </option>
                         <?php endforeach; ?>
                     </select>
-                    <i class="fas fa-filter"></i>
+                    <i class="fas fa-filter filtro-icon"></i>
                 </div>
             </form>
 
