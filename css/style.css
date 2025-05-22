@@ -1042,3 +1042,63 @@ header {
     padding: 1rem;
     border-top: 1px solid #eee;
 }
+
+/* Estilos para o filtro de categorias */
+.filtro-form {
+    margin: 1rem 0;
+}
+
+.filtro-container {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background-color: #fff;
+
+}
+
+.filtro-select {
+    padding: 0.5rem 1rem;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    background-color: #fff;
+    color: #333;
+    font-size: 0.9rem;
+    cursor: pointer;
+    min-width: 200px;
+
+}
+
+.filtro-select:hover {
+    border-color: #999;
+}
+
+.filtro-select:focus {
+    outline: none;
+    border-color: #666;
+    box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.1);
+}
+
+.filtro-option {
+    padding: 0.5rem;
+    background-color: #fff;
+    color: #333;
+}
+
+.filtro-icon {
+    color: #666;
+    font-size: 1.1rem;
+    transition: color 0.2s ease;
+}
+
+.filtro-container:hover .filtro-icon {
+    color: #333;
+}
+
+.filtro-select option:checked {
+    background-color: #f0f0f0;
+    font-weight: 500;
+}
+
+.filtro-select option[value="Selecione uma categoria"] {
+    color: #999;
+}
