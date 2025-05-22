@@ -51,7 +51,7 @@ if (isset($_POST['entrar'])) {
                     <i class="fas fa-search"></i>
                 </button>
 
-                <form id="form-busca" class="d-flex" autocomplete="off" method="POST" onsubmit="return false;">
+                <form id="form-busca" class="" autocomplete="off" method="POST" onsubmit="return false;">
                     <input id="campo-busca" type="text" name="busca" class="barra-pesquisar ativo" placeholder="Digite sua pesquisa...">
                 </form>
             </div>
@@ -65,6 +65,13 @@ if (isset($_POST['entrar'])) {
                 </button>
                 <input type="text" class="barra-criar" placeholder="Digite o nome do Projeto" onkeypress="">
             </div>
+
+            <div class="botoes-container">
+                 <button class="botao botao-filtro" id="botaoFiltro">
+                <i class="fas fa-filter"></i>
+            </button>
+            </div>
+           
         </section>
         <section class="feed">
             <?php include 'includes/card.php' ?>

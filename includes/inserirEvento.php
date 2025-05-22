@@ -1,12 +1,15 @@
 <?php
 
 use ProjetaBD\Enums\Categoria;
+use ProjetaBD\Helpers\Utils;
 use ProjetaBD\Models\Evento;
 use ProjetaBD\Services\EventoServico;
+use ProjetaBD\Services\FotoServico;
 
-require_once "../pi-back-end/vendor/autoload.php";
+require_once __DIR__ . "/../vendor/autoload.php";
 
 $eventoServico = new EventoServico();
+$fotoServico = new FotoServico();
 
 if (isset($_POST['enviar'])) {
     $nome = filter_input(INPUT_POST, "nome", FILTER_SANITIZE_SPECIAL_CHARS);
@@ -20,28 +23,69 @@ if (isset($_POST['enviar'])) {
     $cidade = filter_input(INPUT_POST, "cidade", FILTER_SANITIZE_SPECIAL_CHARS);
     $UF = filter_input(INPUT_POST, "UF", FILTER_SANITIZE_SPECIAL_CHARS);
     $telefone = filter_input(INPUT_POST, "telefone", FILTER_SANITIZE_SPECIAL_CHARS);
-    $categoriaStr = filter_input(INPUT_POST, "categoriaEvento", FILTER_SANITIZE_SPECIAL_CHARS);
-    $usuarios_id = filter_input(INPUT_POST, "usuarios_id", FILTER_SANITIZE_SPECIAL_CHARS);
-    $projetos_id = filter_input(INPUT_POST, "projetos_id", FILTER_SANITIZE_SPECIAL_CHARS);
+    $categoria = Categoria::from(filter_input(INPUT_POST, "categoriaEvento", FILTER_SANITIZE_SPECIAL_CHARS));
+    $usuarios_id = 1; // Temporariamente fixo em 1
+    $projetos_id = null;
 
     try {
-        $categoria = Categoria::from($categoriaStr);
-    } catch (ValueError $e) {
-        die("Categoria inválida.");
+        // Primeiro, insere o evento
+        $evento = new Evento(
+            $nome, 
+            $descricao, 
+            $data, 
+            $hora, 
+            $CEP, 
+            $rua, 
+            $numero, 
+            $bairro, 
+            $cidade, 
+            $UF, 
+            $telefone, 
+            $categoria, 
+            $projetos_id,
+            date('Y-m-d H:i:s'), // created_at
+            date('Y-m-d H:i:s'), // updated_at
+            $usuarios_id
+        );
+        
+        $eventoServico->inserir($evento);
+        
+        // Pega o ID do evento inserido
+        $eventoId = $eventoServico->getConexao()->lastInsertId();
+        
+        // Se houver imagem, faz o upload e salva na tabela fotos
+        if (isset($_FILES['imagem'])) {
+            error_log("Arquivo recebido: " . print_r($_FILES['imagem'], true));
+            
+            if ($_FILES['imagem']['error'] === UPLOAD_ERR_OK) {
+                $nomeDaImagem = Utils::upload($_FILES['imagem']);
+                error_log("Nome da imagem após upload: " . $nomeDaImagem);
+                
+                if ($nomeDaImagem) {
+                    $fotoServico->inserir($nomeDaImagem, $usuarios_id, $eventoId);
+                    error_log("Foto inserida no banco com sucesso");
+                }
+            } else {
+                error_log("Erro no upload: " . $_FILES['imagem']['error']);
+            }
+        } else {
+            error_log("Nenhum arquivo foi enviado");
+        }
+        
+        header("location:index.php");
+        exit;
+    } catch (Throwable $e) {
+        error_log("Erro ao processar evento: " . $e->getMessage());
+        $mensagemErro = $e->getMessage();
     }
-
-    $evento = new Evento($nome, $descricao, $data, $hora, $CEP, $rua, $numero, $bairro, $cidade, $UF, $telefone, $categoria, 1, "", "");
-    $eventoServico->inserir($evento);
-
-    header("location:index.php");
-    exit;
 }
+
 ?>
 
 <div class="formularios" id="formEvento">
     <h2>Criar Novo Evento</h2>
 
-    <form action="" method="post">
+    <form action="" method="post" enctype="multipart/form-data">
         <div class="form">
             <label for="nomeEvento">Nome do Evento</label>
             <input type="text" id="nomeEvento" name="nome" placeholder="Digite o nome do Evento" required>
@@ -116,7 +160,7 @@ if (isset($_POST['enviar'])) {
 
         <div class="form">
             <label for="imagemEvento">Imagem do Evento</label>
-            <input type="file" id="imagemEvento" name="imagemEvento" accept="image/*">
+            <input type="file" id="imagemEvento" name="imagem" accept="image/png, image/jpeg, image/gif, image/svg+xml" required>
         </div>
 
         <div class="form">

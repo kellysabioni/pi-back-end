@@ -1,14 +1,18 @@
 <?php
+use ProjetaBD\Helpers\Utils;
+
 $id = filter_input(INPUT_GET, "id", FILTER_SANITIZE_NUMBER_INT);
 $listarUm = $eventoServico->listarUm($id);
+$imagem = !empty($listarUm[0]["imagem"]) ? Utils::getCaminhoImagem($listarUm[0]["imagem"]) : null;
 ?>
 <div id="postModal" class="post-modal">
     <div class="post-modal-conteudo">
         <span class="fechar-modal">&times;</span>
+        <?php if ($imagem): ?>
         <div class="post-modal-banner">
-            <img src="https://images.unsplash.com/photo-1531058020387-3be344556be6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80"
-                alt="Banner do evento">
+            <img src="<?= $imagem ?>" alt="Banner do evento">
         </div>
+        <?php endif; ?>
 
         <div class="post-modal-header">
             <div class="post-header-icon">

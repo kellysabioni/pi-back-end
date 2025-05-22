@@ -18,17 +18,16 @@ class EventoServico
     public function listarTodos(): array
     {
         $sql = "SELECT eventos.*,
-
         usuarios.id AS usuario_id,
         usuarios.nome AS usuario_nome,
-
         projetos.id AS projeto_id,
-        projetos.nome AS projeto_nome
-
+        projetos.nome AS projeto_nome,
+        fotos.nome_arquivo AS imagem
         FROM 
         eventos
         LEFT JOIN usuarios ON eventos.usuarios_id = usuarios.id
         LEFT JOIN projetos ON eventos.projetos_id = projetos.id
+        LEFT JOIN fotos ON eventos.id = fotos.eventos_id
         ORDER BY eventos.created_at DESC";
 
         try {
@@ -43,20 +42,17 @@ class EventoServico
     public function listarUm($id): array
     {
         $sql = "SELECT eventos.*,
-
-        -- IDs e nomes diretos
         COALESCE(eventos.usuarios_id, projetos.usuarios_id) AS usuario_id,
         COALESCE(usuario_evento.nome, usuario_projeto.nome) AS usuario_nome,
-
         projetos.id AS projeto_id,
-        projetos.nome AS projeto_nome
-
+        projetos.nome AS projeto_nome,
+        fotos.nome_arquivo AS imagem
         FROM 
             eventos
         LEFT JOIN usuarios AS usuario_evento ON eventos.usuarios_id = usuario_evento.id
         LEFT JOIN projetos ON eventos.projetos_id = projetos.id
         LEFT JOIN usuarios AS usuario_projeto ON projetos.usuarios_id = usuario_projeto.id
-
+        LEFT JOIN fotos ON eventos.id = fotos.eventos_id
         WHERE 
             eventos.id = :id; ";
 
@@ -100,7 +96,7 @@ class EventoServico
         }
     }
 
-        public function buscar(string $termo): array {
+    public function buscar(string $termo): array {
         $sql = "SELECT id, nome, data, descricao 
                 FROM eventos
                 WHERE nome LIKE :termo
@@ -117,5 +113,8 @@ class EventoServico
         }
     }
 
+    public function getConexao(): PDO {
+        return $this->conexao;
+    }
 }
 
