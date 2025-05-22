@@ -20,6 +20,7 @@ CREATE TABLE usuarios(
     senha VARCHAR(50) NOT NULL,
     tipo_usuario ENUM('usuario', 'cadastro', 'admin') NOT NULL DEFAULT 'usuario',
     cpf VARCHAR(11) NULL UNIQUE,
+    data_nascimento DATE NULL,
     created_at DATETIME NULL DEFAULT CURRENT_TIMESTAMP,
     updated_at DATETIME NULL
 );

@@ -99,6 +99,7 @@ CREATE TABLE `usuarios` (
   `senha` varchar(50) NOT NULL,
   `tipo_usuario` enum('usuario','cadastro','admin') NOT NULL DEFAULT 'usuario',
   `cpf` varchar(11) DEFAULT NULL,
+  `data_nascimento` date NULL,
   `created_at` datetime DEFAULT current_timestamp(),
   `updated_at` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
