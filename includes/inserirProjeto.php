@@ -23,9 +23,9 @@ if (isset($_POST['enviar'])) {
 
     try {
         $categoria = Categoria::from($categoriaStr);
-    } catch (ValueError $e) {
-        die("Categoria inválida.");
-    }
+    } catch (Throwable $erro) {
+            throw new Exception("ERRO: " . $erro->getMessage());
+        }
 
     $projeto = new Projeto($nome, $CEP, $rua, $numero, $bairro, $cidade, $UF, $telefone, $categoria, "", "",1,null);
     $projetoServico->inserir($projeto);
