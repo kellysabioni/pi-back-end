@@ -35,6 +35,32 @@ class UsuarioServico
         }
     }
 
+    // Completar cadastro de usuario
+    public function completarCadastro(Usuario $usuario): void
+    {
+        // Atualiza apenas tipo_usuario, cpf e data_nascimento
+        $sql = "
+        UPDATE usuarios
+        SET 
+        tipo_usuario = "cadastro", 
+        cpf = :cpf, 
+        data_nascimento = :data_nascimento
+        
+        WHERE id = :id";
+
+        try {
+            $consulta = $this->conexao->prepare($sql);
+            $consulta->bindValue(":id", $usuario->getId(), PDO::PARAM_INT);
+            $consulta->bindValue(":nome", $usuario->getNome(), PDO::PARAM_STR);
+            $consulta->bindValue(":email", $usuario->getEmail(), PDO::PARAM_STR);
+            $consulta->bindValue(":senha", password_hash($usuario->getSenha(), PASSWORD_DEFAULT), PDO::PARAM_STR);
+            $consulta->execute();
+        } catch (Throwable $erro) {
+            throw new Exception("Erro ao atualizar usuário: " . $erro->getMessage());
+        }
+    }
+
+
     // Validação de login
     public function validarLogin(string $email, string $senha): ?Usuario
     {
