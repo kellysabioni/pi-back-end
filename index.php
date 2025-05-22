@@ -1,13 +1,23 @@
 <?php
 
+use ProjetaBD\Enums\Categoria;
 use ProjetaBD\Services\EventoServico;
 
 require_once "../pi-back-end/vendor/autoload.php";
 
 $eventoServico = new EventoServico;
-$listarEventos = $eventoServico->listarTodos();
 
-use ProjetaBD\Models\Usuario;
+// Obtem a categoria do GET, se houver
+$categoria = $_GET['categoria'] ?? null;
+
+if ($categoria && $categoria !== Categoria::Indefinido->value) {
+    // Aplica o filtro normalmente, exceto se for "Indefinido"
+    $listarEventos = $eventoServico->filtro($categoria);
+} else {
+    // Se for "Indefinido" ou nulo, mostra todos
+    $listarEventos = $eventoServico->listarTodos();
+}
+
 use ProjetaBD\Services\UsuarioServico;
 
 $usuarioServico = new UsuarioServico();
@@ -66,12 +76,19 @@ if (isset($_POST['entrar'])) {
                 <input type="text" class="barra-criar" placeholder="Digite o nome do Projeto" onkeypress="">
             </div>
 
-            <div class="botoes-container">
-                 <button class="botao botao-filtro" id="botaoFiltro">
-                <i class="fas fa-filter"></i>
-            </button>
-            </div>
-           
+            <form method="GET" id="formFiltro">
+                <div class="botoes-container">
+                    <select name="categoria" id="categoriaProjeto" onchange="document.getElementById('formFiltro').submit();">
+                        <?php foreach (\ProjetaBD\Enums\Categoria::cases() as $categoria): ?>
+                            <option value="<?= $categoria->value ?>" <?= isset($_GET['categoria']) && $_GET['categoria'] === $categoria->value ? 'selected' : '' ?>>
+                                <?= $categoria->value ?>
+                            </option>
+                        <?php endforeach; ?>
+                    </select>
+                    <i class="fas fa-filter"></i>
+                </div>
+            </form>
+
         </section>
         <section class="feed">
             <?php include 'includes/card.php' ?>
