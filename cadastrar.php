@@ -10,8 +10,9 @@ $usuarioServico = new UsuarioServico();
     $nome = filter_input(INPUT_POST, "nome", FILTER_SANITIZE_SPECIAL_CHARS);
     $email = filter_input(INPUT_POST, "email", FILTER_VALIDATE_EMAIL);
     $senha = filter_input(INPUT_POST, 'senha', FILTER_SANITIZE_SPECIAL_CHARS);
+    $CPF = filter_input(INPUT_POST, 'CPF', FILTER_SANITIZE_SPECIAL_CHARS);
 
-   $usuario = new Usuario($nome, $email, $senha);
+   $usuario = new Usuario($nome, $email, $senha, $CPF);
    $usuarioServico->inserir($usuario);
 
    header("location:index.php");
@@ -45,6 +46,13 @@ $usuarioServico = new UsuarioServico();
                     <label for="senha">Senha</label>
                     <input type="password" id="senha" name="senha" required>
                 </div>
+
+                <div class="form">
+                    <label for="CPF">CPF</label>
+                    <input type="text" id="CPF" name="CPF">
+                    <small class="alerta-cpf">O CPF é opcional, mas necessário para cadastrar eventos ou projetos.</small>
+                </div>
+                
                 <div class="form">
                     <button name="enviar" type="submit" class="btnEnviar">Cadastrar</button>
                 </div>
