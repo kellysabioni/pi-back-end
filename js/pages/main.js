@@ -1,34 +1,33 @@
-
 document.addEventListener('DOMContentLoaded', function () {
 
-    const postCard = document.querySelectorAll(".post");  
+    const postCard = document.querySelectorAll(".post");
     const postModal = document.getElementById('postModal');
     const postModalFechar = document.querySelector('.fechar-modal');
 
     postCard.forEach(card => {
         card.addEventListener('click', function () {
-           const id = card.dataset.id; 
+            const id = card.dataset.id;
             window.location.href = `?id=${id}`;
         });
     });
 
     const urlParams = new URLSearchParams(window.location.search);
-    const id = urlParams.get('id'); 
+    const id = urlParams.get('id');
 
     if (id) {
-    const card = document.getElementById(`evento_${id}`);
-    if (card) {
-        card.scrollIntoView();
+        const card = document.getElementById(`evento_${id}`);
+        if (card) {
+            card.scrollIntoView();
+        }
+
+        postModal.style.display = 'block';
+        postModal.offsetHeight;
+        postModal.classList.add('ativo');
+        document.body.style.overflow = 'hidden';
     }
 
-    postModal.style.display = 'block';
-    postModal.offsetHeight;
-    postModal.classList.add('ativo');
-    document.body.style.overflow = 'hidden';
-}
 
 
-  
     function fecharModal() {
         postModal.classList.remove('ativo');
         setTimeout(() => {
@@ -36,22 +35,20 @@ document.addEventListener('DOMContentLoaded', function () {
             document.body.style.overflow = 'auto';
             const url = new URL(window.location);
             url.searchParams.delete('id');
-            window.history.replaceState({}, '', url); 
+            window.history.replaceState({}, '', url);
         }, 300);
     }
 
     if (postModalFechar) {
         postModalFechar.addEventListener('click', fecharModal);
     }
-    
+
     window.addEventListener('click', function (event) {
         if (event.target === postModal) {
             fecharModal();
         }
     });
 });
-
-
 
 
 function barraPesquisar() {
@@ -87,6 +84,24 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
+// Função para abrir o modal de login
+function abrirLoginModal() {
+    const loginModal = document.getElementById('loginModal');
+    loginModal.style.display = 'block';
+    loginModal.offsetHeight; // Força o recálculo da altura
+    loginModal.classList.add('ativo');
+    document.body.style.overflow = 'hidden';
+}
+
+// Função para fechar o modal de login
+function fecharLoginModal() {
+    const loginModal = document.getElementById('loginModal');
+    loginModal.classList.remove('ativo');
+    setTimeout(() => {
+        loginModal.style.display = 'none';
+        document.body.style.overflow = 'auto';
+    }, 300);
+}
 
 
 

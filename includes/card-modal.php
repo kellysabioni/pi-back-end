@@ -1,14 +1,18 @@
 <?php
+use ProjetaBD\Helpers\Utils;
+
 $id = filter_input(INPUT_GET, "id", FILTER_SANITIZE_NUMBER_INT);
 $listarUm = $eventoServico->listarUm($id);
+$imagem = !empty($listarUm[0]["imagem"]) ? Utils::getCaminhoImagem($listarUm[0]["imagem"]) : null;
 ?>
 <div id="postModal" class="post-modal">
     <div class="post-modal-conteudo">
         <span class="fechar-modal">&times;</span>
+        <?php if ($imagem): ?>
         <div class="post-modal-banner">
-            <img src="https://images.unsplash.com/photo-1531058020387-3be344556be6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80"
-                alt="Banner do evento">
+            <img src="<?= $imagem ?>" alt="Banner do evento">
         </div>
+        <?php endif; ?>
 
         <div class="post-modal-header">
             <div class="post-header-icon">
@@ -18,7 +22,7 @@ $listarUm = $eventoServico->listarUm($id);
                 <h2 class="post-modal-titulo"><?=$listarUm[0]["nome"]?></h2>
                 <div class="post-modal-meta">
                     <span><i class="far fa-calendar"></i> <?=$listarUm[0]["data"]?></span>
-                    <span><i class="far fa-user"></i><?=$listarUm[0]["usuario_nome"]?></span>
+                    <span><i class="far fa-user"></i> <?=$listarUm[0]["usuario_nome"]?></span>
                 </div>
             </div>
         </div>
@@ -41,11 +45,11 @@ $listarUm = $eventoServico->listarUm($id);
                         </h4>
                         <div class="info-item">
                             <i class="fas fa-map-marker-alt"></i>
-                            <span><strong>Local:</strong> <?=$listarUm[0]["RUA"]?>, <?=$listarUm[0]["numero"]?> - <?=$listarUm[0]["bairro"]?>. CEP: <?=$listarUm[0]["CEP"]?>. <?=$listarUm[0]["cidade"]?> - <?=$listarUm[0]["UF"]?></span>
+                            <span><strong>Local:</strong> <?=$listarUm[0]["rua"]?>, <?=$listarUm[0]["numero"]?> - <?=$listarUm[0]["bairro"]?>. CEP: <?=$listarUm[0]["CEP"]?>. <?=$listarUm[0]["cidade"]?> - <?=$listarUm[0]["UF"]?></span>
                         </div>
                         <div class="info-item">
                             <i class="far fa-clock"></i>
-                            <span><strong>Horário:</strong> 14:00</span>
+                            <span><strong>Horário:</strong> <?=$listarUm[0]["hora"]?></span>
                         </div>
                         <div class="info-item">
                             <i class="far fa-calendar"></i>
