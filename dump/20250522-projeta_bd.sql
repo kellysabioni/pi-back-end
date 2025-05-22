@@ -134,7 +134,7 @@ CREATE TABLE `usuarios` (
   `nome` varchar(100) NOT NULL,
   `email` varchar(50) NOT NULL,
   `senha` varchar(50) NOT NULL,
-  `tipo_usuario` enum('usuario','admin') NOT NULL DEFAULT 'usuario',
+  `tipo_usuario` enum('usuario','cadastro','admin') NOT NULL DEFAULT 'usuario',
   `cpf` varchar(11) DEFAULT NULL,
   `created_at` datetime DEFAULT current_timestamp(),
   `updated_at` datetime DEFAULT NULL
