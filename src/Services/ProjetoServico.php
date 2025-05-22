@@ -15,6 +15,10 @@ class ProjetoServico
         $this->conexao = ConexaoBD::getConexao();
     }
 
+    public function getConexao(): PDO {
+        return $this->conexao;
+    }
+
     public function inserir(Projeto $projeto): void {
         $sql = "INSERT INTO projetos(
         nome, CEP, rua, numero, bairro, cidade, UF, telefone, categoria, usuarios_id)

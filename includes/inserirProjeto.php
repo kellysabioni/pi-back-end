@@ -1,6 +1,7 @@
 <?php
 
 use ProjetaBD\Enums\Categoria;
+use ProjetaBD\Helpers\Utils;
 use ProjetaBD\Models\Projeto;
 use ProjetaBD\Services\ProjetoServico;
 
@@ -38,13 +39,31 @@ if (isset($_POST['enviar'])) {
 
         $projetoServico->inserir($projeto);
 
+        $projetoId = $projetoServico->getConexao()->lastInsertId();
+        if (isset($_FILES['imagem'])) {
+            error_log("Arquivo recebido: " . print_r($_FILES['imagem'], true));
+            
+            if ($_FILES['imagem']['error'] === UPLOAD_ERR_OK) {
+                $nomeDaImagem = Utils::upload($_FILES['imagem']);
+                error_log("Nome da imagem após upload: " . $nomeDaImagem);
+                
+                if ($nomeDaImagem) {
+                    $fotoServico->inserir($nomeDaImagem, $usuarios_id);
+                    error_log("Foto inserida no banco com sucesso");
+                }
+            } else {
+                error_log("Erro no upload: " . $_FILES['imagem']['error']);
+            }
+        } else {
+            error_log("Nenhum arquivo foi enviado");
+        }
+
         header("location:index.php");
         exit;
 
     } catch (Throwable $erro) {
         throw new Exception("Erro ao inserir projeto: " . $erro->getMessage());
     }
-
 }
 ?>
 
@@ -109,7 +128,7 @@ if (isset($_POST['enviar'])) {
 
         <div class="form">
             <label for="imagemProjeto">Imagem do Projeto</label>
-            <input type="file" id="imagemProjeto" name="imagemProjeto" accept="image/*">
+            <input type="file" id="imagemProjeto" name="imagem" accept="image/png, image/jpeg, image/gif, image/svg+xml" required>
         </div>
 
         <div class="form">
