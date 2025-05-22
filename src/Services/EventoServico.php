@@ -66,7 +66,8 @@ class EventoServico
         }
     }
 
-    public function inserir(Evento $evento): void {
+    public function inserir(Evento $evento): void
+    {
         $sql = "INSERT INTO eventos(
         nome, descricao, data, hora, CEP, rua, numero, bairro, cidade, UF, telefone, categoria, usuarios_id, projetos_id)
         VALUES (
@@ -89,32 +90,54 @@ class EventoServico
             $consulta->bindValue(":categoria", $evento->getCategoria()->value, PDO::PARAM_STR);
             $consulta->bindValue(":usuarios_id", $evento->getUsuarios_id(), PDO::PARAM_STR);
             $consulta->bindValue(":projetos_id", $evento->getProjetos_id(), PDO::PARAM_STR);
-            
+
             $consulta->execute();
         } catch (Throwable $erro) {
-            throw new Exception("Erro ao inserir evento: ".$erro->getMessage());
+            throw new Exception("Erro ao inserir evento: " . $erro->getMessage());
         }
     }
 
-    public function buscar(string $termo): array {
+    public function buscar(string $termo): array
+    {
         $sql = "SELECT id, nome, data, descricao 
                 FROM eventos
                 WHERE nome LIKE :termo
                    OR descricao LIKE :termo 
                 ORDER BY data DESC";
-    
+
         try {
             $consulta = $this->conexao->prepare($sql);
             $consulta->bindValue(':termo', '%' . $termo . '%', PDO::PARAM_STR);
             $consulta->execute();
             return $consulta->fetchAll(PDO::FETCH_ASSOC);
         } catch (Throwable $erro) {
-            throw new Exception("Erro ao buscar notícias: ".$erro->getMessage());
+            throw new Exception("Erro ao buscar notícias: " . $erro->getMessage());
         }
     }
 
-    public function getConexao(): PDO {
-        return $this->conexao;
+    public function filtro(string $categoria): array
+    {
+       $sql = "SELECT eventos.*,
+           usuarios.id AS usuario_id,
+           usuarios.nome AS usuario_nome,
+           projetos.id AS projeto_id,
+           projetos.nome AS projeto_nome,
+           fotos.nome_arquivo AS imagem
+    FROM eventos
+    LEFT JOIN usuarios ON eventos.usuarios_id = usuarios.id
+    LEFT JOIN projetos ON eventos.projetos_id = projetos.id
+    LEFT JOIN fotos ON eventos.id = fotos.eventos_id
+    WHERE eventos.categoria = :categoria
+    ORDER BY eventos.created_at DESC";
+
+
+        try {
+            $consulta = $this->conexao->prepare($sql);
+            $consulta->bindValue(":categoria", $categoria, PDO::PARAM_STR);
+            $consulta->execute();
+            return $consulta->fetchAll(PDO::FETCH_ASSOC);
+        } catch (\Throwable $erro) {
+            throw new Exception("Erro ao selecionar categoria: " . $erro->getMessage());
+        }
     }
 }
-
