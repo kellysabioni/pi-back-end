@@ -1,5 +1,5 @@
 <?php
-
+namespace ProjetaBD\Auth;
 final class ControleDeAcesso
 {
     private function __construct() {}
@@ -16,7 +16,7 @@ final class ControleDeAcesso
         // Inicia sessão (se necessário)
         self::iniciarSessao();
 
-        // Se NÃO EXISTIR uma variável de sessão chamada ID
+        // Se NÃO EXISTIR uma variável de sessão chamada id
         if(!isset($_SESSION['id'])){
             session_destroy();
             header("location:../login.php?acesso_proibido");
