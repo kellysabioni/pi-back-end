@@ -1,21 +1,33 @@
 <?php
+session_start();
+
 require_once "../pi-back-end/vendor/autoload.php";
 
 use ProjetaBD\Models\Usuario;
 use ProjetaBD\Services\UsuarioServico;
+use ProjetaBD\Auth\ControleDeAcesso;
+
+// Verifica se o usuário está logado
+ControleDeAcesso::exigirLogin();
 
 $usuarioServico = new UsuarioServico();
 
- if (isset($_POST['enviar'])) {
-   $id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT);
-   $cpf = filter_input(INPUT_POST, 'cpf', FILTER_SANITIZE_SPECIAL_CHARS);
-   $data_nascimento = filter_input(INPUT_POST, 'data_nascimento', FILTER_SANITIZE_SPECIAL_CHARS);
+if (isset($_POST['enviar'])) {
+    $id = $_SESSION['id'];
+    $cpf = filter_input(INPUT_POST, 'cpf', FILTER_SANITIZE_SPECIAL_CHARS);
+    $data_nascimento = filter_input(INPUT_POST, 'data_nascimento', FILTER_SANITIZE_SPECIAL_CHARS);
 
-   $usuario = new Usuario($id, $cpf, $data_nascimento);
-   $usuarioServico->completarCadastro($usuario);
-
-   header("location:index.php");
-   exit;
+    try {
+        $usuario = new Usuario(
+            $_SESSION['nome'], $_SESSION['email'], '','cadastro', $id, $cpf, $data_nascimento
+        );
+        
+        $usuarioServico->completarCadastro($usuario);
+        header("location:index.php");
+        exit;
+    } catch (Throwable $erro) {
+        echo "<script>alert('Erro ao completar cadastro: " . $erro->getMessage() . "');</script>";
+    }
 } 
 ?>
 

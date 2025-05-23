@@ -24,7 +24,7 @@ final class ControleDeAcesso
         }
     }
 
-    public static function login(int $id, string $nome, string $tipo): void
+    public static function login(int $id, string $nome, string $tipo, string $email): void
     {
         self::iniciarSessao();
 
@@ -32,6 +32,7 @@ final class ControleDeAcesso
         $_SESSION['id'] = $id;
         $_SESSION['nome'] = $nome;
         $_SESSION['tipo'] = $tipo;
+        $_SESSION['email'] = $email;
 
         if(!isset($_SESSION['id'])){
             session_destroy();
@@ -48,13 +49,13 @@ final class ControleDeAcesso
         exit;
     }
 
-    public static function exigirAdmin():void
+    public static function exigircadastro():void
     {
         self::iniciarSessao();
 
         /* Se o usuário não for um admin, ele será redirecionado para nao-autorizado */ 
-        if($_SESSION['tipo'] !== 'admin'){
-            header("location:nao-autorizado.php");
+        if($_SESSION['tipo'] !== 'cadastro'){
+            header("location:cadastrar-comp.php");
             exit;
         }
     }

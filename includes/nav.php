@@ -8,7 +8,7 @@
             <i id="fy" class="fa-regular fa-compass"></i>
             <!-- <span>Explorar</span> -->
         </a>
-        <a href="admin/criar.php?tipo=evento" class="nav-icons">
+        <a href="criar.php?tipo=evento" class="nav-icons">
             <i id="criar" class="fa-regular fa-square-plus"></i>
             <!-- <span>Criar</span> -->
         </a>

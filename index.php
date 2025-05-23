@@ -41,7 +41,7 @@ if (isset($_POST['enviar'])) {
         }
 
         if ($usuario && password_verify($senha, $usuario['senha'])) {
-            ControleDeAcesso::login($usuario['id'], $usuario['nome'], $usuario['tipo_usuario']);
+            ControleDeAcesso::login($usuario['id'], $usuario['nome'], $usuario['tipo_usuario'], $usuario['email']);
             header("Location: index.php");
             exit;
         } else {

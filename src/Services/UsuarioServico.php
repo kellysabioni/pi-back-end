@@ -41,14 +41,20 @@ class UsuarioServico
         $sql = "
         UPDATE usuarios
         SET 
-        tipo_usuario = 'cadastro', 
+        nome = :nome,
+        email = :email,
+        tipo_usuario = :tipo_usuario,
         cpf = :cpf, 
-        data_nascimento = :data_nascimento
+        data_nascimento = :data_nascimento,
+        updated_at = NOW()
         WHERE id = :id";
 
         try {
             $consulta = $this->conexao->prepare($sql);
             $consulta->bindValue(":id", $usuario->getId(), PDO::PARAM_INT);
+            $consulta->bindValue(":nome", $usuario->getNome(), PDO::PARAM_STR);
+            $consulta->bindValue(":email", $usuario->getEmail(), PDO::PARAM_STR);
+            $consulta->bindValue(":tipo_usuario", $usuario->getTipoUsuario(), PDO::PARAM_STR);
             $consulta->bindValue(":cpf", $usuario->getCpf(), PDO::PARAM_STR);
             $consulta->bindValue(":data_nascimento", $usuario->getDataNascimento(), PDO::PARAM_STR);
             $consulta->execute();
