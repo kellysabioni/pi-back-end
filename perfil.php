@@ -1,3 +1,20 @@
+<?php
+session_start();
+
+use ProjetaBD\Services\EventoServico;
+use ProjetaBD\Services\ProjetoServico;
+use ProjetaBD\Services\UsuarioServico;
+require_once "../pi-back-end/vendor/autoload.php";
+
+$usuarioServico = new UsuarioServico;
+$projetoServico = new ProjetoServico();
+$eventoServico = new EventoServico();
+
+$id = $_SESSION['usuario_id'];
+$eventos = $eventoServico->eventosPerfil($id);
+
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -17,7 +34,7 @@
                     <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=200&q=80" alt="Foto do perfil">
                 </div>
                 <div class="perfil-info">
-                    <h2>NOME USER</h2>
+                    <h2><?=$_SESSION['usuario_nome']?></h2>
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur ipsum, odit quia corporis a cum.</p>
                     <div class="perfil-status">
                         <div class="status">
@@ -25,12 +42,12 @@
                             <span class="label">Projetos</span>
                         </div>
                         <div class="status">
-                            <span class="numero">8</span>
-                            <span class="label">Seguindo</span>
+                            <span class="numero"><?=$eventos['total_eventos']?></span>
+                            <span class="label">Eventos</span>
                         </div>
                         <div class="status">
                             <span class="numero">3</span>
-                            <span class="label">Criados</span>
+                            <span class="label">Seguindo</span>
                         </div>
                     </div>
                 </div>
