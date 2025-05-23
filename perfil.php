@@ -12,7 +12,7 @@ $eventoServico = new EventoServico();
 
 $id = $_SESSION['id'];
 $eventos = $eventoServico->eventosPerfil($id);
-
+$projetos = $projetoServico->projetosPerfil($id); 
 ?>
 
 <!DOCTYPE html>
@@ -38,7 +38,7 @@ $eventos = $eventoServico->eventosPerfil($id);
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur ipsum, odit quia corporis a cum.</p>
                     <div class="perfil-status">
                         <div class="status">
-                            <span class="numero">12</span>
+                            <span class="numero"><?=$projetos['total_projetos']?></span>
                             <span class="label">Projetos</span>
                         </div>
                         <div class="status">

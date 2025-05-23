@@ -65,4 +65,18 @@ class ProjetoServico
             throw new Exception("ERRO: " . $erro->getMessage());
         }
     }
+
+    public function projetosPerfil($id)
+    {
+        $sql = "SELECT COUNT(*) AS total_projetos FROM projetos WHERE usuarios_id = :usuarios_id";
+
+        try {
+            $consulta = $this->conexao->prepare($sql);
+            $consulta->bindValue(":usuarios_id", $id, PDO::PARAM_STR);
+            $consulta->execute();
+            return $consulta->fetch(PDO::FETCH_ASSOC);
+        } catch (\Throwable $erro) {
+            throw new Exception("Erro ao listar projetos do perfil: " . $erro->getMessage());
+        }
+    }
 }
