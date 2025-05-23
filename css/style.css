@@ -768,7 +768,7 @@ header {
 }
 
 .criar-botao {
-    width: 200px;
+    width: 25vw;
     padding: 0.8rem;
     border: none;
     background-color: var(--branco);
