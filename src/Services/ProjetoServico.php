@@ -66,7 +66,7 @@ class ProjetoServico
         }
     }
 
-    public function projetosPerfil($id)
+    public function contarProjetos(int $id)
     {
         $sql = "SELECT COUNT(*) AS total_projetos FROM projetos WHERE usuarios_id = :usuarios_id";
 
@@ -79,4 +79,27 @@ class ProjetoServico
             throw new Exception("Erro ao listar projetos do perfil: " . $erro->getMessage());
         }
     }
+
+    public function projetosPerfil(int $id): array
+    {
+        $sql = "SELECT projetos.*,
+                    usuarios.id AS usuario_id,
+                    usuarios.nome AS usuario_nome,
+                    fotos.nome_arquivo AS imagem
+                FROM projetos
+                LEFT JOIN usuarios ON projetos.usuarios_id = usuarios.id
+                LEFT JOIN fotos ON projetos.id = fotos.projetos_id
+                WHERE projetos.usuarios_id = :usuarios_id
+                ORDER BY projetos.created_at DESC";
+
+        try {
+            $consulta = $this->conexao->prepare($sql);
+            $consulta->bindParam(':usuarios_id', $id, PDO::PARAM_INT);
+            $consulta->execute();
+            return $consulta->fetchAll(PDO::FETCH_ASSOC);
+        } catch (Throwable $erro) {
+            throw new Exception("ERRO: " . $erro->getMessage());
+        }
+    }
+
 }

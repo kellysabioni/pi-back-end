@@ -4,6 +4,7 @@ session_start();
 use ProjetaBD\Services\EventoServico;
 use ProjetaBD\Services\ProjetoServico;
 use ProjetaBD\Services\UsuarioServico;
+use ProjetaBD\Helpers\Utils;
 require_once "../pi-back-end/vendor/autoload.php";
 
 $usuarioServico = new UsuarioServico;
@@ -11,8 +12,10 @@ $projetoServico = new ProjetoServico();
 $eventoServico = new EventoServico();
 
 $id = $_SESSION['id'];
-$eventos = $eventoServico->eventosPerfil($id);
-$projetos = $projetoServico->projetosPerfil($id); 
+$qEventos = $eventoServico->contarEventos($id);
+$eventos = $eventoServico->listarUm($id);
+$qProjetos = $projetoServico->contarProjetos($id);
+$projetos = $projetoServico->projetosPerfil($id);
 ?>
 
 <!DOCTYPE html>
@@ -38,11 +41,11 @@ $projetos = $projetoServico->projetosPerfil($id);
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur ipsum, odit quia corporis a cum.</p>
                     <div class="perfil-status">
                         <div class="status">
-                            <span class="numero"><?=$projetos['total_projetos']?></span>
+                            <span class="numero"><?=$qProjetos['total_projetos']?></span>
                             <span class="label">Projetos</span>
                         </div>
                         <div class="status">
-                            <span class="numero"><?=$eventos['total_eventos']?></span>
+                            <span class="numero"><?=$qEventos['total_eventos']?></span>
                             <span class="label">Eventos</span>
                         </div>
                         <div class="status">
@@ -60,6 +63,10 @@ $projetos = $projetoServico->projetosPerfil($id);
             </div>
 
             <div class="perfil-conteudo">
+                
+<?php foreach($exibirProjetos as $projeto) { 
+    $imagem = !empty($["imagem"]) ? Utils::getCaminhoImagem($evento["imagem"]) : null;
+?>
                 <div id="meusProjetos" class="aba-conteudo ativo">
                     <div class="projetos">
                         <div class="projeto-card">
@@ -73,20 +80,10 @@ $projetos = $projetoServico->projetosPerfil($id);
                                 </div>
                             </div>
                         </div>
-                        <div class="projeto-card">
-                            <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Projeto Verde Vida">
-                            <div class="projeto-info">
-                                <h3>meusProjetos</h3>
-                                <p>Iniciativa de reflorestamento urbano e conscientização ambiental.</p>
-                                <div class="projeto-status">
-                                    <span><i class="fas fa-users"></i> 45 participantes</span>
-                                    <span><i class="fas fa-calendar"></i> Em andamento</span>
-                                </div>
-                            </div>
-                        </div>
+ 
                     </div>
                 </div>
-
+<?php } ?>
                 <div id="projetosSeguidos" class="aba-conteudo">
                     <div class="projetos">
                         <div class="projeto-card">

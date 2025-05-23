@@ -145,7 +145,7 @@ class EventoServico
         }
     }
 
-    public function eventosPerfil($id)
+    public function contarEventos($id)
     {
         $sql = "SELECT COUNT(*) AS total_eventos FROM eventos WHERE usuarios_id = :usuarios_id";
 
