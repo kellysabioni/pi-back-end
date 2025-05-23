@@ -7,12 +7,12 @@ use ProjetaBD\Services\UsuarioServico;
 $usuarioServico = new UsuarioServico();
 
  if (isset($_POST['enviar'])) {
-    $nome = filter_input(INPUT_POST, "nome", FILTER_SANITIZE_SPECIAL_CHARS);
-    $email = filter_input(INPUT_POST, "email", FILTER_VALIDATE_EMAIL);
-    $senha = filter_input(INPUT_POST, 'senha', FILTER_SANITIZE_SPECIAL_CHARS);
+   $id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT);
+   $cpf = filter_input(INPUT_POST, 'cpf', FILTER_SANITIZE_SPECIAL_CHARS);
+   $data_nascimento = filter_input(INPUT_POST, 'data_nascimento', FILTER_SANITIZE_SPECIAL_CHARS);
 
-   $usuario = new Usuario($nome, $email, $senha);
-   $usuarioServico->inserir($usuario);
+   $usuario = new Usuario($id, $cpf, $data_nascimento);
+   $usuarioServico->completarCadastro($usuario);
 
    header("location:index.php");
    exit;
@@ -26,24 +26,20 @@ $usuarioServico = new UsuarioServico();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="css/style.css">
-    <title>Cadastrar</title>
+    <title>Complete o cadastro</title>
 </head>
 <body>
     <main>
         <div class="formularios" id="formCadastro">
-            <h2>Cadastrar</h2>
+            <h2>Por favor, complete seu cadastro</h2>
             <form id="cadastroForm" method="POST" action="">
                 <div class="form">
-                    <label for="nome">Nome</label>
-                    <input type="text" id="nome" name="nome" required>
+                    <label for="cpf">CPF</label>
+                    <input type="text" id="cpf" name="cpf" required>
                 </div>
                 <div class="form">
-                    <label for="email">Email</label>
-                    <input type="email" id="email" name="email" required>
-                </div>
-                <div class="form">
-                    <label for="senha">Senha</label>
-                    <input type="password" id="senha" name="senha" required>
+                    <label for="data_nascimento">Data de Nascimento</label>
+                    <input type="date" id="data_nascimento" name="data_nascimento" required>
                 </div>
                 
                 <div class="form">

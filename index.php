@@ -46,34 +46,24 @@ if (isset($_POST['entrar'])) {
 
 <body>
     <header>
-        <div>
-            <div class="header-links">
-                <a href="" class="header-link">Para você</a>
-                <a href="" class="header-link">Seguindo</a>
-                <a href="index.php?tipo=login" class="header-link">Login</a>
-            </div>
+        <div class="header-links">
+            <div></div>
+            <a href="" class="header-link central">Para você</a>
+            <a href="?tipo=login" class="header-link login">Login</a>
         </div>
     </header>
     <main>
+        <form id="form-busca" class="botoes-container">
+            <i class="fas fa-search"></i>
+            <input id="campo-busca" type="text" name="busca" class="barra-pesquisar" placeholder="Digite sua pesquisa...">
+        </form>
+
+        <div id="resultados" class="visually-hidden"></div>
+
         <section class="acoes-index">
             <div class="botoes-container">
-                <button class="botao botao-pesquisa" onclick="barraPesquisar()">
-                    <i class="fas fa-search"></i>
-                </button>
-
-                <form id="form-busca" class="" autocomplete="off" method="POST" onsubmit="return false;">
-                    <input id="campo-busca" type="text" name="busca" class="barra-pesquisar ativo" placeholder="Digite sua pesquisa...">
-                </form>
-            </div>
-
-            <div id="resultados" class="visually-hidden"></div>
-
-
-            <div class="botoes-container">
-                <button class="botao botao-criar" onclick="barraCriar()">
-                    <i class="fas fa-plus"></i>
-                </button>
-                <input type="text" class="barra-criar" placeholder="Digite o nome do Projeto" onkeypress="">
+                <i class="fas fa-plus"></i>
+                <input type="text" class="barra-criar" placeholder="Digite o nome do Projeto" autocomplete="off">
             </div>
 
             <form method="GET" id="formFiltro" class="filtro-form">
@@ -88,8 +78,8 @@ if (isset($_POST['entrar'])) {
                     <i class="fas fa-filter filtro-icon"></i>
                 </div>
             </form>
-
         </section>
+
         <section class="feed">
             <?php include 'includes/card.php' ?>
         </section>

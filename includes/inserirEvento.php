@@ -164,7 +164,7 @@ if (isset($_POST['enviar'])) {
         </div>
 
         <div class="form">
-            <button name="enviar" type="submit" class="btnEnviar">Enviar Projeto</button>
+            <button name="enviar" type="submit" class="btnEnviar">Enviar</button>
         </div>
     </form>
 </div>

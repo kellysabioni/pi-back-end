@@ -1,4 +1,17 @@
 document.addEventListener('DOMContentLoaded', function () {
+    // Verifica se o parâmetro tipo=login está na URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const tipo = urlParams.get('tipo');
+    
+    if (tipo === 'login') {
+        const loginModal = document.getElementById('loginModal');
+        if (loginModal) {
+            loginModal.style.display = 'block';
+            loginModal.offsetHeight;
+            loginModal.classList.add('ativo');
+            document.body.style.overflow = 'hidden';
+        }
+    }
 
     const postCard = document.querySelectorAll(".post");
     const postModal = document.getElementById('postModal');
@@ -11,7 +24,6 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
-    const urlParams = new URLSearchParams(window.location.search);
     const id = urlParams.get('id');
 
     if (id) {
@@ -50,7 +62,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
-
+/* 
 function barraPesquisar() {
     const pesquisar = document.querySelector('.barra-pesquisar');
     const criar = document.querySelector('.barra-criar');
@@ -81,7 +93,7 @@ function aoPressionar(event) {
 document.addEventListener('DOMContentLoaded', () => {
     const input = document.querySelector('.barra-criar');
     input.addEventListener('keydown', aoPressionar);
-});
+}); */
 
 
 // Função para abrir o modal de login
@@ -100,8 +112,30 @@ function fecharLoginModal() {
     setTimeout(() => {
         loginModal.style.display = 'none';
         document.body.style.overflow = 'auto';
+        // Remove o parâmetro tipo=login da URL
+        const url = new URL(window.location);
+        url.searchParams.delete('tipo');
+        window.history.replaceState({}, '', url);
     }, 300);
 }
+
+function aoPressionar(event) {
+    if (event.key === 'Enter') {
+        const criar = document.querySelector('.barra-criar');
+        const nome = criar.value.trim();
+
+        if (nome) {
+            window.location.href = `criar.php?tipo=evento&nome=${encodeURIComponent(nome)}`;
+        }
+    }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    const input = document.querySelector('.barra-criar');
+    if (input) {
+        input.addEventListener('keydown', aoPressionar);
+    }
+});
 
 
 
