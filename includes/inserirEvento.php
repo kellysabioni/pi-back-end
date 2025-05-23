@@ -5,11 +5,16 @@ use ProjetaBD\Helpers\Utils;
 use ProjetaBD\Models\Evento;
 use ProjetaBD\Services\EventoServico;
 use ProjetaBD\Services\FotoServico;
+use ProjetaBD\Services\ProjetoServico;
 
 require_once __DIR__ . "/../vendor/autoload.php";
 
 $eventoServico = new EventoServico();
 $fotoServico = new FotoServico();
+$projetoServico = new ProjetoServico();
+
+$projetos = $projetoServico->listarTodosUser($_SESSION['id']);
+
 
 if (isset($_POST['enviar'])) {
     $nome = filter_input(INPUT_POST, "nome", FILTER_SANITIZE_SPECIAL_CHARS);
@@ -24,28 +29,13 @@ if (isset($_POST['enviar'])) {
     $UF = filter_input(INPUT_POST, "UF", FILTER_SANITIZE_SPECIAL_CHARS);
     $telefone = filter_input(INPUT_POST, "telefone", FILTER_SANITIZE_SPECIAL_CHARS);
     $categoria = Categoria::from(filter_input(INPUT_POST, "categoriaEvento", FILTER_SANITIZE_SPECIAL_CHARS));
-    $usuarios_id = 1; // Temporariamente fixo em 1
-    $projetos_id = null;
+    $usuarios_id = $_SESSION['id'];
+    $projetos_id = filter_input(INPUT_POST, "id_projeto", FILTER_SANITIZE_SPECIAL_CHARS);
 
     try {
         // Primeiro, insere o evento
         $evento = new Evento(
-            $nome, 
-            $descricao, 
-            $data, 
-            $hora, 
-            $CEP, 
-            $rua, 
-            $numero, 
-            $bairro, 
-            $cidade, 
-            $UF, 
-            $telefone, 
-            $categoria, 
-            $projetos_id,
-            date('Y-m-d H:i:s'), // created_at
-            date('Y-m-d H:i:s'), // updated_at
-            $usuarios_id
+            $nome, $descricao, $data, $hora, $CEP, $rua, $numero, $bairro, $cidade, $UF, $telefone, $categoria, $projetos_id,date('Y-m-d H:i:s'), date('Y-m-d H:i:s'),$usuarios_id
         );
         
         $eventoServico->inserir($evento);
@@ -84,6 +74,7 @@ if (isset($_POST['enviar'])) {
 
 <div class="formularios" id="formEvento">
     <h2>Criar Novo Evento</h2>
+    
 
     <form action="" method="post" enctype="multipart/form-data">
         <div class="form">
@@ -97,6 +88,19 @@ if (isset($_POST['enviar'])) {
                 <?php foreach (\ProjetaBD\Enums\Categoria::cases() as $categoria): ?>
                     <option value="<?=$categoria->value?>">
                         <?= $categoria->value ?>
+                    </option>
+                <?php endforeach; ?>
+            </select>
+        </div>
+
+        <div class="form">
+            <label for="relacionaProjeto">Projeto</label>
+            <small>Deseja relacionar a algum projeto?</small>
+            <select name="id_projeto" id="relacionaProjeto">
+                    <option value="-1">nenhum</option>
+                <?php foreach ($projetos as $projeto): ?>
+                    <option value="<?=$projeto['id']?>">
+                        <?= $projeto['nome'] ?>
                     </option>
                 <?php endforeach; ?>
             </select>

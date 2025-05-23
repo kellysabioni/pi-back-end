@@ -66,7 +66,29 @@ class ProjetoServico
         }
     }
 
+<<<<<<< HEAD
     public function contarProjetos(int $id)
+=======
+    public function listarTodosUser(int $id): array
+    {
+        $sql = "SELECT projetos.*
+        FROM 
+        projetos
+        WHERE usuarios_id = :id
+        ORDER BY projetos.created_at DESC";
+
+        try {
+            $consulta = $this->conexao->prepare($sql);
+            $consulta->bindValue(":id", $id, PDO::PARAM_STR);
+            $consulta->execute();
+            return $consulta->fetchAll(PDO::FETCH_ASSOC);
+        } catch (Throwable $erro) {
+            throw new Exception("ERRO: " . $erro->getMessage());
+        }
+    }
+
+    public function projetosPerfil($id)
+>>>>>>> c34ea950488a0368efbad3d20f6e64414c23dacd
     {
         $sql = "SELECT COUNT(*) AS total_projetos FROM projetos WHERE usuarios_id = :usuarios_id";
 
