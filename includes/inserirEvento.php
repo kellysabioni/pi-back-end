@@ -97,7 +97,7 @@ if (isset($_POST['enviar'])) {
             <label for="relacionaProjeto">Projeto</label>
             <small>Deseja relacionar a algum projeto?</small>
             <select name="id_projeto" id="relacionaProjeto">
-                    <option value="null">nenhum</option>
+                    <option value="-1">nenhum</option>
                 <?php foreach ($projetos as $projeto): ?>
                     <option value="<?=$projeto['id']?>">
                         <?= $projeto['nome'] ?>
