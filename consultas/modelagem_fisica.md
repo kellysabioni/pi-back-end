@@ -17,7 +17,7 @@ CREATE TABLE usuarios(
     id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
     nome VARCHAR(100) NOT NULL,
     email VARCHAR(50) NOT NULL UNIQUE,
-    senha VARCHAR(50) NOT NULL,
+    senha VARCHAR(255) NOT NULL,
     tipo_usuario ENUM('usuario', 'cadastro', 'admin') NOT NULL DEFAULT 'usuario',
     cpf VARCHAR(11) NULL UNIQUE,
     data_nascimento DATE NULL,
