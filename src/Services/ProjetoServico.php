@@ -44,4 +44,25 @@ class ProjetoServico
             throw new Exception("Erro ao inserir projeto: ".$erro->getMessage());
         }
     }
+
+    public function listarTodos(): array
+    {
+        $sql = "SELECT projetos.*,
+        usuarios.id AS usuario_id,
+        usuarios.nome AS usuario_nome,
+        fotos.nome_arquivo AS imagem
+        FROM 
+        projetos
+        LEFT JOIN usuarios ON projetos.usuarios_id = usuarios.id
+        LEFT JOIN fotos ON projetos.id = fotos.projetos_id
+        ORDER BY projetos.created_at DESC";
+
+        try {
+            $consulta = $this->conexao->prepare($sql);
+            $consulta->execute();
+            return $consulta->fetchAll(PDO::FETCH_ASSOC);
+        } catch (Throwable $erro) {
+            throw new Exception("ERRO: " . $erro->getMessage());
+        }
+    }
 }
