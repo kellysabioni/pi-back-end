@@ -1,11 +1,10 @@
-
 <div id="loginModal" class="login-modal">
     <div class="login-container">
         <span class="login-fechar" onclick="fecharLoginModal()">&times;</span>
         <div class="login-header">
             <h2 class="login-titulo">Entrar</h2>
         </div>
-        <form id="loginForm" class="login-form" method="POST" action="">
+        <form id="loginForm" class="login-form" method="POST" action="index.php">
             <div class="login-grupo">
                 <label for="email">Email</label>
                 <input type="email" id="email" name="email" required>
