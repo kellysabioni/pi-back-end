@@ -22,14 +22,45 @@ use ProjetaBD\Services\UsuarioServico;
 
 $usuarioServico = new UsuarioServico();
 
-if (isset($_POST['entrar'])) {
-    $email = filter_input(INPUT_POST, "email", FILTER_VALIDATE_EMAIL);
-    $senha = filter_input(INPUT_POST, 'senha', FILTER_SANITIZE_SPECIAL_CHARS);
+session_start();
 
-    $usuario = $usuarioServico->validarLogin($email, $senha);
+if (isset($_POST['enviar'])) {
+    $email = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL); 
+    $senha = $_POST['senha'];
+
+    if (!$email || empty($senha)) {
+        header("Location: login.php?erro=campos_invalidos");
+        exit;
+    }
+
+    try {
+        $usuarioServico = new UsuarioServico;
+        $usuario = $usuarioServico->buscarPorEmail($email);
+
+        if (!$usuario) {
+            header("Location: login.php?erro=usuario_nao_encontrado");
+            exit;
+        }
+
+        if (!password_verify($senha, $usuario['senha'])) {
+            header("Location: login.php?erro=senha_incorreta");
+            exit;
+        }
+
+        // Login bem sucedido
+        $_SESSION['usuario_id'] = $usuario['id'];
+        $_SESSION['usuario_nome'] = $usuario['nome'];
+        $_SESSION['usuario_email'] = $usuario['email'];
+        
+        header("Location: index.php");
+        exit;
+
+    } catch (Throwable $erro) {
+        error_log("Erro no login - Email: $email - Erro: " . $erro->getMessage());
+        header("Location: login.php?erro=sistema");
+        exit;
+    }
 }
-
-
 
 ?>
 

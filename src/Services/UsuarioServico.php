@@ -85,5 +85,20 @@ class UsuarioServico
 
         return null; // Retorna null se o login falhar
     }
+
+    public function buscarPorEmail(string $email): ?array
+    {
+        $sql = "SELECT * FROM usuarios WHERE email = :email";
+
+        try {
+            $consulta = $this->conexao->prepare($sql);
+            $consulta->bindValue(":email", $email, PDO::PARAM_STR);
+            $consulta->execute();
+            return $consulta->fetch(PDO::FETCH_ASSOC) ?: null;
+        } catch (Throwable $e) {
+            
+            throw new Exception("Erro ao buscar usuário por e-mail.");
+        }
+    }
 }
 

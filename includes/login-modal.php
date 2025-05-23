@@ -1,5 +1,4 @@
 
-
 <div id="loginModal" class="login-modal">
     <div class="login-container">
         <span class="login-fechar" onclick="fecharLoginModal()">&times;</span>
