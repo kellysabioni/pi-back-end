@@ -12,10 +12,15 @@ $usuarioServico = new UsuarioServico();
     $senha = filter_input(INPUT_POST, 'senha', FILTER_SANITIZE_SPECIAL_CHARS);
 
    $usuario = new Usuario($nome, $email, $senha);
-   $usuarioServico->inserir($usuario);
+   
+   try {
+        $usuarioServico->inserir($usuario);
+        header("location:index.php");
+        exit;
+    } catch (Exception $erro) {
+        echo "<p style='color:red'>" . $erro->getMessage() . "</p>";
+    }
 
-   header("location:index.php");
-   exit;
 } 
 ?>
 
