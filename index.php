@@ -36,7 +36,7 @@ if (isset($_POST['enviar'])) {
         $usuario = $usuarioServico->buscarPorEmail($email);
 
         if (!$usuario) {
-            echo "<script>alert('Usuario nao encontrado');</script>";
+            echo "<script>alert('Usuário ou senha inválidos!');</script>";
             exit;
         }
 
