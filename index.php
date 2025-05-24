@@ -45,7 +45,7 @@ if (isset($_POST['enviar'])) {
             header("Location: index.php");
             exit;
         } else {
-            echo "<script>alert('Senha incorreta');</script>";
+            echo "<script>alert('Usuário ou senha inválidos!');</script>";
             exit;
         }
 
