@@ -15,11 +15,13 @@ class ProjetoServico
         $this->conexao = ConexaoBD::getConexao();
     }
 
-    public function getConexao(): PDO {
+    public function getConexao(): PDO
+    {
         return $this->conexao;
     }
 
-    public function inserir(Projeto $projeto): void {
+    public function inserir(Projeto $projeto): void
+    {
         $sql = "INSERT INTO projetos(
         nome, CEP, rua, numero, bairro, cidade, UF, telefone, categoria, usuarios_id)
         VALUES (
@@ -38,10 +40,10 @@ class ProjetoServico
             $consulta->bindValue(":telefone", $projeto->getTelefone(), PDO::PARAM_STR);
             $consulta->bindValue(":categoria", $projeto->getCategoria()->value, PDO::PARAM_STR);
             $consulta->bindValue(":usuarios_id", $projeto->getUsuariosId(), PDO::PARAM_STR);
-            
+
             $consulta->execute();
         } catch (Throwable $erro) {
-            throw new Exception("Erro ao inserir projeto: ".$erro->getMessage());
+            throw new Exception("Erro ao inserir projeto: " . $erro->getMessage());
         }
     }
 
@@ -66,9 +68,6 @@ class ProjetoServico
         }
     }
 
-<<<<<<< HEAD
-    public function contarProjetos(int $id)
-=======
     public function listarTodosUser(int $id): array
     {
         $sql = "SELECT projetos.*
@@ -87,8 +86,8 @@ class ProjetoServico
         }
     }
 
-    public function projetosPerfil($id)
->>>>>>> c34ea950488a0368efbad3d20f6e64414c23dacd
+
+    public function contarProjetos(int $id)
     {
         $sql = "SELECT COUNT(*) AS total_projetos FROM projetos WHERE usuarios_id = :usuarios_id";
 
@@ -123,5 +122,4 @@ class ProjetoServico
             throw new Exception("ERRO: " . $erro->getMessage());
         }
     }
-
 }

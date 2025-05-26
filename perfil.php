@@ -1,6 +1,7 @@
 <?php
 session_start();
 
+use ProjetaBD\Auth\ControleDeAcesso;
 use ProjetaBD\Services\EventoServico;
 use ProjetaBD\Services\ProjetoServico;
 use ProjetaBD\Services\UsuarioServico;
@@ -11,11 +12,14 @@ $usuarioServico = new UsuarioServico;
 $projetoServico = new ProjetoServico();
 $eventoServico = new EventoServico();
 
+ControleDeAcesso::exigirLogin();
+
 $id = $_SESSION['id'];
 $qEventos = $eventoServico->contarEventos($id);
 $eventos = $eventoServico->listarUm($id);
 $qProjetos = $projetoServico->contarProjetos($id);
 $projetos = $projetoServico->projetosPerfil($id);
+
 ?>
 
 <!DOCTYPE html>
@@ -64,8 +68,9 @@ $projetos = $projetoServico->projetosPerfil($id);
 
             <div class="perfil-conteudo">
                 
-<?php foreach($exibirProjetos as $projeto) { 
-    $imagem = !empty($["imagem"]) ? Utils::getCaminhoImagem($evento["imagem"]) : null;
+<?php 
+    foreach($projetos as $projeto) { 
+    $imagem = !empty($projeto["imagem"]) ? Utils::getCaminhoImagem($projeto["imagem"]) : null;
 ?>
                 <div id="meusProjetos" class="aba-conteudo ativo">
                     <div class="projetos">

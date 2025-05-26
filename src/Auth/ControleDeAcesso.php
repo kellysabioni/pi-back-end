@@ -10,7 +10,7 @@ final class ControleDeAcesso
         if(!isset($_SESSION)) session_start();
     }
 
-    /* "Bloqueia" páginas admin caso o usuário NÃO ESTEJA logado */
+
     public static function exigirLogin(): void
     {
         // Inicia sessão (se necessário)
@@ -19,7 +19,7 @@ final class ControleDeAcesso
         // Se NÃO EXISTIR uma variável de sessão chamada id
         if(!isset($_SESSION['id'])){
             session_destroy();
-            header("location:../login.php?acesso_proibido");
+            header("location:login.php");
             exit;
         }
     }
@@ -49,7 +49,7 @@ final class ControleDeAcesso
         exit;
     }
 
-    public static function exigircadastro():void
+    public static function exigirCadastro():void
     {
         self::iniciarSessao();
 
