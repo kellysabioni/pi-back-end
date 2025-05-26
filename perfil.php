@@ -67,46 +67,46 @@ $projetos = $projetoServico->projetosPerfil($id);
             </div>
 
             <div class="perfil-conteudo">
-                
-<?php 
-    foreach($projetos as $projeto) { 
-    $imagem = !empty($projeto["imagem"]) ? Utils::getCaminhoImagem($projeto["imagem"]) : null;
-?>
                 <div id="meusProjetos" class="aba-conteudo ativo">
                     <div class="projetos">
-                        <div class="projeto-card">
-                            <img src="<?= $imagem ?>" alt="">
-                            <div class="projeto-info">
-                                <h3><?=$projeto['nome']?></h3>
-                                <div class="projeto-status">
-                                    <span><i class="fas fa-users"></i> 45 participantes</span>
-                                    <span><i class="fas fa-calendar"></i> Em andamento</span>
+                        <?php 
+                        foreach($projetos as $projeto) { 
+                            $imagem = !empty($projeto["imagem"]) ? Utils::getCaminhoImagem($projeto["imagem"]) : null;
+                        ?>
+                            <div class="projeto-card">
+                                <img src="<?= $imagem ?>" alt="">
+                                <div class="projeto-info">
+                                    <h3><?=$projeto['nome']?></h3>
+                                    <div class="projeto-status">
+                                        <span><i class="fas fa-users"></i> 45 participantes</span>
+                                        <span><i class="fas fa-calendar"></i> Em andamento</span>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        <?php } ?>
                     </div>
                 </div>
-<?php } ?>
-<?php 
-    foreach($eventos as $evento) { 
-    $imagem = !empty($evento["imagem"]) ? Utils::getCaminhoImagem($evento["imagem"]) : null;
-?>
+
                 <div id="projetosSeguidos" class="aba-conteudo">
                     <div class="projetos">
-                        <div class="projeto-card">
-                            <img src="<?= $imagem ?>" alt="">
-                            <div class="projeto-info">
-                                <h3><?=$evento['nome']?></h3>
-                                <p><?=$evento['descricao']?></p>
-                                <div class="projeto-status">
-                                    <span><i class="fas fa-users"></i> 45 participantes</span>
-                                    <span><i class="fas fa-calendar"></i> Em andamento</span>
+                        <?php 
+                        foreach($eventos as $evento) { 
+                            $imagem = !empty($evento["imagem"]) ? Utils::getCaminhoImagem($evento["imagem"]) : null;
+                        ?>
+                            <div class="projeto-card">
+                                <img src="<?= $imagem ?>" alt="">
+                                <div class="projeto-info">
+                                    <h3><?=$evento['nome']?></h3>
+                                    <p><?=$evento['descricao']?></p>
+                                    <div class="projeto-status">
+                                        <span><i class="fas fa-users"></i> 45 participantes</span>
+                                        <span><i class="fas fa-calendar"></i> Em andamento</span>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        <?php } ?>
                     </div>
                 </div>
-<?php } ?>
 
                 <div id="projetosCriados" class="aba-conteudo">
                     <div class="projetos">
