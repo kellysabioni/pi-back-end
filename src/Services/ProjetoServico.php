@@ -68,7 +68,7 @@ class ProjetoServico
         }
     }
 
-    /*public function listarTodosUser(int $id): array
+    public function listarTodosUser(int $id): array
     {
         $sql = "SELECT projetos.*
         FROM 
@@ -84,7 +84,7 @@ class ProjetoServico
         } catch (Throwable $erro) {
             throw new Exception("ERRO: " . $erro->getMessage());
         }
-    }*/
+    }
 
 
     public function contarProjetos(int $id)
