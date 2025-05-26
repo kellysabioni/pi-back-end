@@ -16,7 +16,7 @@ ControleDeAcesso::exigirLogin();
 
 $id = $_SESSION['id'];
 $qEventos = $eventoServico->contarEventos($id);
-$eventos = $eventoServico->listarUm($id);
+$eventos = $eventoServico->eventosPerfil($id);
 $qProjetos = $projetoServico->contarProjetos($id);
 $projetos = $projetoServico->projetosPerfil($id);
 
@@ -61,8 +61,8 @@ $projetos = $projetoServico->projetosPerfil($id);
             </div>
 
             <div class="perfil-botoes">
-                <button id="meusProjetosBtn" class="perfil-botao">Meus Projetos</button>
-                <button id="projetosSeguidosBtn" class="perfil-botao"  style="display: none;">Projetos Seguidos</button>
+                <button id="meusProjetosBtn" class="perfil-botao">Projetos</button>
+                <button id="projetosSeguidosBtn" class="perfil-botao"  ">Eventos</button>
                 <button id="projetosCriadosBtn" class="perfil-botao" style="display: none;">Projetos Criados</button>
             </div>
 
@@ -75,38 +75,29 @@ $projetos = $projetoServico->projetosPerfil($id);
                 <div id="meusProjetos" class="aba-conteudo ativo">
                     <div class="projetos">
                         <div class="projeto-card">
-                            <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Projeto Verde Vida">
+                            <img src="<?= $imagem ?>" alt="">
                             <div class="projeto-info">
-                                <h3>meusProjetos</h3>
-                                <p>Iniciativa de reflorestamento urbano e conscientização ambiental.</p>
+                                <h3><?=$projeto['nome']?></h3>
                                 <div class="projeto-status">
                                     <span><i class="fas fa-users"></i> 45 participantes</span>
                                     <span><i class="fas fa-calendar"></i> Em andamento</span>
                                 </div>
                             </div>
                         </div>
- 
                     </div>
                 </div>
 <?php } ?>
+<?php 
+    foreach($eventos as $evento) { 
+    $imagem = !empty($evento["imagem"]) ? Utils::getCaminhoImagem($evento["imagem"]) : null;
+?>
                 <div id="projetosSeguidos" class="aba-conteudo">
                     <div class="projetos">
                         <div class="projeto-card">
-                            <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Projeto Verde Vida">
+                            <img src="<?= $imagem ?>" alt="">
                             <div class="projeto-info">
-                                <h3>projetosSeguidos</h3>
-                                <p>Iniciativa de reflorestamento urbano e conscientização ambiental.</p>
-                                <div class="projeto-status">
-                                    <span><i class="fas fa-users"></i> 45 participantes</span>
-                                    <span><i class="fas fa-calendar"></i> Em andamento</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="projeto-card">
-                            <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Projeto Verde Vida">
-                            <div class="projeto-info">
-                                <h3>projetosSeguidos</h3>
-                                <p>Iniciativa de reflorestamento urbano e conscientização ambiental.</p>
+                                <h3><?=$evento['nome']?></h3>
+                                <p><?=$evento['descricao']?></p>
                                 <div class="projeto-status">
                                     <span><i class="fas fa-users"></i> 45 participantes</span>
                                     <span><i class="fas fa-calendar"></i> Em andamento</span>
@@ -115,6 +106,7 @@ $projetos = $projetoServico->projetosPerfil($id);
                         </div>
                     </div>
                 </div>
+<?php } ?>
 
                 <div id="projetosCriados" class="aba-conteudo">
                     <div class="projetos">

@@ -158,4 +158,26 @@ class EventoServico
             throw new Exception("Erro ao listar eventos do perfil: " . $erro->getMessage());
         }
     }
+
+    public function eventosPerfil(int $id): array
+    {
+        $sql = "SELECT eventos.*,
+                    usuarios.id AS usuario_id,
+                    usuarios.nome AS usuario_nome,
+                    fotos.nome_arquivo AS imagem
+                FROM eventos
+                LEFT JOIN usuarios ON eventos.usuarios_id = usuarios.id
+                LEFT JOIN fotos ON eventos.id = fotos.eventos_id
+                WHERE eventos.usuarios_id = :usuarios_id
+                ORDER BY eventos.created_at DESC";
+
+        try {
+            $consulta = $this->conexao->prepare($sql);
+            $consulta->bindParam(':usuarios_id', $id, PDO::PARAM_INT);
+            $consulta->execute();
+            return $consulta->fetchAll(PDO::FETCH_ASSOC);
+        } catch (Throwable $erro) {
+            throw new Exception("ERRO: " . $erro->getMessage());
+        }
+    }
 }
