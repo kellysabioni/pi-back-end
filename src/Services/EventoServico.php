@@ -181,5 +181,16 @@ class EventoServico
         }
     }
 
-    public function excluir
+    public function excluir(int $id): void {
+        $sql = "DELETE FROM eventos WHERE id = :id";
+
+        try {
+            $consulta = $this->conexao->prepare($sql);
+            $consulta->bindValue(":id", $id, PDO::PARAM_INT);
+            $consulta->execute();
+
+        } catch (Exception $erro) {
+            die("Erro ao excluir produto: ".$erro->getMessage());
+        }
+    }
 }

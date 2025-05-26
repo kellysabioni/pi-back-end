@@ -15,10 +15,17 @@ $eventoServico = new EventoServico();
 ControleDeAcesso::exigirLogin();
 
 $id = $_SESSION['id'];
-$qEventos = $eventoServico->contarEventos($id);
-$eventos = $eventoServico->eventosPerfil($id);
 $qProjetos = $projetoServico->contarProjetos($id);
 $projetos = $projetoServico->projetosPerfil($id);
+
+$qEventos = $eventoServico->contarEventos($id);
+$eventos = $eventoServico->eventosPerfil($id);
+
+if(isset($_GET['confirmar-exclusao'])){
+    $eventoServico->excluir($id);
+    header("location:perfil.php");
+    exit;
+}
 
 ?>
 
@@ -99,7 +106,7 @@ $projetos = $projetoServico->projetosPerfil($id);
                                     <h3><?=$evento['nome']?></h3>
                                     <p><?=$evento['descricao']?></p>
                                     <div class="projeto-status">
-                                         <button><i class="fa-solid fa-trash"></i> Excluir</button>
+                                         <a href="?id=<?=$id?>&confirmar-exclusao"><button><i class="fa-solid fa-trash"></i> Excluir</button></a>
                                         <button><i class="fa-solid fa-pen"></i> Atualizar</button>
                                     </div>
                                 </div>
