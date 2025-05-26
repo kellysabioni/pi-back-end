@@ -43,5 +43,5 @@ class Usuario {
     private function setCpf(?string $cpf):void{$this->cpf = $cpf;}
     private function setDataNascimento(?string $data_nascimento):void{$this->data_nascimento = $data_nascimento;}
     private function setCreatedAt(?string $created_at):void {$this->created_at = $created_at;}
-    public function setUpdatedAt(?string $updated_at):void {$this->updated_at = $updated_at;}
+    private function setUpdatedAt(?string $updated_at):void {$this->updated_at = $updated_at;}
 }
