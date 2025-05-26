@@ -15,7 +15,7 @@ $usuarioServico = new UsuarioServico();
    
    try {
         $usuarioServico->inserir($usuario);
-        header("location:index.php");
+        header("location:index.php?tipo=login");
         exit;
     } catch (Exception $erro) {
         echo "<p style='color:red'>" . $erro->getMessage() . "</p>";
