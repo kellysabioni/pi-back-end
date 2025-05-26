@@ -3,15 +3,23 @@ document.addEventListener('DOMContentLoaded', function () {
     const urlParams = new URLSearchParams(window.location.search);
     const tipo = urlParams.get('tipo');
     
-    if (tipo === 'login') {
-        const loginModal = document.getElementById('loginModal');
-        if (loginModal) {
-            loginModal.style.display = 'block';
-            loginModal.offsetHeight;
-            loginModal.classList.add('ativo');
-            document.body.style.overflow = 'hidden';
-        }
+if (tipo === 'login') {
+    const loginModal = document.getElementById('loginModal');
+    if (loginModal) {
+        loginModal.style.display = 'block';
+        loginModal.offsetHeight;
+        loginModal.classList.add('ativo');
+        document.body.style.overflow = 'hidden';
     }
+} else if (tipo === 'erro') {
+    const erro = document.getElementById('erro');
+    if (erro) {
+        erro.style.display = 'block';
+        erro.offsetHeight;
+        erro.classList.add('ativo');
+        document.body.style.overflow = 'hidden';
+    }
+}
 
     const postCard = document.querySelectorAll(".post");
     const postModal = document.getElementById('postModal');
