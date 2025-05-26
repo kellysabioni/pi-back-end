@@ -93,7 +93,7 @@ class EventoServico
             $consulta->bindValue(":telefone", $evento->getTelefone(), PDO::PARAM_STR);
             $consulta->bindValue(":categoria", $evento->getCategoria()->value, PDO::PARAM_STR);
             $consulta->bindValue(":usuarios_id", $evento->getUsuarios_id(), PDO::PARAM_STR);
-            $consulta->bindValue(":projetos_id", $evento->getProjetos_id(), PDO::PARAM_STR);
+            $consulta->bindValue(":projetos_id", $evento->getProjetos_id() ?? null, PDO::PARAM_NULL);
 
             $consulta->execute();
         } catch (Throwable $erro) {
