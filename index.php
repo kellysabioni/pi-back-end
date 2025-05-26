@@ -38,6 +38,7 @@ if (isset($_POST['enviar'])) {
 
         if (!$usuario) {
             echo "<script>alert('Usuário ou senha inválidos!');</script>";
+            header("Location: index.php?tipo=erro");
             exit;
         }
 
@@ -47,11 +48,14 @@ if (isset($_POST['enviar'])) {
             exit;
         } else {
             echo "<script>alert('Usuário ou senha inválidos!');</script>";
+            header("Location: index.php?tipo=erro");
             exit;
         }
 
     } catch (Throwable $erro) {
         echo "<script>alert('Erro no login - Email: $email - Erro: " . $erro->getMessage() . "');</script>";
+            header("Location: index.php?tipo=erro");
+
         exit;
     }
 }
@@ -120,6 +124,9 @@ if (isset($_POST['enviar'])) {
     <?php include 'includes/nav.php' ?>
     <?php include 'includes/card-modal.php' ?>
     <?php include 'includes/login-modal.php' ?>
+    <?php include 'includes/erro.php' ?>
+    
+
 
     <script src="js/pages/main.js"></script>
     <script src="js/pages/busca.js"></script>
