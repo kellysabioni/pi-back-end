@@ -22,9 +22,12 @@ $qEventos = $eventoServico->contarEventos($id);
 $eventos = $eventoServico->eventosPerfil($id);
 
 if(isset($_GET['confirmar-exclusao'])){
-    $eventoServico->excluir($id);
-    header("location:perfil.php");
-    exit;
+    $eventoId = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT);
+    if($eventoId) {
+        $eventoServico->excluir($eventoId);
+        header("location:perfil.php");
+        exit;
+    }
 }
 
 ?>
@@ -106,7 +109,7 @@ if(isset($_GET['confirmar-exclusao'])){
                                     <h3><?=$evento['nome']?></h3>
                                     <p><?=$evento['descricao']?></p>
                                     <div class="projeto-status">
-                                         <a href="?id=<?=$id?>&confirmar-exclusao"><button><i class="fa-solid fa-trash"></i> Excluir</button></a>
+                                         <a href="?id=<?=$evento['id']?>&confirmar-exclusao"><button><i class="fa-solid fa-trash"></i> Excluir</button></a>
                                         <button><i class="fa-solid fa-pen"></i> Atualizar</button>
                                     </div>
                                 </div>

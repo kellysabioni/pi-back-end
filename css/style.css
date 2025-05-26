@@ -1068,6 +1068,48 @@ header {
     color: var(--cor-segundaria);
 }
 
+.projeto-status button,
+.projeto-status a button {
+    padding: 8px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: opacity 0.3s;
+}
+
+.projeto-status button:hover,
+.projeto-status a button:hover {
+    opacity: 0.8;
+}
+
+.projeto-status button i,
+.projeto-status a button i {
+    margin-right: 5px;
+}
+
+/* Estilo para o botão de excluir */
+.projeto-status a[href*="exclusao"] button,
+.projeto-status button:has(i.fa-trash) {
+    background-color: #ff4444;
+    color: white;
+}
+
+.projeto-status a[href*="exclusao"] button i,
+.projeto-status button:has(i.fa-trash) i {
+    color: white;
+}
+
+/* Estilo para o botão de editar */
+.projeto-status button:has(i.fa-pen) {
+    background-color: #ffbb33;
+    color: #1a1a1a;
+}
+
+.projeto-status button:has(i.fa-pen) i {
+    color: #1a1a1a;
+}
+
 .visually-hidden {
     display: none;
 }
