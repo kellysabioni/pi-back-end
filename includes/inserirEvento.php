@@ -138,7 +138,7 @@ if (isset($_POST['enviar'])) {
         </div>
 
         <div class="form formCep">
-            <label for="complemento">complemento</label>
+            <label for="complemento">Numero</label>
             <input type="text" id="complemento" name="numero">
         </div>
 

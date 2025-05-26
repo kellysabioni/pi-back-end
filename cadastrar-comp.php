@@ -22,6 +22,9 @@ if (isset($_POST['enviar'])) {
             $_SESSION['nome'], $_SESSION['email'], '','cadastro', $id, $cpf, $data_nascimento
         );
         
+       // Atualiza o tipo de usuário na sessão
+        $_SESSION['tipo'] = 'cadastro';
+
         $usuarioServico->completarCadastro($usuario);
         header("location:index.php");
         exit;
