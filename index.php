@@ -83,7 +83,7 @@ if (isset($_POST['enviar'])) {
     </header>
     <main>
         <?php if (isset($_SESSION['id'])): ?>
-            <p>Olá, <?php echo $_SESSION['nome']; /* echo $_SESSION['tipo']; */ ?></p>
+            <p>Olá, <?php echo $_SESSION['nome'];  echo $_SESSION['tipo'];  ?></p>
         <?php endif; ?>
         <form id="form-busca" class="botoes-container">
             <i class="fas fa-search"></i>

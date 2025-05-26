@@ -19,7 +19,7 @@ final class ControleDeAcesso
         // Se NÃO EXISTIR uma variável de sessão chamada id
         if(!isset($_SESSION['id'])){
             session_destroy();
-            header("location:login.php");
+            header("location:index.php?tipo=login");
             exit;
         }
     }
