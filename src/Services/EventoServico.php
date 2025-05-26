@@ -180,4 +180,6 @@ class EventoServico
             throw new Exception("ERRO: " . $erro->getMessage());
         }
     }
+
+    public function excluir
 }

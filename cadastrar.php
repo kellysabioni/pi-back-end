@@ -6,26 +6,26 @@ use ProjetaBD\Services\UsuarioServico;
 
 $usuarioServico = new UsuarioServico();
 
- if (isset($_POST['enviar'])) {
+if (isset($_POST['enviar'])) {
     $nome = filter_input(INPUT_POST, "nome", FILTER_SANITIZE_SPECIAL_CHARS);
     $email = filter_input(INPUT_POST, "email", FILTER_VALIDATE_EMAIL);
     $senha = filter_input(INPUT_POST, 'senha', FILTER_SANITIZE_SPECIAL_CHARS);
 
-   $usuario = new Usuario($nome, $email, $senha);
-   
-   try {
+    $usuario = new Usuario($nome, $email, $senha);
+
+    try {
         $usuarioServico->inserir($usuario);
         header("location:index.php?tipo=login");
         exit;
     } catch (Exception $erro) {
         echo "<p style='color:red'>" . $erro->getMessage() . "</p>";
     }
-
-} 
+}
 ?>
 
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -33,11 +33,20 @@ $usuarioServico = new UsuarioServico();
     <link rel="stylesheet" href="css/style.css">
     <title>Cadastrar</title>
 </head>
+
 <body>
     <main>
         <div class="formularios" id="formCadastro">
             <h2>Cadastrar</h2>
             <form id="cadastroForm" method="POST" action="">
+                <div class="form" style="display: flex;">
+                <div class="foto">
+                    <i class="fa-regular fa-user"></i>
+                </div>
+                    <label for="nome"></label>
+                    <input type="file" id="nome" name="nome" required>
+                </div>
+
                 <div class="form">
                     <label for="nome">Nome</label>
                     <input type="text" id="nome" name="nome" required>
@@ -50,7 +59,7 @@ $usuarioServico = new UsuarioServico();
                     <label for="senha">Senha</label>
                     <input type="password" id="senha" name="senha" required>
                 </div>
-                
+
                 <div class="form">
                     <button name="enviar" type="submit" class="btnEnviar">Cadastrar</button>
                 </div>
@@ -59,4 +68,5 @@ $usuarioServico = new UsuarioServico();
     </main>
     <?php include 'includes/nav.php'; ?>
 </body>
+
 </html>

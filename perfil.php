@@ -78,8 +78,8 @@ $projetos = $projetoServico->projetosPerfil($id);
                                 <div class="projeto-info">
                                     <h3><?=$projeto['nome']?></h3>
                                     <div class="projeto-status">
-                                        <span><i class="fas fa-users"></i> 45 participantes</span>
-                                        <span><i class="fas fa-calendar"></i> Em andamento</span>
+                                        <button><i class="fa-solid fa-trash"></i> Excluir</button>
+                                        <button><i class="fa-solid fa-pen"></i> Atualizar</button>
                                     </div>
                                 </div>
                             </div>
@@ -99,8 +99,8 @@ $projetos = $projetoServico->projetosPerfil($id);
                                     <h3><?=$evento['nome']?></h3>
                                     <p><?=$evento['descricao']?></p>
                                     <div class="projeto-status">
-                                        <span><i class="fas fa-users"></i> 45 participantes</span>
-                                        <span><i class="fas fa-calendar"></i> Em andamento</span>
+                                         <button><i class="fa-solid fa-trash"></i> Excluir</button>
+                                        <button><i class="fa-solid fa-pen"></i> Atualizar</button>
                                     </div>
                                 </div>
                             </div>
