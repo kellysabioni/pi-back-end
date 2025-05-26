@@ -21,22 +21,11 @@ if (isset($_POST['enviar'])) {
     $UF = filter_input(INPUT_POST, "UF", FILTER_SANITIZE_SPECIAL_CHARS);
     $telefone = filter_input(INPUT_POST, "telefone", FILTER_SANITIZE_SPECIAL_CHARS);
     $categoria = Categoria::from(filter_input(INPUT_POST, "categoria", FILTER_SANITIZE_SPECIAL_CHARS));
-    $usuarios_id = 1; // Temporariamente fixo em 1
+    $usuarios_id = $_SESSION['id']; 
 
     try {
         $projeto = new Projeto(
-            $nome, 
-            $CEP, 
-            $rua, 
-            $numero, 
-            $bairro, 
-            $cidade, 
-            $UF, 
-            $telefone, 
-            $categoria,
-            date('Y-m-d H:i:s'), // created_at
-            date('Y-m-d H:i:s'), // updated_at
-            $usuarios_id
+            $nome, $CEP, $rua, $numero, $bairro, $cidade, $UF, $telefone, $categoria, date('Y-m-d H:i:s'), date('Y-m-d H:i:s'), $usuarios_id
         );
 
         $projetoServico->inserir($projeto);

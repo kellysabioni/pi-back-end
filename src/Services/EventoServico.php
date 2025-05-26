@@ -127,12 +127,12 @@ class EventoServico
            projetos.id AS projeto_id,
            projetos.nome AS projeto_nome,
            fotos.nome_arquivo AS imagem
-    FROM eventos
-    LEFT JOIN usuarios ON eventos.usuarios_id = usuarios.id
-    LEFT JOIN projetos ON eventos.projetos_id = projetos.id
-    LEFT JOIN fotos ON eventos.id = fotos.eventos_id
-    WHERE eventos.categoria = :categoria
-    ORDER BY eventos.created_at DESC";
+            FROM eventos
+            LEFT JOIN usuarios ON eventos.usuarios_id = usuarios.id
+            LEFT JOIN projetos ON eventos.projetos_id = projetos.id
+            LEFT JOIN fotos ON eventos.id = fotos.eventos_id
+            WHERE eventos.categoria = :categoria
+            ORDER BY eventos.created_at DESC";
 
 
         try {
@@ -142,6 +142,20 @@ class EventoServico
             return $consulta->fetchAll(PDO::FETCH_ASSOC);
         } catch (\Throwable $erro) {
             throw new Exception("Erro ao selecionar categoria: " . $erro->getMessage());
+        }
+    }
+
+    public function contarEventos($id)
+    {
+        $sql = "SELECT COUNT(*) AS total_eventos FROM eventos WHERE usuarios_id = :usuarios_id";
+
+        try {
+            $consulta = $this->conexao->prepare($sql);
+            $consulta->bindValue(":usuarios_id", $id, PDO::PARAM_STR);
+            $consulta->execute();
+            return $consulta->fetch(PDO::FETCH_ASSOC);
+        } catch (\Throwable $erro) {
+            throw new Exception("Erro ao listar eventos do perfil: " . $erro->getMessage());
         }
     }
 }

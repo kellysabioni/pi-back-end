@@ -96,7 +96,7 @@ CREATE TABLE `usuarios` (
   `id` int(11) NOT NULL,
   `nome` varchar(100) NOT NULL,
   `email` varchar(50) NOT NULL,
-  `senha` varchar(50) NOT NULL,
+  `senha` varchar(255) NOT NULL,
   `tipo_usuario` enum('usuario','cadastro','admin') NOT NULL DEFAULT 'usuario',
   `cpf` varchar(11) DEFAULT NULL,
   `data_nascimento` date NULL,

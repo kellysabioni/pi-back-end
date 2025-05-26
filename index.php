@@ -1,5 +1,7 @@
 <?php
+session_start();
 
+use ProjetaBD\Auth\ControleDeAcesso;
 use ProjetaBD\Enums\Categoria;
 use ProjetaBD\Services\EventoServico;
 
@@ -11,25 +13,48 @@ $eventoServico = new EventoServico;
 $categoria = $_GET['categoria'] ?? null;
 
 if ($categoria && $categoria !== Categoria::Indefinido->value) {
-  
+    // Verifica se a categoria é válida
     $listarEventos = $eventoServico->filtro($categoria);
 } else {
-   
+    // Se não houver categoria ou for indefinida, lista todos os eventos
     $listarEventos = $eventoServico->listarTodos();
 }
 
 use ProjetaBD\Services\UsuarioServico;
+    
+if (isset($_POST['enviar'])) {
+    $email = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL); 
+    $senha = $_POST['senha'];
 
-$usuarioServico = new UsuarioServico();
+    if (!$email || empty($senha)) 
+    {
+        echo "<script>alert('Campos vazios');</script>"; 
+        exit;
+    }
 
-if (isset($_POST['entrar'])) {
-    $email = filter_input(INPUT_POST, "email", FILTER_VALIDATE_EMAIL);
-    $senha = filter_input(INPUT_POST, 'senha', FILTER_SANITIZE_SPECIAL_CHARS);
+    try {
+        $usuarioServico = new UsuarioServico;
+        $usuario = $usuarioServico->buscarPorEmail($email);
 
-    $usuario = $usuarioServico->validarLogin($email, $senha);
+        if (!$usuario) {
+            echo "<script>alert('Usuário ou senha inválidos!');</script>";
+            exit;
+        }
+
+        if ($usuario && password_verify($senha, $usuario['senha'])) {
+            ControleDeAcesso::login($usuario['id'], $usuario['nome'], $usuario['tipo_usuario'], $usuario['email']);
+            header("Location: index.php");
+            exit;
+        } else {
+            echo "<script>alert('Usuário ou senha inválidos!');</script>";
+            exit;
+        }
+
+    } catch (Throwable $erro) {
+        echo "<script>alert('Erro no login - Email: $email - Erro: " . $erro->getMessage() . "');</script>";
+        exit;
+    }
 }
-
-
 
 ?>
 
@@ -46,34 +71,31 @@ if (isset($_POST['entrar'])) {
 
 <body>
     <header>
-        <div>
-            <div class="header-links">
-                <a href="" class="header-link">Para você</a>
-                <a href="" class="header-link">Seguindo</a>
-                <a href="index.php?tipo=login" class="header-link">Login</a>
-            </div>
+        <div class="header-links">
+            <div></div>
+            <a href="" class="header-link central">Para você</a>
+            <?php if (isset($_SESSION['id'])): ?>
+                <a href="logout.php" class="header-link login">Sair</a>
+            <?php else: ?>
+                <a href="?tipo=login" class="header-link login">Login</a>
+            <?php endif; ?>
         </div>
     </header>
     <main>
+        <?php if (isset($_SESSION['id'])): ?>
+            <p>Olá, <?php echo $_SESSION['nome']; /* echo $_SESSION['tipo']; */ ?></p>
+        <?php endif; ?>
+        <form id="form-busca" class="botoes-container">
+            <i class="fas fa-search"></i>
+            <input id="campo-busca" type="text" name="busca" class="barra-pesquisar" placeholder="Digite sua pesquisa...">
+        </form>
+
+        <div id="resultados" class="visually-hidden"></div>
+
         <section class="acoes-index">
             <div class="botoes-container">
-                <button class="botao botao-pesquisa" onclick="barraPesquisar()">
-                    <i class="fas fa-search"></i>
-                </button>
-
-                <form id="form-busca" class="" autocomplete="off" method="POST" onsubmit="return false;">
-                    <input id="campo-busca" type="text" name="busca" class="barra-pesquisar ativo" placeholder="Digite sua pesquisa...">
-                </form>
-            </div>
-
-            <div id="resultados" class="visually-hidden"></div>
-
-
-            <div class="botoes-container">
-                <button class="botao botao-criar" onclick="barraCriar()">
-                    <i class="fas fa-plus"></i>
-                </button>
-                <input type="text" class="barra-criar" placeholder="Digite o nome do Projeto" onkeypress="">
+                <i class="fas fa-plus"></i>
+                <input type="text" class="barra-criar" placeholder="Digite o nome do Projeto" autocomplete="off">
             </div>
 
             <form method="GET" id="formFiltro" class="filtro-form">
@@ -88,8 +110,8 @@ if (isset($_POST['entrar'])) {
                     <i class="fas fa-filter filtro-icon"></i>
                 </div>
             </form>
-
         </section>
+
         <section class="feed">
             <?php include 'includes/card.php' ?>
         </section>
