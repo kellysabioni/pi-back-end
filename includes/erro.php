@@ -1,6 +1,6 @@
 <div id="erro" class="login-modal">
     <div class="login-container">
-        <span class="login-fechar" onclick="fecharLoginModal()">&times;</span>
+        <span class="login-fechar" onclick="fecharModalErro()">&times;</span>
         
         <div class="login-header">
             <h2 class="login-titulo">Entrar</h2>

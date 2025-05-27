@@ -114,8 +114,8 @@ function abrirLoginModal() {
 }
 
 // Função para fechar o modal de login
-function fecharLoginModal() {
-    const loginModal = document.getElementById('loginModal');
+function fecharModalErro() {
+    const loginModal = document.getElementById('erro');
     loginModal.classList.remove('ativo');
     setTimeout(() => {
         loginModal.style.display = 'none';
