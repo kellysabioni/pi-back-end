@@ -122,4 +122,17 @@ class ProjetoServico
             throw new Exception("ERRO: " . $erro->getMessage());
         }
     }
+
+    public function excluir(int $id): void {
+        $sql = "DELETE FROM projetos WHERE id = :id";
+
+        try {
+            $consulta = $this->conexao->prepare($sql);
+            $consulta->bindValue(":id", $id, PDO::PARAM_INT);
+            $consulta->execute();
+
+        } catch (Exception $erro) {
+            die("Erro ao excluir projeto: ".$erro->getMessage());
+        }
+    }
 }

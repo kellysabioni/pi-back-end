@@ -1,16 +1,13 @@
 (function() {
     function initPerfil() {
-
         const botoes = {
             meusProjetos: document.getElementById('meusProjetosBtn'),
-            projetosSeguidos: document.getElementById('projetosSeguidosBtn'),
-            projetosCriados: document.getElementById('projetosCriadosBtn')
+            projetosSeguidos: document.getElementById('projetosSeguidosBtn')
         };
 
         const conteudos = {
             meusProjetos: document.getElementById('meusProjetos'),
-            projetosSeguidos: document.getElementById('projetosSeguidos'),
-            projetosCriados: document.getElementById('projetosCriados')
+            projetosSeguidos: document.getElementById('projetosSeguidos')
         };
 
         function removerClasseAtivo() {
@@ -32,10 +29,7 @@
             ativarAba(botoes.projetosSeguidos, conteudos.projetosSeguidos);
         });
 
-        botoes.projetosCriados.addEventListener('click', () => {
-            ativarAba(botoes.projetosCriados, conteudos.projetosCriados);
-        });
-
+        // Ativa a aba de Projetos por padrão
         ativarAba(botoes.meusProjetos, conteudos.meusProjetos);
     }
 
