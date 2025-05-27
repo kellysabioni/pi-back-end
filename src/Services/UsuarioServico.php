@@ -84,21 +84,29 @@ class UsuarioServico
 
 private function validarCPF($cpf): bool
 {
-    $cpf = preg_replace('/[^0-9]/', '', $cpf); // Remove caracteres não numéricos
+    // Remove todos os caracteres que não são números
+    $cpf = preg_replace('/[^0-9]/', '', $cpf);
 
+    // Verifica se o CPF tem exatamente 11 dígitos e se não é uma sequência repetida (ex: "11111111111")
     if (strlen($cpf) != 11 || preg_match('/^(\d)\1{10}$/', $cpf)) return false;
 
-    for ($t = 9, $soma = 0, $i = 0; $i < $t; $i++) $soma += $cpf[$i] * (($t + 1) - $i);
+    // Cálculo do primeiro dígito verificador
+    for ($t = 9, $soma = 0, $i = 0; $i < $t; $i++) {
+        $soma += $cpf[$i] * (($t + 1) - $i); // Multiplica cada número do CPF por pesos decrescentes de 10 a 2
+    }
     $digito1 = ($soma * 10) % 11;
-    if ($digito1 == 10) $digito1 = 0;
+    if ($digito1 == 10) $digito1 = 0; // Se o resto for 10, o dígito deve ser 0
 
-    for ($t = 10, $soma = 0, $i = 0; $i < $t; $i++) $soma += $cpf[$i] * (($t + 1) - $i);
+    // Cálculo do segundo dígito verificador
+    for ($t = 10, $soma = 0, $i = 0; $i < $t; $i++) {
+        $soma += $cpf[$i] * (($t + 1) - $i); // Multiplica cada número do CPF por pesos decrescentes de 11 a 2
+    }
     $digito2 = ($soma * 10) % 11;
-    if ($digito2 == 10) $digito2 = 0;
+    if ($digito2 == 10) $digito2 = 0; // Se o resto for 10, o dígito deve ser 0
 
+    // Verifica se os dígitos calculados coincidem com os dígitos fornecidos no CPF
     return ($cpf[9] == $digito1 && $cpf[10] == $digito2);
 }
-
 
 /*     public function completarCadastro(Usuario $usuario): void
     {
