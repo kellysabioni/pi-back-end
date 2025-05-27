@@ -55,7 +55,9 @@ if (isset($_GET['confirmar-exclusao'])) {
         <?php include 'includes/modal-confirmacao.php'; ?>
     <?php endif; ?>
 
-    <?php include 'includes/card-modal.php'; ?>
+    <?php if (isset($_GET['id']) && !isset($_GET['confirmar-exclusao'])): ?>
+        <?php include 'includes/card-modal.php'; ?>
+    <?php endif; ?>
 
     <main>
         <div class="perfil-container">
@@ -136,7 +138,9 @@ if (isset($_GET['confirmar-exclusao'])) {
 
     <?php include 'includes/nav.php' ?>
     <script src="js/pages/perfil.js"></script>
-    <script src="js/pages/main.js"></script>
+    <?php if (isset($_GET['id']) && !isset($_GET['confirmar-exclusao'])): ?>
+        <script src="js/pages/main.js"></script>
+    <?php endif; ?>
 </body>
 
 </html>
