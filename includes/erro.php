@@ -1,12 +1,15 @@
 <div id="erro" class="login-modal">
     <div class="login-container">
         <span class="login-fechar" onclick="fecharLoginModal()">&times;</span>
-        <div class="erro-login">
-            <h1> <b> Usuário ou login inválido! </b></h1>
-        </div>
+        
         <div class="login-header">
             <h2 class="login-titulo">Entrar</h2>
         </div>
+
+        <div class="erro-login">
+            <p> <b> Usuário ou login inválido! </b></p>
+        </div>
+
         <form id="loginForm" class="login-form" method="POST" action="index.php">
             <div class="login-grupo">
                 <label for="email">Email</label>
