@@ -190,7 +190,7 @@ class EventoServico
             $consulta->execute();
 
         } catch (Exception $erro) {
-            die("Erro ao excluir produto: ".$erro->getMessage());
+            die("Erro ao excluir evento: ".$erro->getMessage());
         }
     }
 }
