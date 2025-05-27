@@ -193,4 +193,53 @@ class EventoServico
             die("Erro ao excluir evento: ".$erro->getMessage());
         }
     }
+
+    public function atualizar(Evento $evento): void
+    {
+        $sql = "UPDATE eventos
+                SET 
+                nome = :nome,
+                descricao = :descricao,
+                data = :data,
+                hora = :hora,
+                CEP = :CEP,
+                rua = :rua,
+                numero = :numero,
+                bairro = :bairro,
+                cidade = :cidade,
+                UF = :UF,
+                telefone = :telefone,
+                categoria = :categoria,
+                projetos_id = :projetos_id,
+                updated_at = NOW()
+                WHERE id = :id";
+
+        try {
+            $consulta = $this->conexao->prepare($sql);
+            $consulta->bindValue(":id", $evento->getId(), PDO::PARAM_INT);
+            $consulta->bindValue(":nome", $evento->getNome(), PDO::PARAM_STR);
+            $consulta->bindValue(":descricao", $evento->getDescricao(), PDO::PARAM_STR);
+            $consulta->bindValue(":data", $evento->getData(), PDO::PARAM_STR);
+            $consulta->bindValue(":hora", $evento->getHora(), PDO::PARAM_STR);
+            $consulta->bindValue(":CEP", $evento->getCEP(), PDO::PARAM_STR);
+            $consulta->bindValue(":rua", $evento->getRua(), PDO::PARAM_STR);
+            $consulta->bindValue(":numero", $evento->getNumero(), PDO::PARAM_STR);
+            $consulta->bindValue(":bairro", $evento->getBairro(), PDO::PARAM_STR);
+            $consulta->bindValue(":cidade", $evento->getCidade(), PDO::PARAM_STR);
+            $consulta->bindValue(":UF", $evento->getUF(), PDO::PARAM_STR);
+            $consulta->bindValue(":telefone", $evento->getTelefone(), PDO::PARAM_STR);
+            $consulta->bindValue(":categoria", $evento->getCategoria()->value, PDO::PARAM_STR);
+
+            $projetosId = $evento->getProjetos_id();
+            if ($projetosId === "-1" || empty($projetosId)) {
+                $consulta->bindValue(":projetos_id", null, PDO::PARAM_NULL);
+            } else {
+                $consulta->bindValue(":projetos_id", $projetosId, PDO::PARAM_INT);
+            }
+            
+            $consulta->execute();
+        } catch (Throwable $erro) {
+            throw new Exception("Erro ao atualizar evento: " . $erro->getMessage());
+        }
+    }
 }

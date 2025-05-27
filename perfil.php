@@ -124,7 +124,7 @@ if (isset($_GET['confirmar-exclusao'])) {
                                     <p><?= $evento['descricao'] ?></p>
                                     <div class="projeto-status">
                                         <a href="#" onclick="showDeleteModal(<?=$evento['id']?>, 'evento'); return false;"><button><i class="fa-solid fa-trash"></i> Excluir</button></a>
-                                        <button><i class="fa-solid fa-pen"></i> Atualizar</button>
+                                        <a href="atualizarEvento.php?id=<?=$evento['id']?>"><button><i class="fa-solid fa-pen"></i> Atualizar</button></a>
                                         <a href="?id=<?=$evento['id']?>" class="ver-mais"><button><i class="fa-solid fa-eye"></i> Ver mais</button></a>
                                     </div>
                                 </div>
