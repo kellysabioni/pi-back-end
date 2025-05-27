@@ -1217,3 +1217,17 @@ header {
     display: block;
     margin-top: 5px;
 }
+
+.erro-login {
+    color: #ff4444;
+    border: 1px solid #ff4444; 
+    background-color: #f8959569;
+    max-width: 90%;
+    margin: 20px auto; 
+    padding: 10px 15px;
+    display: flex;
+    justify-content: center; 
+    align-items: center;     
+    border-radius: 4px;      
+    text-align: center;      
+}
