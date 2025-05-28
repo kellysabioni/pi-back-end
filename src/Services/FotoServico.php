@@ -1,17 +1,21 @@
 <?php
+
 namespace ProjetaBD\Services;
 
 use Exception, PDO, Throwable;
 use ProjetaBD\Database\ConexaoBD;
 
-class FotoServico {
+class FotoServico
+{
     private PDO $conexao;
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->conexao = ConexaoBD::getConexao();
     }
 
-    public function inserir(string $nomeArquivo, int $usuariosId, ?int $eventosId = null, ?int $projetosId = null): void {
+    public function inserir(string $nomeArquivo, int $usuariosId, ?int $eventosId = null, ?int $projetosId = null): void
+    {
         $sql = "INSERT INTO fotos (nome_arquivo, usuarios_id, eventos_id, projetos_id) 
                 VALUES (:nome_arquivo, :usuarios_id, :eventos_id, :projetos_id)";
 
@@ -27,9 +31,10 @@ class FotoServico {
         }
     }
 
-    public function buscarPorEvento(int $eventoId): ?array {
+    public function buscarPorEvento(int $eventoId): ?array
+    {
         $sql = "SELECT * FROM fotos WHERE eventos_id = :evento_id";
-        
+
         try {
             $consulta = $this->conexao->prepare($sql);
             $consulta->bindValue(":evento_id", $eventoId, PDO::PARAM_INT);
@@ -39,4 +44,21 @@ class FotoServico {
             throw new Exception("Erro ao buscar foto do evento: " . $erro->getMessage());
         }
     }
-} 
+
+
+    public function buscarPorUsuario(int $usuarioId): ?array
+    {
+        $sql = "SELECT * FROM fotos WHERE usuarios_id = :usuario_id";
+
+        try {
+            $consulta = $this->conexao->prepare($sql);
+            $consulta->bindValue(":usuario_id", $usuarioId, PDO::PARAM_INT);
+            $consulta->execute();
+
+            $resultado = $consulta->fetch(PDO::FETCH_ASSOC);
+            return $resultado !== false ? $resultado : null;
+        } catch (Throwable $erro) {
+            throw new Exception("Erro ao buscar foto do evento: " . $erro->getMessage());
+        }
+    }
+}

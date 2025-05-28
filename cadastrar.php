@@ -3,19 +3,23 @@ require_once "../pi-back-end/vendor/autoload.php";
 
 use ProjetaBD\Helpers\Utils;
 use ProjetaBD\Models\Usuario;
+use ProjetaBD\Services\FotoServico;
 use ProjetaBD\Services\UsuarioServico;
 
 $usuarioServico = new UsuarioServico();
+$fotoServico = new FotoServico();
 
 if (isset($_POST['enviar'])) {
     $nome = filter_input(INPUT_POST, "nome", FILTER_SANITIZE_SPECIAL_CHARS);
     $email = filter_input(INPUT_POST, "email", FILTER_VALIDATE_EMAIL);
     $senha = filter_input(INPUT_POST, 'senha', FILTER_SANITIZE_SPECIAL_CHARS);
-
-    $usuario = new Usuario($nome, $email, $senha);
-
+    
     try {
+
+        $usuario = new Usuario($nome, $email, $senha);
         $usuarioServico->inserir($usuario);
+
+        $usuarioId = $usuarioServico->getConexao()->lastInsertId();
 
         if (isset($_FILES['imagem'])) {
             error_log("Arquivo recebido: " . print_r($_FILES['imagem'], true));
@@ -25,23 +29,24 @@ if (isset($_POST['enviar'])) {
                 error_log("Nome da imagem após upload: " . $nomeDaImagem);
                 
                 if ($nomeDaImagem) {
-                    $fotoServico->inserir($nomeDaImagem, $usuarios_id, null, $projetoId);
+                    $fotoServico->inserir($nomeDaImagem, $usuarioId, null, null);
                     error_log("Foto inserida no banco com sucesso");
                 }
             } else {
                 error_log("Erro no upload: " . $_FILES['imagem']['error']);
             }
+
         } else {
             error_log("Nenhum arquivo foi enviado");
         }
 
-        header("location:index.php?tipo=login");
+        header("location:index.php");
         exit;
 
-    } catch (Exception $erro) {
-        echo "<p style='color:red'>" . $erro->getMessage() . "</p>";
+    } catch (Throwable $erro) {
+        throw new Exception("Erro ao inserir usuario: " . $erro->getMessage());
     }
-}
+} 
 ?>
 
 <!DOCTYPE html>
@@ -59,7 +64,7 @@ if (isset($_POST['enviar'])) {
     <main>
         <div class="formularios" id="formCadastro">
             <h2>Cadastrar</h2>
-            <form id="cadastroForm" method="POST" action="">
+            <form id="cadastroForm" method="POST" action="" enctype="multipart/form-data">
                 <div class="form" style="display: flex;">
                 <div class="foto">
                     <i class="fa-regular fa-user"></i>
@@ -88,6 +93,19 @@ if (isset($_POST['enviar'])) {
         </div>
     </main>
     <?php include 'includes/nav.php'; ?>
+    
+    <script>
+    document.getElementById('imagemPerfil').onchange = function(e) {
+        const preview = document.getElementById('previewImagem');
+        const file = e.target.files[0];
+        
+        if (file) {
+            preview.style.display = 'block';
+            document.querySelector('.fa-user').style.display = 'none';
+            preview.src = URL.createObjectURL(file);
+        }
+    };
+    </script>
 </body>
 
 </html>

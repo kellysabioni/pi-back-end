@@ -6,12 +6,18 @@ use ProjetaBD\Services\EventoServico;
 use ProjetaBD\Services\ProjetoServico;
 use ProjetaBD\Services\UsuarioServico;
 use ProjetaBD\Helpers\Utils;
+use ProjetaBD\Models\Usuario;
+use ProjetaBD\Services\FotoServico;
 
 require_once "../pi-back-end/vendor/autoload.php";
 
-$usuarioServico = new UsuarioServico;
+$fotoServico = new FotoServico();
+$usuarioServico = new UsuarioServico();
 $projetoServico = new ProjetoServico();
 $eventoServico = new EventoServico();
+
+$fotoUser = $fotoServico->buscarPorUsuario($_SESSION['id']);    
+
 
 ControleDeAcesso::exigirLogin();
 
@@ -62,14 +68,17 @@ if (isset($_GET['confirmar-exclusao'])) {
     <main>
         <div class="perfil-container">
             <div class="perfil-header">
-                <?php
-                    foreach ($usuarios as $usuario) {
-                    $imagem = !empty($usuario["imagem"]) ? Utils::getCaminhoImagem($usuario["imagem"]) : null;
-                ?>
                 <div class="perfil-img">
-                    <img src="<?= $imagem ?>" alt="">
+                    <?php if (!empty($fotoUser)): ?>
+                        <?php
+                            $caminhoImagem = Utils::getCaminhoImagem($fotoUser['nome_arquivo']);
+                            error_log("Caminho da imagem: " . $caminhoImagem);
+                        ?>
+                        <img src="<?= $caminhoImagem ?>" alt="Foto de perfil de <?= $_SESSION['nome'] ?>">
+                    <?php else: ?>
+                        <i class="fa-regular fa-user"></i>
+                    <?php endif; ?>
                 </div>
-                 <?php } ?> 
                 <div class="perfil-info">
                     <h2><?= $_SESSION['nome'] ?></h2>
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur ipsum, odit quia corporis a cum.</p>

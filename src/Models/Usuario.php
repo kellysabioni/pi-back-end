@@ -11,9 +11,19 @@ class Usuario {
     private ?string $data_nascimento; 
     private ?string $created_at;
     private ?string $updated_at;
+    private ?string $imagem;
 
-    public function __construct(  string $nome, string $email, string $senha , ?string $tipo_usuario = null , ?int $id = null, ?string $cpf = null, ?string $data_nascimento = null , ?string $created_at = null ,?string $updated_at= null)
-    {
+    public function __construct(  
+        string $nome, 
+        string $email, 
+        string $senha, 
+        ?string $tipo_usuario = null, 
+        ?int $id = null, 
+        ?string $cpf = null, 
+        ?string $data_nascimento = null, 
+        ?string $created_at = null,
+        ?string $updated_at = null,
+    ) {
         $this->setNome($nome);
         $this->setEmail($email);
         $this->setSenha($senha);
@@ -22,7 +32,7 @@ class Usuario {
         $this->setCpf($cpf);
         $this->setDataNascimento($data_nascimento);
         $this->setCreatedAt($created_at);
-        $this->setUpdatedAt($updated_at) ;
+        $this->setUpdatedAt($updated_at);
     }
 
     public function getNome(): string {return $this->nome;}
