@@ -1,6 +1,7 @@
 <?php
 require_once "../pi-back-end/vendor/autoload.php";
 
+use ProjetaBD\Helpers\Utils;
 use ProjetaBD\Models\Usuario;
 use ProjetaBD\Services\UsuarioServico;
 
@@ -15,8 +16,28 @@ if (isset($_POST['enviar'])) {
 
     try {
         $usuarioServico->inserir($usuario);
+
+        if (isset($_FILES['imagem'])) {
+            error_log("Arquivo recebido: " . print_r($_FILES['imagem'], true));
+            
+            if ($_FILES['imagem']['error'] === UPLOAD_ERR_OK) {
+                $nomeDaImagem = Utils::upload($_FILES['imagem']);
+                error_log("Nome da imagem após upload: " . $nomeDaImagem);
+                
+                if ($nomeDaImagem) {
+                    $fotoServico->inserir($nomeDaImagem, $usuarios_id, null, $projetoId);
+                    error_log("Foto inserida no banco com sucesso");
+                }
+            } else {
+                error_log("Erro no upload: " . $_FILES['imagem']['error']);
+            }
+        } else {
+            error_log("Nenhum arquivo foi enviado");
+        }
+
         header("location:index.php?tipo=login");
         exit;
+
     } catch (Exception $erro) {
         echo "<p style='color:red'>" . $erro->getMessage() . "</p>";
     }
@@ -44,7 +65,7 @@ if (isset($_POST['enviar'])) {
                     <i class="fa-regular fa-user"></i>
                 </div>
                     <label for="nome"></label>
-                    <input type="file" id="nome" name="nome" required>
+                    <input type="file" id="imagemPerfil" name="imagem" accept="image/png, image/jpeg, image/gif, image/svg+xml" required>
                 </div>
 
                 <div class="form">
