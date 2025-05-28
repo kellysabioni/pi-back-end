@@ -17,7 +17,7 @@ CREATE TABLE usuarios(
     id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
     nome VARCHAR(100) NOT NULL,
     email VARCHAR(50) NOT NULL UNIQUE,
-    senha VARCHAR(50) NOT NULL,
+    senha VARCHAR(255) NOT NULL,
     tipo_usuario ENUM('usuario', 'cadastro', 'admin') NOT NULL DEFAULT 'usuario',
     cpf VARCHAR(11) NULL UNIQUE,
     data_nascimento DATE NULL,
@@ -42,7 +42,7 @@ CREATE TABLE projetos(
     created_at DATETIME NULL DEFAULT CURRENT_TIMESTAMP,
     updated_at DATETIME NULL,
     usuarios_id INT NOT NULL,
-    FOREIGN KEY (usuarios_id) REFERENCES usuarios(id)
+    FOREIGN KEY (usuarios_id) REFERENCES usuarios(id) ON DELETE CASCADE
 );
 ```
 ---
@@ -66,8 +66,8 @@ CREATE TABLE eventos(
     updated_at DATETIME NULL,
     usuarios_id INT,
     projetos_id INT,
-    FOREIGN KEY (usuarios_id) REFERENCES usuarios(id),
-    FOREIGN KEY (projetos_id) REFERENCES projetos(id)
+    FOREIGN KEY (usuarios_id) REFERENCES usuarios(id) ON DELETE CASCADE,
+    FOREIGN KEY (projetos_id) REFERENCES projetos(id) ON DELETE CASCADE
 );
 ```
 4. Fotos
@@ -79,9 +79,9 @@ CREATE TABLE fotos(
     usuarios_id INT NOT NULL,
     projetos_id INT NULL,
     eventos_id INT NULL,
-    FOREIGN KEY (usuarios_id) REFERENCES usuarios(id),
-    FOREIGN KEY (projetos_id) REFERENCES projetos(id),
-    FOREIGN KEY (eventos_id) REFERENCES eventos(id)
+    FOREIGN KEY (usuarios_id) REFERENCES usuarios(id) ON DELETE CASCADE,
+    FOREIGN KEY (projetos_id) REFERENCES projetos(id) ON DELETE CASCADE,
+    FOREIGN KEY (eventos_id) REFERENCES eventos(id) ON DELETE CASCADE
 );
 ```
 

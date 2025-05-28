@@ -1,26 +1,66 @@
 <?php
 require_once "../pi-back-end/vendor/autoload.php";
 
+use ProjetaBD\Services\UsuarioServico as ServicesUsuarioServico;
+use ProjetaBD\Helpers\Utils;
+use ProjetaBD\Helpers\Validacoes;
 use ProjetaBD\Models\Usuario;
+use ProjetaBD\Services\FotoServico;
 use ProjetaBD\Services\UsuarioServico;
 
-$usuarioServico = new UsuarioServico();
+$usuarioServico = new ServicesUsuarioServico();
+$fotoServico = new FotoServico();
 
- if (isset($_POST['enviar'])) {
-    $nome = filter_input(INPUT_POST, "nome", FILTER_SANITIZE_SPECIAL_CHARS);
-    $email = filter_input(INPUT_POST, "email", FILTER_VALIDATE_EMAIL);
-    $senha = filter_input(INPUT_POST, 'senha', FILTER_SANITIZE_SPECIAL_CHARS);
+if (isset($_POST['enviar'])) {
+    try {
+        $nome = filter_input(INPUT_POST, "nome", FILTER_SANITIZE_SPECIAL_CHARS);
+        $email = filter_input(INPUT_POST, "email", FILTER_VALIDATE_EMAIL);
+        $senha = filter_input(INPUT_POST, 'senha', FILTER_SANITIZE_SPECIAL_CHARS);
 
-   $usuario = new Usuario($nome, $email, $senha);
-   $usuarioServico->inserir($usuario);
+        // Validações
+        Validacoes::validarNome($nome);
+        Validacoes::validarEmail($email);
+        Validacoes::validarSenha($senha);
 
-   header("location:index.php");
-   exit;
+        $usuario = new Usuario($nome, $email, $senha);
+
+        $usuarioServico->inserir($usuario);
+
+        $usuarioId = $usuarioServico->getConexao()->lastInsertId();
+
+        if (isset($_FILES['imagem'])) {
+            error_log("Arquivo recebido: " . print_r($_FILES['imagem'], true));
+            
+            if ($_FILES['imagem']['error'] === UPLOAD_ERR_OK) {
+                $nomeDaImagem = Utils::upload($_FILES['imagem']);
+                error_log("Nome da imagem após upload: " . $nomeDaImagem);
+                
+                if ($nomeDaImagem) {
+                    $fotoServico->inserir($nomeDaImagem, $usuarioId, null, null);
+                    error_log("Foto inserida no banco com sucesso");
+                }
+            } else {
+                error_log("Erro no upload: " . $_FILES['imagem']['error']);
+            }
+
+        } else {
+            error_log("Nenhum arquivo foi enviado");
+        }
+
+        header("location:index.php");
+        exit;
+
+    } catch (InvalidArgumentException $e) {
+        $mensagemErro = $e->getMessage();
+    } catch (Exception $e) {
+        $mensagemErro = "Erro ao cadastrar: " . $e->getMessage();
+    }
 } 
 ?>
 
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -28,24 +68,42 @@ $usuarioServico = new UsuarioServico();
     <link rel="stylesheet" href="css/style.css">
     <title>Cadastrar</title>
 </head>
+
 <body>
     <main>
         <div class="formularios" id="formCadastro">
             <h2>Cadastrar</h2>
-            <form id="cadastroForm" method="POST" action="">
+
+            <?php if (isset($mensagemErro)): ?>
+                <div class="mensagem-erro">
+                    <i class="fas fa-exclamation-circle"></i>
+                    <?= $mensagemErro ?>
+                </div>
+            <?php endif; ?>
+
+            <form id="cadastroForm" method="POST" action="" enctype="multipart/form-data">
+                <div class="form" style="display: flex;">
+                <div class="foto">
+                    <i class="fa-regular fa-user"></i>
+                    <img id="previewImagem" style="display: none; max-width: 100px; max-height: 100px; border-radius: 50%;">
+                </div>
+                    <label for="nome"></label>
+                    <input type="file" id="imagemPerfil" name="imagem" accept="image/png, image/jpeg, image/gif, image/svg+xml" required>
+                </div>
+
                 <div class="form">
-                    <label for="nome">Nome</label>
+                    <label for="nome">Nome <span class="campo-obrigatorio">*</span></label>
                     <input type="text" id="nome" name="nome" required>
                 </div>
                 <div class="form">
-                    <label for="email">Email</label>
+                    <label for="email">Email <span class="campo-obrigatorio">*</span></label>
                     <input type="email" id="email" name="email" required>
                 </div>
                 <div class="form">
-                    <label for="senha">Senha</label>
+                    <label for="senha">Senha <span class="campo-obrigatorio">*</span></label>
                     <input type="password" id="senha" name="senha" required>
                 </div>
-                
+
                 <div class="form">
                     <button name="enviar" type="submit" class="btnEnviar">Cadastrar</button>
                 </div>
@@ -53,5 +111,19 @@ $usuarioServico = new UsuarioServico();
         </div>
     </main>
     <?php include 'includes/nav.php'; ?>
+    
+    <script>
+    document.getElementById('imagemPerfil').onchange = function(e) {
+        const preview = document.getElementById('previewImagem');
+        const file = e.target.files[0];
+        
+        if (file) {
+            preview.style.display = 'block';
+            document.querySelector('.fa-user').style.display = 'none';
+            preview.src = URL.createObjectURL(file);
+        }
+    };
+    </script>
 </body>
+
 </html>

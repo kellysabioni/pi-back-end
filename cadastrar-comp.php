@@ -1,21 +1,41 @@
 <?php
-require_once "../pi-back-end/vendor/autoload.php";
+session_start();
+
+require_once "vendor/autoload.php";
 
 use ProjetaBD\Models\Usuario;
 use ProjetaBD\Services\UsuarioServico;
+use ProjetaBD\Auth\ControleDeAcesso;
+
+// Verifica se o usuário está logado
+ControleDeAcesso::exigirLogin();
 
 $usuarioServico = new UsuarioServico();
 
- if (isset($_POST['enviar'])) {
-   $id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT);
-   $cpf = filter_input(INPUT_POST, 'cpf', FILTER_SANITIZE_SPECIAL_CHARS);
-   $data_nascimento = filter_input(INPUT_POST, 'data_nascimento', FILTER_SANITIZE_SPECIAL_CHARS);
+if (isset($_POST['enviar'])) {
+    $id = $_SESSION['id'];
+    $cpf = filter_input(INPUT_POST, 'cpf', FILTER_SANITIZE_SPECIAL_CHARS);
+    $data_nascimento = filter_input(INPUT_POST, 'data_nascimento', FILTER_SANITIZE_SPECIAL_CHARS);
 
-   $usuario = new Usuario($id, $cpf, $data_nascimento);
-   $usuarioServico->completarCadastro($usuario);
+    try {
+        $usuario = new Usuario(
+            $_SESSION['nome'],
+            $_SESSION['email'],
+            '', 
+            'cadastro',
+            $id,
+            $cpf,
+            $data_nascimento
+        );
+        
+        $_SESSION['tipo'] = 'cadastro';
 
-   header("location:index.php");
-   exit;
+        $usuarioServico->completarCadastro($usuario);
+        header("location:index.php");
+        exit;
+    } catch (Throwable $erro) {
+        $mensagemErro = "Erro ao completar cadastro: " . $erro->getMessage();
+    }
 } 
 ?>
 
@@ -34,11 +54,11 @@ $usuarioServico = new UsuarioServico();
             <h2>Por favor, complete seu cadastro</h2>
             <form id="cadastroForm" method="POST" action="">
                 <div class="form">
-                    <label for="cpf">CPF</label>
+                    <label for="cpf">CPF <span class="campo-obrigatorio">*</span></label>
                     <input type="text" id="cpf" name="cpf" required>
                 </div>
                 <div class="form">
-                    <label for="data_nascimento">Data de Nascimento</label>
+                    <label for="data_nascimento">Data de Nascimento <span class="campo-obrigatorio">*</span></label>
                     <input type="date" id="data_nascimento" name="data_nascimento" required>
                 </div>
                 

@@ -3,15 +3,23 @@ document.addEventListener('DOMContentLoaded', function () {
     const urlParams = new URLSearchParams(window.location.search);
     const tipo = urlParams.get('tipo');
     
-    if (tipo === 'login') {
-        const loginModal = document.getElementById('loginModal');
-        if (loginModal) {
-            loginModal.style.display = 'block';
-            loginModal.offsetHeight;
-            loginModal.classList.add('ativo');
-            document.body.style.overflow = 'hidden';
-        }
+if (tipo === 'login') {
+    const loginModal = document.getElementById('loginModal');
+    if (loginModal) {
+        loginModal.style.display = 'block';
+        loginModal.offsetHeight;
+        loginModal.classList.add('ativo');
+        document.body.style.overflow = 'hidden';
     }
+} else if (tipo === 'erro') {
+    const erro = document.getElementById('erro');
+    if (erro) {
+        erro.style.display = 'block';
+        erro.offsetHeight;
+        erro.classList.add('ativo');
+        document.body.style.overflow = 'hidden';
+    }
+}
 
     const postCard = document.querySelectorAll(".post");
     const postModal = document.getElementById('postModal');
@@ -31,7 +39,6 @@ document.addEventListener('DOMContentLoaded', function () {
         if (card) {
             card.scrollIntoView();
         }
-
         postModal.style.display = 'block';
         postModal.offsetHeight;
         postModal.classList.add('ativo');
@@ -41,6 +48,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
     function fecharModal() {
+        
         postModal.classList.remove('ativo');
         setTimeout(() => {
             postModal.style.display = 'none';
@@ -106,7 +114,20 @@ function abrirLoginModal() {
 }
 
 // Função para fechar o modal de login
-function fecharLoginModal() {
+function fecharModalErro() {
+    const loginModal = document.getElementById('erro');
+    loginModal.classList.remove('ativo');
+    setTimeout(() => {
+        loginModal.style.display = 'none';
+        document.body.style.overflow = 'auto';
+        // Remove o parâmetro tipo=login da URL
+        const url = new URL(window.location);
+        url.searchParams.delete('tipo');
+        window.history.replaceState({}, '', url);
+    }, 300);
+}
+
+function fecharLogin() {
     const loginModal = document.getElementById('loginModal');
     loginModal.classList.remove('ativo');
     setTimeout(() => {

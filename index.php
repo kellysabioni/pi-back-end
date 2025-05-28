@@ -1,7 +1,11 @@
 <?php
+session_start();
 
+use ProjetaBD\Auth\ControleDeAcesso;
 use ProjetaBD\Enums\Categoria;
 use ProjetaBD\Services\EventoServico;
+use ProjetaBD\Services\UsuarioServico;
+use ProjetaBD\Helpers\Validacoes;
 
 require_once "../pi-back-end/vendor/autoload.php";
 
@@ -11,25 +15,46 @@ $eventoServico = new EventoServico;
 $categoria = $_GET['categoria'] ?? null;
 
 if ($categoria && $categoria !== Categoria::Indefinido->value) {
-  
+    // Verifica se a categoria é válida
     $listarEventos = $eventoServico->filtro($categoria);
 } else {
-   
+    // Se não houver categoria ou for indefinida, lista todos os eventos
     $listarEventos = $eventoServico->listarTodos();
 }
 
-use ProjetaBD\Services\UsuarioServico;
+if (isset($_POST['enviar'])) {
+    try {
+        $email = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL); 
+        $senha = $_POST['senha'];
 
-$usuarioServico = new UsuarioServico();
+        // Validações
+        Validacoes::validarEmail($email);
+        Validacoes::validarSenha($senha);
 
-if (isset($_POST['entrar'])) {
-    $email = filter_input(INPUT_POST, "email", FILTER_VALIDATE_EMAIL);
-    $senha = filter_input(INPUT_POST, 'senha', FILTER_SANITIZE_SPECIAL_CHARS);
+        $usuarioServico = new UsuarioServico;
+        $usuario = $usuarioServico->buscarPorEmail($email);
 
-    $usuario = $usuarioServico->validarLogin($email, $senha);
+        if (!$usuario) {
+            throw new InvalidArgumentException('Usuário ou senha inválidos!');
+        }
+
+        if ($usuario && password_verify($senha, $usuario['senha'])) {
+            ControleDeAcesso::login($usuario['id'], $usuario['nome'], $usuario['tipo_usuario'], $usuario['email']);
+            header("Location: index.php");
+            exit;
+        } else {
+            throw new InvalidArgumentException('Usuário ou senha inválidos!');
+        }
+
+    } catch (InvalidArgumentException $e) {
+        header("Location: index.php?tipo=erro");
+        exit;
+    } catch (Throwable $e) {
+        error_log("Erro no login - Email: $email - Erro: " . $e->getMessage());
+        header("Location: index.php?tipo=erro");
+        exit;
+    }
 }
-
-
 
 ?>
 
@@ -49,10 +74,17 @@ if (isset($_POST['entrar'])) {
         <div class="header-links">
             <div></div>
             <a href="" class="header-link central">Para você</a>
-            <a href="?tipo=login" class="header-link login">Login</a>
+            <?php if (isset($_SESSION['id'])): ?>
+                <a href="logout.php" class="header-link login">Sair</a>
+            <?php else: ?>
+                <a href="?tipo=login" class="header-link login">Login</a>
+            <?php endif; ?>
         </div>
     </header>
     <main>
+        <?php if (isset($_SESSION['id'])): ?>
+            <p>Olá, <?php echo $_SESSION['nome'];  echo $_SESSION['tipo'];  ?></p>
+        <?php endif; ?>
         <form id="form-busca" class="botoes-container">
             <i class="fas fa-search"></i>
             <input id="campo-busca" type="text" name="busca" class="barra-pesquisar" placeholder="Digite sua pesquisa...">
@@ -88,6 +120,14 @@ if (isset($_POST['entrar'])) {
     <?php include 'includes/nav.php' ?>
     <?php include 'includes/card-modal.php' ?>
     <?php include 'includes/login-modal.php' ?>
+    <?php if (isset($mensagemErro)): ?>
+        <div class="mensagem-erro">
+            <i class="fas fa-exclamation-circle"></i>
+            <?= $mensagemErro ?>
+        </div>
+    <?php endif; ?>
+    
+
 
     <script src="js/pages/main.js"></script>
     <script src="js/pages/busca.js"></script>
