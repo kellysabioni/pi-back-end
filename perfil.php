@@ -16,8 +16,7 @@ $usuarioServico = new UsuarioServico();
 $projetoServico = new ProjetoServico();
 $eventoServico = new EventoServico();
 
-$fotoUser = $fotoServico->buscarPorUsuario($_SESSION['id']);    
-
+$fotoUser = $fotoServico->buscarPorUsuario($_SESSION['id']);  
 
 ControleDeAcesso::exigirLogin();
 
