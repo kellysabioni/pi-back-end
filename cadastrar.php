@@ -2,19 +2,25 @@
 require_once "../pi-back-end/vendor/autoload.php";
 
 use ProjetaBD\Helpers\Utils;
+use ProjetaBD\Helpers\Validacoes;
 use ProjetaBD\Models\Usuario;
 use ProjetaBD\Services\UsuarioServico;
 
 $usuarioServico = new UsuarioServico();
 
 if (isset($_POST['enviar'])) {
-    $nome = filter_input(INPUT_POST, "nome", FILTER_SANITIZE_SPECIAL_CHARS);
-    $email = filter_input(INPUT_POST, "email", FILTER_VALIDATE_EMAIL);
-    $senha = filter_input(INPUT_POST, 'senha', FILTER_SANITIZE_SPECIAL_CHARS);
-
-    $usuario = new Usuario($nome, $email, $senha);
-
     try {
+        $nome = filter_input(INPUT_POST, "nome", FILTER_SANITIZE_SPECIAL_CHARS);
+        $email = filter_input(INPUT_POST, "email", FILTER_VALIDATE_EMAIL);
+        $senha = filter_input(INPUT_POST, 'senha', FILTER_SANITIZE_SPECIAL_CHARS);
+
+        // Validações
+        Validacoes::validarNome($nome);
+        Validacoes::validarEmail($email);
+        Validacoes::validarSenha($senha);
+
+        $usuario = new Usuario($nome, $email, $senha);
+
         $usuarioServico->inserir($usuario);
 
         if (isset($_FILES['imagem'])) {
@@ -38,8 +44,10 @@ if (isset($_POST['enviar'])) {
         header("location:index.php?tipo=login");
         exit;
 
-    } catch (Exception $erro) {
-        echo "<p style='color:red'>" . $erro->getMessage() . "</p>";
+    } catch (InvalidArgumentException $e) {
+        $mensagemErro = $e->getMessage();
+    } catch (Exception $e) {
+        $mensagemErro = "Erro ao cadastrar: " . $e->getMessage();
     }
 }
 ?>
@@ -59,6 +67,14 @@ if (isset($_POST['enviar'])) {
     <main>
         <div class="formularios" id="formCadastro">
             <h2>Cadastrar</h2>
+
+            <?php if (isset($mensagemErro)): ?>
+                <div class="mensagem-erro">
+                    <i class="fas fa-exclamation-circle"></i>
+                    <?= $mensagemErro ?>
+                </div>
+            <?php endif; ?>
+
             <form id="cadastroForm" method="POST" action="">
                 <div class="form" style="display: flex;">
                 <div class="foto">
@@ -69,15 +85,15 @@ if (isset($_POST['enviar'])) {
                 </div>
 
                 <div class="form">
-                    <label for="nome">Nome</label>
+                    <label for="nome">Nome <span class="campo-obrigatorio">*</span></label>
                     <input type="text" id="nome" name="nome" required>
                 </div>
                 <div class="form">
-                    <label for="email">Email</label>
+                    <label for="email">Email <span class="campo-obrigatorio">*</span></label>
                     <input type="email" id="email" name="email" required>
                 </div>
                 <div class="form">
-                    <label for="senha">Senha</label>
+                    <label for="senha">Senha <span class="campo-obrigatorio">*</span></label>
                     <input type="password" id="senha" name="senha" required>
                 </div>
 

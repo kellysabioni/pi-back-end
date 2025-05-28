@@ -135,4 +135,61 @@ class ProjetoServico
             die("Erro ao excluir projeto: ".$erro->getMessage());
         }
     }
+
+    public function listarUm(int $id): array
+    {
+        $sql = "SELECT projetos.*,
+                    usuarios.id AS usuario_id,
+                    usuarios.nome AS usuario_nome,
+                    fotos.nome_arquivo AS imagem
+                FROM projetos
+                LEFT JOIN usuarios ON projetos.usuarios_id = usuarios.id
+                LEFT JOIN fotos ON projetos.id = fotos.projetos_id
+                WHERE projetos.id = :id";
+
+        try {
+            $consulta = $this->conexao->prepare($sql);
+            $consulta->bindValue(":id", $id, PDO::PARAM_INT);
+            $consulta->execute();
+            return $consulta->fetchAll(PDO::FETCH_ASSOC);
+        } catch (Throwable $erro) {
+            throw new Exception("Erro ao buscar projeto: " . $erro->getMessage());
+        }
+    }
+
+    public function atualizar(Projeto $projeto): void
+    {
+        $sql = "UPDATE projetos SET
+            nome = :nome,
+            CEP = :CEP,
+            rua = :rua,
+            numero = :numero,
+            bairro = :bairro,
+            cidade = :cidade,
+            UF = :UF,
+            telefone = :telefone,
+            categoria = :categoria,
+            updated_at = :updated_at
+            WHERE id = :id";
+
+        try {
+            $consulta = $this->conexao->prepare($sql);
+
+            $consulta->bindValue(":nome", $projeto->getNome(), PDO::PARAM_STR);
+            $consulta->bindValue(":CEP", $projeto->getCEP(), PDO::PARAM_STR);
+            $consulta->bindValue(":rua", $projeto->getRua(), PDO::PARAM_STR);
+            $consulta->bindValue(":numero", $projeto->getNumero(), PDO::PARAM_STR);
+            $consulta->bindValue(":bairro", $projeto->getBairro(), PDO::PARAM_STR);
+            $consulta->bindValue(":cidade", $projeto->getCidade(), PDO::PARAM_STR);
+            $consulta->bindValue(":UF", $projeto->getUF(), PDO::PARAM_STR);
+            $consulta->bindValue(":telefone", $projeto->getTelefone(), PDO::PARAM_STR);
+            $consulta->bindValue(":categoria", $projeto->getCategoria()->name, PDO::PARAM_STR);
+            $consulta->bindValue(":updated_at", $projeto->getUpdatedAt(), PDO::PARAM_STR);
+            $consulta->bindValue(":id", $projeto->getId(), PDO::PARAM_INT);
+
+            $consulta->execute();
+        } catch (Throwable $erro) {
+            throw new Exception("Erro ao atualizar projeto: " . $erro->getMessage());
+        }
+    }
 }

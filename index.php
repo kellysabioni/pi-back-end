@@ -4,6 +4,8 @@ session_start();
 use ProjetaBD\Auth\ControleDeAcesso;
 use ProjetaBD\Enums\Categoria;
 use ProjetaBD\Services\EventoServico;
+use ProjetaBD\Services\UsuarioServico;
+use ProjetaBD\Helpers\Validacoes;
 
 require_once "../pi-back-end/vendor/autoload.php";
 
@@ -20,26 +22,20 @@ if ($categoria && $categoria !== Categoria::Indefinido->value) {
     $listarEventos = $eventoServico->listarTodos();
 }
 
-use ProjetaBD\Services\UsuarioServico;
-    
 if (isset($_POST['enviar'])) {
-    $email = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL); 
-    $senha = $_POST['senha'];
-
-    if (!$email || empty($senha)) 
-    {
-        echo "<script>alert('Campos vazios');</script>"; 
-        exit;
-    }
-
     try {
+        $email = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL); 
+        $senha = $_POST['senha'];
+
+        // Validações
+        Validacoes::validarEmail($email);
+        Validacoes::validarSenha($senha);
+
         $usuarioServico = new UsuarioServico;
         $usuario = $usuarioServico->buscarPorEmail($email);
 
         if (!$usuario) {
-            echo "<script>alert('Usuário ou senha inválidos!');</script>";
-            header("Location: index.php?tipo=erro");
-            exit;
+            throw new InvalidArgumentException('Usuário ou senha inválidos!');
         }
 
         if ($usuario && password_verify($senha, $usuario['senha'])) {
@@ -47,15 +43,15 @@ if (isset($_POST['enviar'])) {
             header("Location: index.php");
             exit;
         } else {
-            echo "<script>alert('Usuário ou senha inválidos!');</script>";
-            header("Location: index.php?tipo=erro");
-            exit;
+            throw new InvalidArgumentException('Usuário ou senha inválidos!');
         }
 
-    } catch (Throwable $erro) {
-        echo "<script>alert('Erro no login - Email: $email - Erro: " . $erro->getMessage() . "');</script>";
-            header("Location: index.php?tipo=erro");
-
+    } catch (InvalidArgumentException $e) {
+        header("Location: index.php?tipo=erro");
+        exit;
+    } catch (Throwable $e) {
+        error_log("Erro no login - Email: $email - Erro: " . $e->getMessage());
+        header("Location: index.php?tipo=erro");
         exit;
     }
 }
@@ -124,7 +120,12 @@ if (isset($_POST['enviar'])) {
     <?php include 'includes/nav.php' ?>
     <?php include 'includes/card-modal.php' ?>
     <?php include 'includes/login-modal.php' ?>
-    <?php include 'includes/erro.php' ?>
+    <?php if (isset($mensagemErro)): ?>
+        <div class="mensagem-erro">
+            <i class="fas fa-exclamation-circle"></i>
+            <?= $mensagemErro ?>
+        </div>
+    <?php endif; ?>
     
 
 

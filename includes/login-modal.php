@@ -1,5 +1,3 @@
-
-
 <div id="loginModal" class="login-modal">
     <div class="login-container">
         <span class="login-fechar" onclick="fecharLogin()">&times;</span>
@@ -8,11 +6,11 @@
         </div>
         <form id="loginForm" class="login-form" method="POST" action="index.php">
             <div class="login-grupo">
-                <label for="email">Email</label>
+                <label for="email">Email <span class="campo-obrigatorio">*</span></label>
                 <input type="email" id="email" name="email" required>
             </div>
             <div class="login-grupo">
-                <label for="senha">Senha</label>
+                <label for="senha">Senha <span class="campo-obrigatorio">*</span></label>
                 <input type="password" id="senha" name="senha" required>
             </div>
             <div class="login-acoes">

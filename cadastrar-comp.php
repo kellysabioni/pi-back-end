@@ -49,11 +49,11 @@ if (isset($_POST['enviar'])) {
             <h2>Por favor, complete seu cadastro</h2>
             <form id="cadastroForm" method="POST" action="">
                 <div class="form">
-                    <label for="cpf">CPF</label>
+                    <label for="cpf">CPF <span class="campo-obrigatorio">*</span></label>
                     <input type="text" id="cpf" name="cpf" required>
                 </div>
                 <div class="form">
-                    <label for="data_nascimento">Data de Nascimento</label>
+                    <label for="data_nascimento">Data de Nascimento <span class="campo-obrigatorio">*</span></label>
                     <input type="date" id="data_nascimento" name="data_nascimento" required>
                 </div>
                 

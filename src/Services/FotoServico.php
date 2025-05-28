@@ -39,4 +39,55 @@ class FotoServico {
             throw new Exception("Erro ao buscar foto do evento: " . $erro->getMessage());
         }
     }
+
+    public function atualizar(string $nomeArquivo, int $usuariosId, ?int $eventosId = null, ?int $projetosId = null): void {
+        // Primeiro, verifica se já existe uma foto para este projeto/evento
+        $sql = "SELECT id FROM fotos WHERE ";
+        $params = [];
+        
+        if ($eventosId !== null) {
+            $sql .= "eventos_id = :eventos_id";
+            $params[':eventos_id'] = $eventosId;
+        } else if ($projetosId !== null) {
+            $sql .= "projetos_id = :projetos_id";
+            $params[':projetos_id'] = $projetosId;
+        }
+
+        try {
+            $consulta = $this->conexao->prepare($sql);
+            foreach ($params as $key => $value) {
+                $consulta->bindValue($key, $value, PDO::PARAM_INT);
+            }
+            $consulta->execute();
+            $fotoExistente = $consulta->fetch(PDO::FETCH_ASSOC);
+
+            if ($fotoExistente) {
+                // Se existe, atualiza
+                $sql = "UPDATE fotos SET 
+                    nome_arquivo = :nome_arquivo,
+                    usuarios_id = :usuarios_id,
+                    eventos_id = :eventos_id,
+                    projetos_id = :projetos_id
+                    WHERE ";
+                if ($eventosId !== null) {
+                    $sql .= "eventos_id = :eventos_id";
+                } else if ($projetosId !== null) {
+                    $sql .= "projetos_id = :projetos_id";
+                }
+            } else {
+                // Se não existe, insere
+                $sql = "INSERT INTO fotos (nome_arquivo, usuarios_id, eventos_id, projetos_id) 
+                        VALUES (:nome_arquivo, :usuarios_id, :eventos_id, :projetos_id)";
+            }
+
+            $consulta = $this->conexao->prepare($sql);
+            $consulta->bindValue(":nome_arquivo", $nomeArquivo, PDO::PARAM_STR);
+            $consulta->bindValue(":usuarios_id", $usuariosId, PDO::PARAM_INT);
+            $consulta->bindValue(":eventos_id", $eventosId, PDO::PARAM_INT);
+            $consulta->bindValue(":projetos_id", $projetosId, PDO::PARAM_INT);
+            $consulta->execute();
+        } catch (Throwable $erro) {
+            throw new Exception("Erro ao atualizar foto: " . $erro->getMessage());
+        }
+    }
 } 

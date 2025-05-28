@@ -9,6 +9,66 @@
     --cor-sombra: rgba(0, 0, 0, 0.1); /* cor para sombras */
     --cor-erro: #ff4444; /* cor para erros */
     --cor-sucesso: #4CAF50; /* cor para sucesso */
+    --cor-alerta: #ffc107; /* amarelo para alertas */
+    --cor-info: #17a2b8; /* azul para informações */
+}
+
+/* Estilos para mensagens de feedback */
+.mensagem-erro,
+.mensagem-sucesso,
+.mensagem-alerta,
+.mensagem-info {
+    padding: 1rem;
+    margin: 1rem 0;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    animation: slideIn 0.3s ease-out;
+    box-shadow: 0 2px 4px var(--cor-sombra);
+}
+
+.mensagem-erro {
+    background-color: #f8d7da;
+    border: 1px solid #f5c6cb;
+    color: var(--cor-erro);
+}
+
+.mensagem-sucesso {
+    background-color: #d4edda;
+    border: 1px solid #c3e6cb;
+    color: var(--cor-sucesso);
+}
+
+.mensagem-alerta {
+    background-color: #fff3cd;
+    border: 1px solid #ffeeba;
+    color: #856404;
+}
+
+.mensagem-info {
+    background-color: #d1ecf1;
+    border: 1px solid #bee5eb;
+    color: var(--cor-info);
+}
+
+.mensagem-erro i,
+.mensagem-sucesso i,
+.mensagem-alerta i,
+.mensagem-info i {
+    font-size: 1.2rem;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateY(-10px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
 }
 
 .foto {
@@ -965,7 +1025,32 @@ header {
 
 .btnEnviar:hover {
     background-color: var(--cor-hover);
-    color: var(--branco);
+    transform: translateY(-2px);
+}
+
+.btnCancelar {
+    display: block;
+    width: 100%;
+    max-width: 200px;
+    padding: 0.6rem;
+    background-color: #f8f9fa;
+    color: #6c757d;
+    border: 1px solid #dee2e6;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    text-decoration: none;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin: 10px auto 0;
+}
+
+.btnCancelar:hover {
+    background-color: #e9ecef;
+    color: #495057;
+    transform: translateY(-2px);
+    box-shadow: 0 2px 4px var(--cor-sombra);
 }
 
 /* estilo pag perfil */
@@ -1346,4 +1431,8 @@ header {
 
 .cancelar-botao:hover {
     background-color: #5a6268;
+}
+
+.campo-obrigatorio {
+    color: var(--cor-erro);
 }

@@ -108,7 +108,7 @@ if (isset($_GET['confirmar-exclusao'])) {
                                     <h3><?= $projeto['nome'] ?></h3>
                                     <div class="projeto-status">
                                         <a href="#" onclick="showDeleteModal(<?=$projeto['id']?>, 'projeto'); return false;"><button><i class="fa-solid fa-trash"></i> Excluir</button></a>
-                                        <button><i class="fa-solid fa-pen"></i> Atualizar</button>
+                                        <a href="atualizarProjeto.php?id=<?=$projeto['id']?>"><button><i class="fa-solid fa-pen"></i> Atualizar</button></a>
                                     </div>
                                 </div>
                             </div>
