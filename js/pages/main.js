@@ -39,7 +39,6 @@ if (tipo === 'login') {
         if (card) {
             card.scrollIntoView();
         }
-
         postModal.style.display = 'block';
         postModal.offsetHeight;
         postModal.classList.add('ativo');
