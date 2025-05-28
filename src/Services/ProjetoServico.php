@@ -38,7 +38,7 @@ class ProjetoServico
             $consulta->bindValue(":cidade", $projeto->getCidade(), PDO::PARAM_STR);
             $consulta->bindValue(":UF", $projeto->getUF(), PDO::PARAM_STR);
             $consulta->bindValue(":telefone", $projeto->getTelefone(), PDO::PARAM_STR);
-            $consulta->bindValue(":categoria", $projeto->getCategoria()->value, PDO::PARAM_STR);
+            $consulta->bindValue(":categoria", $projeto->getCategoria()->name, PDO::PARAM_STR);
             $consulta->bindValue(":usuarios_id", $projeto->getUsuariosId(), PDO::PARAM_STR);
 
             $consulta->execute();

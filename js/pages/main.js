@@ -39,7 +39,6 @@ if (tipo === 'login') {
         if (card) {
             card.scrollIntoView();
         }
-
         postModal.style.display = 'block';
         postModal.offsetHeight;
         postModal.classList.add('ativo');
@@ -49,6 +48,7 @@ if (tipo === 'login') {
 
 
     function fecharModal() {
+        
         postModal.classList.remove('ativo');
         setTimeout(() => {
             postModal.style.display = 'none';
@@ -116,6 +116,19 @@ function abrirLoginModal() {
 // Função para fechar o modal de login
 function fecharModalErro() {
     const loginModal = document.getElementById('erro');
+    loginModal.classList.remove('ativo');
+    setTimeout(() => {
+        loginModal.style.display = 'none';
+        document.body.style.overflow = 'auto';
+        // Remove o parâmetro tipo=login da URL
+        const url = new URL(window.location);
+        url.searchParams.delete('tipo');
+        window.history.replaceState({}, '', url);
+    }, 300);
+}
+
+function fecharLogin() {
+    const loginModal = document.getElementById('loginModal');
     loginModal.classList.remove('ativo');
     setTimeout(() => {
         loginModal.style.display = 'none';

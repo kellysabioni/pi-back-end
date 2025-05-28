@@ -187,6 +187,8 @@ if (isset($_POST['atualizar'])) {
     </main>
 
     <?php include 'includes/nav.php' ?>
+    <script src="https://unpkg.com/imask"></script>
+    <script type="module" src="js/pages/criar.js"></script>
     <script src="js/pages/main.js"></script>
 </body>
 </html> 
