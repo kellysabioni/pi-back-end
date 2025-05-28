@@ -28,7 +28,7 @@ if (isset($_POST['enviar'])) {
             $data_nascimento
         );
         
-        // $_SESSION['tipo'] = 'cadastro';
+        $_SESSION['tipo'] = 'cadastro';
 
         $usuarioServico->completarCadastro($usuario);
         header("location:index.php");

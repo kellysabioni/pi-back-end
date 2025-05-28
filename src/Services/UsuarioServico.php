@@ -56,13 +56,17 @@ class UsuarioServico
 
     public function completarCadastro(Usuario $usuario): void
     {
+        $debug = "Iniciando completarCadastro - ID: " . $usuario->getId() . "<br>";
+        
         // Validação do CPF antes de atualizar o banco
         if (!$this->validarCPF($usuario->getCpf())) {
+            $debug .= "CPF inválido: " . $usuario->getCpf() . "<br>";
             throw new Exception("CPF inválido! Cadastro não pode ser atualizado.");
         }
 
-        $sql = "
-        UPDATE usuarios
+        $debug .= "CPF válido, preparando SQL<br>";
+
+        $sql = "UPDATE usuarios
         SET 
         tipo_usuario = :tipo_usuario,
         cpf = :cpf, 
@@ -76,8 +80,21 @@ class UsuarioServico
             $consulta->bindValue(":tipo_usuario", $usuario->getTipoUsuario(), PDO::PARAM_STR);
             $consulta->bindValue(":cpf", $usuario->getCpf(), PDO::PARAM_STR);
             $consulta->bindValue(":data_nascimento", $usuario->getDataNascimento(), PDO::PARAM_STR);
+            
+            $debug .= "Executando SQL com valores - ID: " . $usuario->getId() . 
+                     ", Tipo: " . $usuario->getTipoUsuario() . 
+                     ", CPF: " . $usuario->getCpf() . 
+                     ", Data: " . $usuario->getDataNascimento() . "<br>";
+            
             $consulta->execute();
+            $debug .= "SQL executado com sucesso<br>";
+            
+            // Adiciona a mensagem de debug à sessão para ser exibida
+            $_SESSION['debug'] = $debug;
+            
         } catch (Throwable $erro) {
+            $debug .= "Erro na execução do SQL: " . $erro->getMessage() . "<br>";
+            $_SESSION['debug'] = $debug;
             throw new Exception("Erro ao atualizar usuário: " . $erro->getMessage());
         }
     }
