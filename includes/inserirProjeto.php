@@ -23,10 +23,18 @@ if (isset($_POST['enviar'])) {
     $categoria = Categoria::from(filter_input(INPUT_POST, "categoria", FILTER_SANITIZE_SPECIAL_CHARS));
     $usuarios_id = $_SESSION['id']; 
 
+
     try {
         $projeto = new Projeto(
             $nome, $CEP, $rua, $numero, $bairro, $cidade, $UF, $telefone, $categoria, date('Y-m-d H:i:s'), date('Y-m-d H:i:s'), $usuarios_id
         );
+
+    /*     echo "<pre>";
+        var_dump($projeto);
+        echo "</pre>";
+
+        die(); */
+
 
         $projetoServico->inserir($projeto);
 

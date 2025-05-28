@@ -30,27 +30,45 @@ if (isset($_POST['enviar'])) {
     $telefone = filter_input(INPUT_POST, "telefone", FILTER_SANITIZE_SPECIAL_CHARS);
     $categoria = Categoria::from(filter_input(INPUT_POST, "categoriaEvento", FILTER_SANITIZE_SPECIAL_CHARS));
     $usuarios_id = $_SESSION['id'];
-    $projetos_id = filter_input(INPUT_POST, "id_projeto", FILTER_SANITIZE_SPECIAL_CHARS);
+    $projetos_id = filter_input(INPUT_POST, "id_projeto", FILTER_SANITIZE_NUMBER_INT);
+
+    empty($projetos_id) ? $projetos_id = null : $projetos_id;
+
 
     try {
         // Primeiro, insere o evento
         $evento = new Evento(
-            $nome, $descricao, $data, $hora, $CEP, $rua, $numero, $bairro, $cidade, $UF, $telefone, $categoria, $projetos_id,date('Y-m-d H:i:s'), date('Y-m-d H:i:s'),$usuarios_id
+            $nome,
+            $descricao,
+            $data,
+            $hora,
+            $CEP,
+            $rua,
+            $numero,
+            $bairro,
+            $cidade,
+            $UF,
+            $telefone,
+            $categoria,
+            $projetos_id,
+            date('Y-m-d H:i:s'),
+            date('Y-m-d H:i:s'),
+            $usuarios_id
         );
-        
+
         $eventoServico->inserir($evento);
-        
+
         // Pega o ID do evento inserido
         $eventoId = $eventoServico->getConexao()->lastInsertId();
-        
+
         // Se houver imagem, faz o upload e salva na tabela fotos
         if (isset($_FILES['imagem'])) {
             error_log("Arquivo recebido: " . print_r($_FILES['imagem'], true));
-            
+
             if ($_FILES['imagem']['error'] === UPLOAD_ERR_OK) {
                 $nomeDaImagem = Utils::upload($_FILES['imagem']);
                 error_log("Nome da imagem após upload: " . $nomeDaImagem);
-                
+
                 if ($nomeDaImagem) {
                     $fotoServico->inserir($nomeDaImagem, $usuarios_id, $eventoId);
                     error_log("Foto inserida no banco com sucesso");
@@ -61,7 +79,7 @@ if (isset($_POST['enviar'])) {
         } else {
             error_log("Nenhum arquivo foi enviado");
         }
-        
+
         header("location:index.php");
         exit;
     } catch (Throwable $e) {
@@ -74,7 +92,7 @@ if (isset($_POST['enviar'])) {
 
 <div class="formularios" id="formEvento">
     <h2>Criar Novo Evento</h2>
-    
+
 
     <form action="" method="post" enctype="multipart/form-data">
         <div class="form">
@@ -86,7 +104,7 @@ if (isset($_POST['enviar'])) {
             <label for="categoriaEvento">Categoria</label>
             <select name="categoriaEvento" id="categoriaEvento">
                 <?php foreach (\ProjetaBD\Enums\Categoria::cases() as $categoria): ?>
-                    <option value="<?=$categoria->value?>">
+                    <option value="<?= $categoria->value ?>">
                         <?= $categoria->value ?>
                     </option>
                 <?php endforeach; ?>
@@ -97,9 +115,9 @@ if (isset($_POST['enviar'])) {
             <label for="relacionaProjeto">Projeto</label>
             <small>Deseja relacionar a algum projeto?</small>
             <select name="id_projeto" id="relacionaProjeto">
-                    <option value="-1" selected>nenhum</option>
+                <option value="" selected>nenhum</option>
                 <?php foreach ($projetos as $projeto): ?>
-                    <option value="<?=$projeto['id']?>">
+                    <option value="<?= $projeto['id'] ?>">
                         <?= $projeto['nome'] ?>
                     </option>
                 <?php endforeach; ?>
