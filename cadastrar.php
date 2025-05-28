@@ -1,7 +1,7 @@
 <?php
 require_once "../pi-back-end/vendor/autoload.php";
 
-use Microblog\Services\UsuarioServico as ServicesUsuarioServico;
+use ProjetaBD\Services\UsuarioServico as ServicesUsuarioServico;
 use ProjetaBD\Helpers\Utils;
 use ProjetaBD\Helpers\Validacoes;
 use ProjetaBD\Models\Usuario;

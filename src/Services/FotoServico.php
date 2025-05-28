@@ -3,7 +3,7 @@
 namespace ProjetaBD\Services;
 
 use Exception, PDO, Throwable;
-use Microblog\Database\ConexaoBD as DatabaseConexaoBD;
+use ProjetaBD\Database\ConexaoBD as DatabaseConexaoBD;
 use ProjetaBD\Database\ConexaoBD;
 
 class FotoServico
