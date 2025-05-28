@@ -11,6 +11,8 @@ use ProjetaBD\Services\FotoServico;
 
 require_once "../pi-back-end/vendor/autoload.php";
 
+ControleDeAcesso::exigirLogin();
+
 $fotoServico = new FotoServico();
 $usuarioServico = new UsuarioServico();
 $projetoServico = new ProjetoServico();
@@ -18,7 +20,6 @@ $eventoServico = new EventoServico();
 
 $fotoUser = $fotoServico->buscarPorUsuario($_SESSION['id']);  
 
-ControleDeAcesso::exigirLogin();
 
 $id = $_SESSION['id'];
 $qProjetos = $projetoServico->contarProjetos($id);

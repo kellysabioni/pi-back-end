@@ -81,10 +81,11 @@ if (isset($_POST['enviar'])) {
                 </div>
             <?php endif; ?>
 
-            <form id="cadastroForm" method="POST" action="">
+            <form id="cadastroForm" method="POST" action="" enctype="multipart/form-data">
                 <div class="form" style="display: flex;">
                 <div class="foto">
                     <i class="fa-regular fa-user"></i>
+                    <img id="previewImagem" style="display: none; max-width: 100px; max-height: 100px; border-radius: 50%;">
                 </div>
                     <label for="nome"></label>
                     <input type="file" id="imagemPerfil" name="imagem" accept="image/png, image/jpeg, image/gif, image/svg+xml" required>

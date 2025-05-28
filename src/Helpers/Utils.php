@@ -19,13 +19,15 @@ class Utils {
 
         // Variáveis de configuração para o upload
         // (pasta de destino, formatos permitidos e tamanho máximo)
-        $pastaDeDestino = __DIR__ . "/../../images/";
+        $pastaDeDestino = $_SERVER['DOCUMENT_ROOT'] . "/pi-back-end/images/";
         $formatosPermitidos = ['image/jpeg', 'image/png', 'image/gif', 'image/svg+xml'];
         $tamanhoMaximo = 2 * 1024 * 1024; // 2MB
 
         // Verifica se a pasta existe, se não, cria
         if (!is_dir($pastaDeDestino)) {
-            mkdir($pastaDeDestino, 0777, true);
+            if (!mkdir($pastaDeDestino, 0777, true)) {
+                throw new Exception("Não foi possível criar o diretório de upload.");
+            }
         }
 
         // Captura o mime type do arquivo enviado
@@ -61,8 +63,7 @@ class Utils {
 
     public static function alertaErro(string $mensagem): void
     {
-        // Implementar lógica de alerta de erro
-        echo "<script>alert('$mensagem');</script>";
+        throw new Exception($mensagem);
     }
 
     public static function getCaminhoImagem(string $nomeArquivo): string 

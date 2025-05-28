@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-require_once "../pi-back-end/vendor/autoload.php";
+require_once "vendor/autoload.php";
 
 use ProjetaBD\Models\Usuario;
 use ProjetaBD\Services\UsuarioServico;
@@ -19,17 +19,22 @@ if (isset($_POST['enviar'])) {
 
     try {
         $usuario = new Usuario(
-            $_SESSION['nome'], $_SESSION['email'], '','cadastro', $id, $cpf, $data_nascimento
+            $_SESSION['nome'],
+            $_SESSION['email'],
+            '', 
+            'cadastro',
+            $id,
+            $cpf,
+            $data_nascimento
         );
         
-       // Atualiza o tipo de usuário na sessão
-        $_SESSION['tipo'] = 'cadastro';
+        // $_SESSION['tipo'] = 'cadastro';
 
         $usuarioServico->completarCadastro($usuario);
         header("location:index.php");
         exit;
     } catch (Throwable $erro) {
-        echo "<script>alert('Erro ao completar cadastro: " . $erro->getMessage() . "');</script>";
+        $mensagemErro = "Erro ao completar cadastro: " . $erro->getMessage();
     }
 } 
 ?>
