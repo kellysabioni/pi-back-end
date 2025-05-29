@@ -6,7 +6,6 @@ use ProjetaBD\Services\EventoServico;
 use ProjetaBD\Services\ProjetoServico;
 use ProjetaBD\Services\UsuarioServico;
 use ProjetaBD\Helpers\Utils;
-use ProjetaBD\Models\Usuario;
 use ProjetaBD\Services\FotoServico;
 
 require_once "../pi-back-end/vendor/autoload.php";

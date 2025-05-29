@@ -79,11 +79,18 @@ if (isset($_POST['atualizar'])) {
                 </div>
             <?php endif; ?>
 
+
             <form id="cadastroForm" method="POST" action="" enctype="multipart/form-data">
                 <div class="form" style="display: flex; flex-direction: column; align-items: center; gap: 10px;">
                     <div class="foto" style="width: 120px; height: 120px; border-radius: 50%; background: #f0f0f0; display: flex; align-items: center; justify-content: center; overflow: hidden;">
+                        <?php if ($caminhoImagem) : ?>
                         <i class="fa-regular fa-user" style="font-size: 48px; color: #666;"></i>
+                        <img id="previewImagem" src="<?= $caminhoImagem?>" style="display: none; width: 100%; height: 100%; object-fit: cover;">
+                        <?php else : ?>
                         <img id="previewImagem" style="display: none; width: 100%; height: 100%; object-fit: cover;">
+                        <i class="fa-regular fa-user" style="font-size: 48px; color: #666;"></i>
+                        <?php endif; ?>
+
                     </div>
                     <div style="text-align: center;">
                         <label for="imagemPerfil" style="display: block; margin-bottom: 5px; font-weight: bold;">Nova foto de Perfil </label>

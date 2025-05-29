@@ -57,6 +57,9 @@ class FotoServico
         } else if ($projetosId !== null) {
             $sql .= "projetos_id = :projetos_id";
             $params[':projetos_id'] = $projetosId;
+        } else {
+            $sql .= "usuarios_id = :usuarios_id";
+            $params[':usuarios_id'] = $usuariosId;
         }
 
         try {
@@ -79,6 +82,8 @@ class FotoServico
                     $sql .= "eventos_id = :eventos_id";
                 } else if ($projetosId !== null) {
                     $sql .= "projetos_id = :projetos_id";
+                } else {
+                    $sql .= "usuarios_id = :usuarios_id";
                 }
             } else {
                 // Se não existe, insere
