@@ -1,9 +1,17 @@
 <?php
 use ProjetaBD\Helpers\Utils;
+use ProjetaBD\Services\FotoServico;
 
 $id = filter_input(INPUT_GET, "id", FILTER_SANITIZE_NUMBER_INT);
 $listarUm = $eventoServico->listarUm($id);
 $imagem = !empty($listarUm[0]["imagem"]) ? Utils::getCaminhoImagem($listarUm[0]["imagem"]) : null;
+
+$imagem = !empty($evento["imagem"]) ? Utils::getCaminhoImagem($evento["imagem"]) : null;
+    
+    // Get user photo
+    $fotoServico = new FotoServico();
+    $fotoUser = $fotoServico->buscarPorUsuario($evento["usuario_id"]);
+    $caminhoImagem = !empty($fotoUser['nome_arquivo']) ? Utils::getCaminhoImagem($fotoUser['nome_arquivo']) : null;
 ?>
 <div id="postModal" class="post-modal">
     <div class="post-modal-conteudo">
@@ -15,9 +23,11 @@ $imagem = !empty($listarUm[0]["imagem"]) ? Utils::getCaminhoImagem($listarUm[0][
         <?php endif; ?>
 
         <div class="post-modal-header">
-            <div class="post-header-icon">
-                <i class="far fa-user"></i>
-            </div>
+            <?php if ($caminhoImagem): ?>
+                <img src="<?= $caminhoImagem ?>" alt="Foto de perfil de <?= $evento["usuario_nome"] ?>" style="width: 60px; height: 60px; border-radius: 50%; object-fit: cover; object-position: center;">
+            <?php else: ?>
+                <i class="fa-regular fa-user"></i>
+            <?php endif; ?>
             <div class="post-header-info">
                 <h2 class="post-modal-titulo"><?=$listarUm[0]["nome"]?></h2>
                 <div class="post-modal-meta">
