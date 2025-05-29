@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 22/05/2025 às 14:57
+-- Tempo de geração: 29/05/2025 às 23:49
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.2.12
 
@@ -99,7 +99,7 @@ CREATE TABLE `usuarios` (
   `senha` varchar(255) NOT NULL,
   `tipo_usuario` enum('usuario','cadastro','admin') NOT NULL DEFAULT 'usuario',
   `cpf` varchar(11) DEFAULT NULL,
-  `data_nascimento` date NULL,
+  `data_nascimento` date DEFAULT NULL,
   `created_at` datetime DEFAULT current_timestamp(),
   `updated_at` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -176,22 +176,22 @@ ALTER TABLE `usuarios`
 -- Restrições para tabelas `eventos`
 --
 ALTER TABLE `eventos`
-  ADD CONSTRAINT `eventos_ibfk_1` FOREIGN KEY (`usuarios_id`) REFERENCES `usuarios` (`id`),
-  ADD CONSTRAINT `eventos_ibfk_2` FOREIGN KEY (`projetos_id`) REFERENCES `projetos` (`id`);
+  ADD CONSTRAINT `eventos_ibfk_1` FOREIGN KEY (`usuarios_id`) REFERENCES `usuarios` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `eventos_ibfk_2` FOREIGN KEY (`projetos_id`) REFERENCES `projetos` (`id`) ON DELETE CASCADE;
 
 --
 -- Restrições para tabelas `fotos`
 --
 ALTER TABLE `fotos`
-  ADD CONSTRAINT `fotos_ibfk_1` FOREIGN KEY (`usuarios_id`) REFERENCES `usuarios` (`id`),
-  ADD CONSTRAINT `fotos_ibfk_2` FOREIGN KEY (`projetos_id`) REFERENCES `projetos` (`id`),
-  ADD CONSTRAINT `fotos_ibfk_3` FOREIGN KEY (`eventos_id`) REFERENCES `eventos` (`id`);
+  ADD CONSTRAINT `fotos_ibfk_1` FOREIGN KEY (`usuarios_id`) REFERENCES `usuarios` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `fotos_ibfk_2` FOREIGN KEY (`projetos_id`) REFERENCES `projetos` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `fotos_ibfk_3` FOREIGN KEY (`eventos_id`) REFERENCES `eventos` (`id`) ON DELETE CASCADE;
 
 --
 -- Restrições para tabelas `projetos`
 --
 ALTER TABLE `projetos`
-  ADD CONSTRAINT `projetos_ibfk_1` FOREIGN KEY (`usuarios_id`) REFERENCES `usuarios` (`id`);
+  ADD CONSTRAINT `projetos_ibfk_1` FOREIGN KEY (`usuarios_id`) REFERENCES `usuarios` (`id`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
