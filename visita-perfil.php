@@ -17,10 +17,12 @@ $usuarioServico = new UsuarioServico();
 $projetoServico = new ProjetoServico();
 $eventoServico = new EventoServico();
 
-$fotoUser = $fotoServico->buscarPorUsuario($_SESSION['id']);
+$id = filter_input(INPUT_GET, 'user', FILTER_SANITIZE_NUMBER_INT);
 
+// Buscar informações do usuário
+$usuario = $usuarioServico->buscarPorId($id);
+$fotoUser = $fotoServico->buscarPorUsuario($id);
 
-$id = $_SESSION['id'];
 $qProjetos = $projetoServico->contarProjetos($id);
 $projetos = $projetoServico->projetosPerfil($id);
 
@@ -80,7 +82,7 @@ if (isset($_GET['confirmar-exclusao'])) {
                     <a href="atualizarUsuario.php?id=<?= $_SESSION['id'] ?>"><i class="fa-solid fa-pen"></i></a>
                 </div>
                 <div class="perfil-info">
-                    <h2><?= $_SESSION['nome'] ?></h2>
+                    <h2><?= $usuario['nome'] ?></h2>
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur ipsum, odit quia corporis a cum.</p>
                     <div class="perfil-status">
                         <div class="status">
