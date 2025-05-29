@@ -4,11 +4,12 @@ use ProjetaBD\Services\FotoServico;
 
 $id = filter_input(INPUT_GET, "id", FILTER_SANITIZE_NUMBER_INT);
 $listarUm = $eventoServico->listarUm($id);
-$imagem = !empty($listarUm[0]["imagem"]) ? Utils::getCaminhoImagem($listarUm[0]["imagem"]) : null;
 
-$imagem = !empty($evento["imagem"]) ? Utils::getCaminhoImagem($evento["imagem"]) : null;
-    
-    // Get user photo
+// Verifica se o evento existe
+if (!empty($listarUm) && isset($listarUm[0])) {
+    $evento = $listarUm[0];
+    $imagem = !empty($evento["imagem"]) ? Utils::getCaminhoImagem($evento["imagem"]) : null;
+
     $fotoServico = new FotoServico();
     $fotoUser = $fotoServico->buscarPorUsuario($evento["usuario_id"]);
     $caminhoImagem = !empty($fotoUser['nome_arquivo']) ? Utils::getCaminhoImagem($fotoUser['nome_arquivo']) : null;
@@ -29,10 +30,10 @@ $imagem = !empty($evento["imagem"]) ? Utils::getCaminhoImagem($evento["imagem"])
                 <i class="fa-regular fa-user"></i>
             <?php endif; ?>
             <div class="post-header-info">
-                <h2 class="post-modal-titulo"><?=$listarUm[0]["nome"]?></h2>
+                <h2 class="post-modal-titulo"><?=$evento["nome"]?></h2>
                 <div class="post-modal-meta">
-                    <span><i class="far fa-calendar"></i> <?=$listarUm[0]["data"]?></span>
-                    <span><i class="far fa-user"></i> <?=$listarUm[0]["usuario_nome"]?></span>
+                    <span><i class="far fa-calendar"></i> <?=$evento["data"]?></span>
+                    <span><i class="far fa-user"></i> <?=$evento["usuario_nome"]?></span>
                 </div>
             </div>
         </div>
@@ -41,8 +42,7 @@ $imagem = !empty($evento["imagem"]) ? Utils::getCaminhoImagem($evento["imagem"])
             <div class="post-modal-main">
                 <div class="post-modal-descricao">
                     <h3>Sobre o Evento</h3>
-
-                    <p><?=$listarUm[0]["descricao"]?></p>
+                    <p><?=$evento["descricao"]?></p>
                 </div>
             </div>
 
@@ -55,15 +55,15 @@ $imagem = !empty($evento["imagem"]) ? Utils::getCaminhoImagem($evento["imagem"])
                         </h4>
                         <div class="info-item">
                             <i class="fas fa-map-marker-alt"></i>
-                            <span><strong>Local:</strong> <?=$listarUm[0]["rua"]?>, <?=$listarUm[0]["numero"]?> - <?=$listarUm[0]["bairro"]?>. CEP: <?=$listarUm[0]["CEP"]?>. <?=$listarUm[0]["cidade"]?> - <?=$listarUm[0]["UF"]?></span>
+                            <span><strong>Local:</strong> <?=$evento["rua"]?>, <?=$evento["numero"]?> - <?=$evento["bairro"]?>. CEP: <?=$evento["CEP"]?>. <?=$evento["cidade"]?> - <?=$evento["UF"]?></span>
                         </div>
                         <div class="info-item">
                             <i class="far fa-clock"></i>
-                            <span><strong>Horário:</strong> <?=$listarUm[0]["hora"]?></span>
+                            <span><strong>Horário:</strong> <?=$evento["hora"]?></span>
                         </div>
                         <div class="info-item">
                             <i class="far fa-calendar"></i>
-                            <span><strong>Data:</strong> <?=$listarUm[0]["data"]?></span>
+                            <span><strong>Data:</strong> <?=$evento["data"]?></span>
                         </div>
                     </div>
 
@@ -74,14 +74,13 @@ $imagem = !empty($evento["imagem"]) ? Utils::getCaminhoImagem($evento["imagem"])
                         </h4>
                         <div class="info-item">
                             <i class="far fa-user"></i>
-                            <span><strong>Responsável:</strong> <?=$listarUm[0]["usuario_nome"]?></span>
+                            <span><strong>Responsável:</strong> <?=$evento["usuario_nome"]?></span>
                         </div>
                         <div class="info-item">
                             <i class="far fa-building"></i>
-                            <span><strong>Organização:</strong> <?=$listarUm[0]["projeto_nome"]?></span>
+                            <span><strong>Organização:</strong> <?=$evento["projeto_nome"]?></span>
                         </div>
                     </div>
-
 
                     <div class="secao-info">
                         <h4 class="secao-titulo">
@@ -90,7 +89,7 @@ $imagem = !empty($evento["imagem"]) ? Utils::getCaminhoImagem($evento["imagem"])
                         </h4>
                         <div class="info-item">
                             <i class="far fa-id-card"></i>
-                            <span><strong>ID do Evento:</strong> #2024031501</span>
+                            <span><strong>ID do Evento:</strong> #<?=$evento["id"]?></span>
                         </div>
                         <div class="info-item">
                             <i class="fas fa-users"></i>
@@ -113,3 +112,13 @@ $imagem = !empty($evento["imagem"]) ? Utils::getCaminhoImagem($evento["imagem"])
         </div>
     </div>
 </div>
+<?php } else { ?>
+    <div id="postModal" class="post-modal">
+        <div class="post-modal-conteudo">
+            <span class="fechar-modal">&times;</span>
+            <div class="post-modal-header">
+                <h2 class="post-modal-titulo">Evento não encontrado</h2>
+            </div>
+        </div>
+    </div>
+<?php } ?>
