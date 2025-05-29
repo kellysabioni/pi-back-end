@@ -82,9 +82,6 @@ if (isset($_POST['enviar'])) {
         </div>
     </header>
     <main>
-        <?php if (isset($_SESSION['id'])): ?>
-            <p>Olá, <?php echo $_SESSION['nome'];  echo $_SESSION['tipo'];  ?></p>
-        <?php endif; ?>
         <form id="form-busca" class="botoes-container">
             <i class="fas fa-search"></i>
             <input id="campo-busca" type="text" name="busca" class="barra-pesquisar" placeholder="Digite sua pesquisa...">
