@@ -48,31 +48,40 @@ class UsuarioServico
             $consultaInserir->bindValue(":email", $usuario->getEmail(), PDO::PARAM_STR);
             $consultaInserir->bindValue(":senha", password_hash($usuario->getSenha(), PASSWORD_DEFAULT), PDO::PARAM_STR);
             $consultaInserir->execute();
-        } catch (PDOException $e) {
-            throw new Exception("Erro ao inserir usuário: " . $e->getMessage());
+        } catch (PDOException $erro) {
+            throw new Exception("Erro ao inserir usuário: " . $erro->getMessage());
         }
     }
 
     // Completar cadastro de usuario (atualiza tipo de usuario para 'cadastro', cpf e data de nascimento)
 
     public function validarCPF($cpf): bool
-    {
+        {
         // Remove todos os caracteres que não são números
         $cpf = preg_replace('/[^0-9]/', '', $cpf);
 
         // Verifica se o CPF tem 11 dígitos
         if (strlen($cpf) != 11) {
-            echo "deu erro";
+            echo "<div class='alerta-erro'>
+                <p>Por favor, insira um CPF válido!</p>
+            </div>";
             return false;
         }
 
         // Verifica se todos os dígitos são iguais
         if (preg_match('/^(\d)\1{10}$/', $cpf)) {
-            echo "Insira um CPF válido";
+            echo 
+            "<div class='alerta-erro'>
+                <p>Por favor, insira um CPF válido!</p>
+            </div>";
+
             return false;
         }
 
-        // Validação do primeiro dígito verificador
+        if (empty($cpf)) {
+            # code...
+        
+            // Validação do primeiro dígito verificador
         $soma = 0;
         for ($i = 0; $i < 9; $i++) {
             $soma += $cpf[$i] * (10 - $i);
@@ -90,6 +99,28 @@ class UsuarioServico
 
         // Verifica se os dígitos verificadores estão corretos
         return ($cpf[9] == $dv1 && $cpf[10] == $dv2);
+        } 
+           echo 
+            "<div class='alerta-erro'>
+                <h3>Por favor, insira um CPF válido!</h3>
+            </div>";
+            return false;
+        }
+
+
+    public function validarDataNascimento($dataNascimento): bool
+    {
+        $data = DateTime::createFromFormat('Y-m-d', $dataNascimento);
+        if (!$data || $data->format('Y-m-d') !== $dataNascimento) {
+            return false; // Data inválida
+        }
+
+        // Verifica idade maior que 18 anos
+        $dataLimite = (new DateTime())->modify('-18 years');
+        if ($data > $dataLimite) {
+            return false; // Menor de 18 anos
+        }
+        return true;
     }
 
     public function completarCadastro(Usuario $usuario): void
@@ -145,10 +176,6 @@ class UsuarioServico
      */
 
 
-    function validarDataNascimento(): void
-    {
-      
-    }
 
 
 
