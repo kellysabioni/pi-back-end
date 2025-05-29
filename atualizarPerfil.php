@@ -22,7 +22,13 @@ if (isset($_POST['atualizar'])) {
         $usuarioAtualizado = new Usuario(
             $nome,
             $email,
-            $senha
+            password_hash($senha, PASSWORD_DEFAULT),
+            $usuario['tipo_usuario'],
+            $id,
+            $usuario['cpf'],
+            $usuario['data_nascimento'],
+            $usuario['created_at'],
+            date('Y-m-d H:i:s')
         );
 
         $usuarioServico->atualizar($usuarioAtualizado);
@@ -34,6 +40,9 @@ if (isset($_POST['atualizar'])) {
                 $fotoServico->atualizar($nomeDaImagem, $usuario['usuarios_id'], null, null);
             }
         }
+
+        $_SESSION['nome'] = $nome;
+        $_SESSION['email'] = $email;
 
         header("location: perfil.php");
         exit;
@@ -91,7 +100,7 @@ if (isset($_POST['atualizar'])) {
                 </div>
                 <div class="form">
                     <label for="senha">Senha <span class="campo-obrigatorio">*</span></label>
-                    <input type="password" id="senha" name="senha" value="" required>
+                    <input type="password" id="senha" name="senha" value="">
                 </div>
                 <div class="form">
                     <button name="atualizar" type="submit" class="btnEnviar">Atualizar</button>
