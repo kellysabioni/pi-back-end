@@ -12,10 +12,15 @@ ControleDeAcesso::exigirLogin();
 
 $usuarioServico = new UsuarioServico();
 
-if (isset($_POST['enviar'])) {
+/* if (isset($_POST['enviar'])) {
     $id = $_SESSION['id'];
     $cpf = filter_input(INPUT_POST, 'cpf', FILTER_SANITIZE_SPECIAL_CHARS);
     $data_nascimento = filter_input(INPUT_POST, 'data_nascimento', FILTER_SANITIZE_SPECIAL_CHARS);
+
+    $usuarioServico->validarCPF($cpf);
+
+    $usuarioServico->validarDataNascimento($data_nascimento, $)
+
 
     try {
         $usuario = new Usuario(
@@ -28,15 +33,55 @@ if (isset($_POST['enviar'])) {
             $data_nascimento
         );
         
-        $_SESSION['tipo'] = 'cadastro';
-
         $usuarioServico->completarCadastro($usuario);
+
+        $_SESSION['tipo'] = 'cadastro';
         header("location:index.php");
         exit;
     } catch (Throwable $erro) {
         $mensagemErro = "Erro ao completar cadastro: " . $erro->getMessage();
     }
-} 
+} */
+
+if (isset($_POST['enviar'])) {
+    $id = $_SESSION['id'];
+    $cpf = filter_input(INPUT_POST, 'cpf', FILTER_SANITIZE_SPECIAL_CHARS);
+    $data_nascimento = filter_input(INPUT_POST, 'data_nascimento', FILTER_SANITIZE_SPECIAL_CHARS);
+
+    $mensagemErro = "";
+
+    // Validações
+    $cpfValido = $usuarioServico->validarCPF($cpf);
+    $dataValida = $usuarioServico->validarDataNascimento($data_nascimento);
+
+    if ($cpfValido !== true) {
+        $mensagemErro = $cpfValido;
+    } elseif ($dataValida !== true) {
+        $mensagemErro = $dataValida;
+
+    } else {
+        try {
+            $usuario = new Usuario(
+                $_SESSION['nome'],
+                $_SESSION['email'],
+                '', 
+                'cadastro',
+                $id,
+                $cpf,
+                $data_nascimento
+            );
+
+            $usuarioServico->completarCadastro($usuario);
+
+            $_SESSION['tipo'] = 'cadastro';
+            header("location:index.php");
+            exit;
+        } catch (Throwable $erro) {
+            $mensagemErro = "Erro ao completar cadastro: " . $erro->getMessage();
+        }
+    }
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -50,12 +95,13 @@ if (isset($_POST['enviar'])) {
 </head>
 <body>
     <main>
+
         <div class="formularios" id="formCadastro">
             <h2>Por favor, complete seu cadastro</h2>
             <form id="cadastroForm" method="POST" action="">
                 <div class="form">
                     <label for="cpf">CPF <span class="campo-obrigatorio">*</span></label>
-                    <input type="text" id="cpf" name="cpf" required>
+                    <input type="text" id="cpf" name="cpf" required maxlength="14">
                 </div>
                 <div class="form">
                     <label for="data_nascimento">Data de Nascimento <span class="campo-obrigatorio">*</span></label>
@@ -69,5 +115,21 @@ if (isset($_POST['enviar'])) {
         </div>
     </main>
     <?php include 'includes/nav.php'; ?>
+
+    <script>
+document.getElementById('cpf').addEventListener('input', function (e) {
+    let value = e.target.value.replace(/\D/g, ''); // Remove tudo que não for número
+
+    if (value.length > 11) value = value.slice(0, 11); // Limita a 11 dígitos
+
+    // Aplica a máscara
+    value = value.replace(/(\d{3})(\d)/, '$1.$2');
+    value = value.replace(/(\d{3})(\d)/, '$1.$2');
+    value = value.replace(/(\d{3})(\d{1,2})$/, '$1-$2');
+
+    e.target.value = value;
+});
+</script>
+
 </body>
 </html>
