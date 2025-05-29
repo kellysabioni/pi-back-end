@@ -24,7 +24,7 @@ if (isset($_POST['atualizar'])) {
         $usuarioAtualizado = new Usuario(
             $nome,
             $email,
-            password_hash($senha, PASSWORD_DEFAULT),
+            $senha,
             $usuario['tipo_usuario'],
             $id,
             $usuario['cpf'],
