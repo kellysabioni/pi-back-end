@@ -33,7 +33,7 @@ if (!empty($listarUm) && isset($listarUm[0])) {
                 <h2 class="post-modal-titulo"><?=$evento["nome"]?></h2>
                 <div class="post-modal-meta">
                     <span><i class="far fa-calendar"></i> <?=$evento["data"]?></span>
-                    <span><i class="far fa-user"></i> <?=$evento["usuario_nome"]?></span>
+                    <span><i class="far fa-user"></i><a href="visita-perfil.php?user=<?=$evento["usuario_id"]?>"><?=$evento["usuario_nome"]?></a> </span>
                 </div>
             </div>
         </div>
