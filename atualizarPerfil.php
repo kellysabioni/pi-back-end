@@ -17,7 +17,9 @@ if (isset($_POST['atualizar'])) {
     try {
         $nome = filter_input(INPUT_POST, "nome", FILTER_SANITIZE_SPECIAL_CHARS);
         $email = filter_input(INPUT_POST, "email", FILTER_SANITIZE_SPECIAL_CHARS);
-        $senha = filter_input(INPUT_POST, "senha", FILTER_SANITIZE_SPECIAL_CHARS);
+        
+        $senhaBruta = $_POST["senha"];
+        $senha = empty($senhaBruta) ? $usuario["senha"] : Utils::verificarSenha($senhaBruta, $usuario["senha"]);
 
         $usuarioAtualizado = new Usuario(
             $nome,
@@ -84,23 +86,23 @@ if (isset($_POST['atualizar'])) {
                         <img id="previewImagem" style="display: none; width: 100%; height: 100%; object-fit: cover;">
                     </div>
                     <div style="text-align: center;">
-                        <label for="imagemPerfil" style="display: block; margin-bottom: 5px; font-weight: bold;">Nova foto de Perfil <span class="campo-obrigatorio">*</span></label>
+                        <label for="imagemPerfil" style="display: block; margin-bottom: 5px; font-weight: bold;">Nova foto de Perfil </label>
                         <input type="file" id="imagemPerfil" name="imagem" accept="image/png, image/jpeg, image/gif, image/svg+xml"  style="width: 100%;">
                         <small style="display: block; margin-top: 5px; color: #666;">Formatos aceitos: JPG, PNG, GIF e SVG (máx. 2MB)</small>
                     </div>
                 </div>
 
                 <div class="form">
-                    <label for="nome">Nome <span class="campo-obrigatorio">*</span></label>
-                    <input type="text" id="nome" name="nome" value="<?= $usuario['nome'] ?>" required>
+                    <label for="nome">Nome </label>
+                    <input type="text" id="nome" name="nome" value="<?= $usuario['nome'] ?>">
                 </div>
                 <div class="form">
-                    <label for="email">Email <span class="campo-obrigatorio">*</span></label>
-                    <input type="email" id="email" name="email" value="<?= $usuario['email'] ?>"required>
+                    <label for="email">Email </label>
+                    <input type="email" id="email" name="email" value="<?= $usuario['email'] ?>">
                 </div>
                 <div class="form">
-                    <label for="senha">Senha <span class="campo-obrigatorio">*</span></label>
-                    <input type="password" id="senha" name="senha" value="">
+                    <label for="senha">Senha </label>
+                    <input type="password" id="senha" name="senha" placeholder="Preencha apenas se for alterar">
                 </div>
                 <div class="form">
                     <button name="atualizar" type="submit" class="btnEnviar">Atualizar</button>
