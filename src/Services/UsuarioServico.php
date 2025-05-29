@@ -186,5 +186,30 @@ class UsuarioServico
             throw new Exception("Erro ao buscar usuário por ID.");
         }
     }
+
+    public function atualizar(Usuario $usuario): void
+    {
+        $sql = "UPDATE usuarios SET
+            nome = :nome,
+            email = :email,
+            senha = :senha,
+            updated_at = :updated_at
+            WHERE id = :id";
+        
+        try {
+            $consulta = $this->conexao->prepare($sql);
+
+            $consulta->bindValue(":nome", $usuario->getNome(), PDO::PARAM_STR);
+            $consulta->bindValue(":email", $usuario->getEmail(), PDO::PARAM_STR);
+            $consulta->bindValue(":senha", $usuario->getSenha(), PDO::PARAM_STR);
+            $consulta->bindValue(":updated_at", $usuario->getUpdatedAt(), PDO::PARAM_STR);
+            $consulta->bindValue(":id", $usuario->getId(), PDO::PARAM_INT);
+
+            $consulta->execute();
+       
+        } catch (Throwable $erro) {
+            throw new Exception("Erro ao atualizar usuario: " . $erro->getMessage());
+        }
+    }
 }
 

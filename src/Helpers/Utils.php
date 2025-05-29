@@ -70,4 +70,28 @@ class Utils {
     {
         return "/pi-back-end/images/" . $nomeArquivo;
     }
+
+    public static function codificarSenha(string $senha): string
+    {
+        return password_hash($senha, PASSWORD_DEFAULT);
+    }
+
+    public static function verificarSenha(
+        string $senhaAtualizada,
+        string $senhaBanco
+    ): string {
+
+        /* Usamos a função password_verify para COMPARAR
+        as duas senhas: a digitada no formulário e a existente
+        no banco de dados. */
+        if (password_verify($senhaAtualizada, $senhaBanco)) {
+            /* Se forem IGUAIS, mantemos a senha já existente,
+            sem qualquer modificação. */
+            return $senhaBanco;
+        } else {
+            /* Se forem DIFERENTES, então a nova senha (ou seja,
+            a que foi digitada no formulário) DEVE ser codificada. */
+            return self::codificarSenha($senhaAtualizada);
+        }
+    }
 }
