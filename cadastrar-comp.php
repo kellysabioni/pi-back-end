@@ -52,7 +52,8 @@ if (isset($_POST['enviar'])) {
 
     // Validações
     $cpfValido = $usuarioServico->validarCPF($cpf);
-    $dataValida = $usuarioServico->validarDataNascimento($data_nascimento);
+    
+    $dataValida = $usuarioServico->validarDataNascimento();
 
     if ($cpfValido !== true) {
         $mensagemErro = $cpfValido;

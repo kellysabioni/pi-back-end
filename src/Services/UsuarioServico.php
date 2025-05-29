@@ -19,7 +19,8 @@ class UsuarioServico
         $this->conexao = ConexaoBD::getConexao();
     }
 
-        public function getConexao(): PDO {
+    public function getConexao(): PDO
+    {
         return $this->conexao;
     }
 
@@ -47,14 +48,13 @@ class UsuarioServico
             $consultaInserir->bindValue(":email", $usuario->getEmail(), PDO::PARAM_STR);
             $consultaInserir->bindValue(":senha", password_hash($usuario->getSenha(), PASSWORD_DEFAULT), PDO::PARAM_STR);
             $consultaInserir->execute();
-
         } catch (PDOException $e) {
             throw new Exception("Erro ao inserir usuário: " . $e->getMessage());
         }
     }
 
     // Completar cadastro de usuario (atualiza tipo de usuario para 'cadastro', cpf e data de nascimento)
-    
+
     public function validarCPF($cpf): bool
     {
         // Remove todos os caracteres que não são números
@@ -108,9 +108,8 @@ class UsuarioServico
             $consulta->bindValue(":tipo_usuario", $usuario->getTipoUsuario(), PDO::PARAM_STR);
             $consulta->bindValue(":cpf", $usuario->getCpf(), PDO::PARAM_STR);
             $consulta->bindValue(":data_nascimento", $usuario->getDataNascimento(), PDO::PARAM_STR);
-                        
+
             $consulta->execute();
-            
         } catch (Throwable $erro) {
             throw new Exception("Erro ao atualizar usuário: " . $erro->getMessage());
         }
@@ -143,20 +142,15 @@ class UsuarioServico
                 throw new Exception("Erro ao atualizar usuário: " . $erro->getMessage());
             }
         }
-     */    
+     */
 
-     function validarDataNascimento(PDO $pdo, string $dataNascimento): bool|string {
-        $stmt = $pdo->prepare("SELECT TIMESTAMPDIFF(YEAR, :data_nascimento, CURDATE()) AS idade");
-        $stmt->bindParam(':data_nascimento', $dataNascimento);
-        $stmt->execute();
-        $resultado = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    if ($resultado && $resultado['idade'] >= 18) {
-        return true;
-    } else {
-        return "É necessário ter pelo menos 18 anos.";
+    function validarDataNascimento(): void
+    {
+      
     }
-}
+
+
 
     public function buscarPorEmail(string $email): ?array
     {
@@ -168,7 +162,7 @@ class UsuarioServico
             $consulta->execute();
             return $consulta->fetch(PDO::FETCH_ASSOC) ?: null;
         } catch (Throwable $e) {
-            
+
             throw new Exception("Erro ao buscar usuário por e-mail.");
         }
     }
@@ -186,30 +180,4 @@ class UsuarioServico
             throw new Exception("Erro ao buscar usuário por ID.");
         }
     }
-
-    public function atualizar(Usuario $usuario): void
-    {
-        $sql = "UPDATE usuarios SET
-            nome = :nome,
-            email = :email,
-            senha = :senha,
-            updated_at = :updated_at
-            WHERE id = :id";
-        
-        try {
-            $consulta = $this->conexao->prepare($sql);
-
-            $consulta->bindValue(":nome", $usuario->getNome(), PDO::PARAM_STR);
-            $consulta->bindValue(":email", $usuario->getEmail(), PDO::PARAM_STR);
-            $consulta->bindValue(":senha", $usuario->getSenha(), PDO::PARAM_STR);
-            $consulta->bindValue(":updated_at", $usuario->getUpdatedAt(), PDO::PARAM_STR);
-            $consulta->bindValue(":id", $usuario->getId(), PDO::PARAM_INT);
-
-            $consulta->execute();
-       
-        } catch (Throwable $erro) {
-            throw new Exception("Erro ao atualizar usuario: " . $erro->getMessage());
-        }
-    }
 }
-
