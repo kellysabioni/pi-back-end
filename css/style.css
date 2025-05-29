@@ -672,6 +672,7 @@ header {
 
 .post-modal-header {
     display: flex;
+    gap: 1rem;
     align-items: center;
     padding: 1.5rem;
     background: linear-gradient(to bottom, var(--cor-borda), transparent);
