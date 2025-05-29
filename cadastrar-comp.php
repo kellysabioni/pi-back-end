@@ -18,13 +18,13 @@ if (isset($_POST['enviar'])) {
     $data_nascimento = filter_input(INPUT_POST, 'data_nascimento', FILTER_SANITIZE_SPECIAL_CHARS);
 
     // Validações
-    $cpfValido = $usuarioServico->validarCPF($cpf);
+    // $cpfValido = $usuarioServico->validarCPF($cpf);
     $dataValida = $usuarioServico->validarDataNascimento($data_nascimento);
     
-    if ($cpfValido !== true) {
+    /* if ($cpfValido !== true) {
         echo "<script>alert('CPF inválido.');</script>";
         
-    } elseif ($dataValida !== true) {
+    } else */if ($dataValida !== true) {
         echo  "<script>alert('Data de nascimento inválida.');</script>"; }
 
      else {
