@@ -7,7 +7,7 @@
         </div>
 
         <div class="erro-login">
-            <p> <b> Usuário ou login inválido! </b></p>
+            <p> Usuário ou login inválido! </p>
         </div>
 
         <form id="loginForm" class="login-form" method="POST" action="index.php">

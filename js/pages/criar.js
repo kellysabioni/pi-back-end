@@ -22,10 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('buscarBtn').addEventListener('click', function (e) {
         e.preventDefault();
         const cep = document.getElementById('cep').value;
-        buscarCEP(cep, 'resultado')
-
-        const formCep = document.querySelectorAll('.formCep');
-        formCep.forEach(el => el.classList.add('ativo'));
+        buscarCEP(cep, 'resultado');
     });
 
     const url = new URLSearchParams(window.location.search);

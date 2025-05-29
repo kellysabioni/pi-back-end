@@ -120,6 +120,7 @@ if (isset($_POST['enviar'])) {
     <?php include 'includes/nav.php' ?>
     <?php include 'includes/card-modal.php' ?>
     <?php include 'includes/login-modal.php' ?>
+    <?php include 'includes/erro.php' ?>
     <?php if (isset($mensagemErro)): ?>
         <div class="mensagem-erro">
             <i class="fas fa-exclamation-circle"></i>

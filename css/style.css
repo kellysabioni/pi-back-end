@@ -857,7 +857,7 @@ header {
     color: var(--branco);
     cursor: pointer;
     z-index: 10;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.9);
     transition: all 0.3s ease;
     width: 40px;
     height: 40px;
@@ -865,13 +865,12 @@ header {
     align-items: center;
     justify-content: center;
     border-radius: 50%;
-    background-color: rgba(0, 0, 0, 0.3);
+
 }
 
 .fechar-modal:hover {
     color: var(--cor-erro);
-    background-color: rgba(0, 0, 0, 0.5);
-    transform: rotate(90deg);
+
 }
 
 @media (min-width: 768px) {
@@ -1435,4 +1434,13 @@ header {
 
 .campo-obrigatorio {
     color: var(--cor-erro);
+}
+
+.erro-login p {
+    text-align: center;
+    color: var(--cor-erro);
+    font-size: 1.1rem;
+    font-weight: 500;
+    margin: 0;
+    padding: 1rem;
 }

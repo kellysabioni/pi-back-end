@@ -82,13 +82,16 @@ if (isset($_POST['enviar'])) {
             <?php endif; ?>
 
             <form id="cadastroForm" method="POST" action="" enctype="multipart/form-data">
-                <div class="form" style="display: flex;">
-                <div class="foto">
-                    <i class="fa-regular fa-user"></i>
-                    <img id="previewImagem" style="display: none; max-width: 100px; max-height: 100px; border-radius: 50%;">
-                </div>
-                    <label for="nome"></label>
-                    <input type="file" id="imagemPerfil" name="imagem" accept="image/png, image/jpeg, image/gif, image/svg+xml" required>
+                <div class="form" style="display: flex; flex-direction: column; align-items: center; gap: 10px;">
+                    <div class="foto" style="width: 120px; height: 120px; border-radius: 50%; background: #f0f0f0; display: flex; align-items: center; justify-content: center; overflow: hidden;">
+                        <i class="fa-regular fa-user" style="font-size: 48px; color: #666;"></i>
+                        <img id="previewImagem" style="display: none; width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                    <div style="text-align: center;">
+                        <label for="imagemPerfil" style="display: block; margin-bottom: 5px; font-weight: bold;">Foto de Perfil <span class="campo-obrigatorio">*</span></label>
+                        <input type="file" id="imagemPerfil" name="imagem" accept="image/png, image/jpeg, image/gif, image/svg+xml" required style="width: 100%;">
+                        <small style="display: block; margin-top: 5px; color: #666;">Formatos aceitos: JPG, PNG, GIF e SVG (máx. 2MB)</small>
+                    </div>
                 </div>
 
                 <div class="form">
@@ -115,12 +118,31 @@ if (isset($_POST['enviar'])) {
     <script>
     document.getElementById('imagemPerfil').onchange = function(e) {
         const preview = document.getElementById('previewImagem');
+        const icon = document.querySelector('.fa-user');
         const file = e.target.files[0];
         
         if (file) {
+            // Verifica o tamanho do arquivo (2MB)
+            if (file.size > 2 * 1024 * 1024) {
+                alert('O arquivo é muito grande. Tamanho máximo permitido: 2MB');
+                this.value = ''; // Limpa o input
+                return;
+            }
+
+            // Verifica o tipo do arquivo
+            const tiposPermitidos = ['image/jpeg', 'image/png', 'image/gif', 'image/svg+xml'];
+            if (!tiposPermitidos.includes(file.type)) {
+                alert('Formato de arquivo não permitido. Use apenas JPG, PNG, GIF ou SVG.');
+                this.value = ''; // Limpa o input
+                return;
+            }
+
             preview.style.display = 'block';
-            document.querySelector('.fa-user').style.display = 'none';
+            icon.style.display = 'none';
             preview.src = URL.createObjectURL(file);
+        } else {
+            preview.style.display = 'none';
+            icon.style.display = 'block';
         }
     };
     </script>
