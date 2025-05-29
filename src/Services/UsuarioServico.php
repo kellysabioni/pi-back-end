@@ -55,57 +55,54 @@ class UsuarioServico
 
     // Completar cadastro de usuario (atualiza tipo de usuario para 'cadastro', cpf e data de nascimento)
 
-    public function validarCPF($cpf): bool
-        {
-        // Remove todos os caracteres que não são números
-        $cpf = preg_replace('/[^0-9]/', '', $cpf);
+public function validarCPF($cpf): bool
+{
+    // Remove todos os caracteres que não são números
+    $cpf = preg_replace('/[^0-9]/', '', $cpf);
 
-        // Verifica se o CPF tem 11 dígitos
-        if (strlen($cpf) != 11) {
-            echo "<div class='alerta-erro'>
-                <p>Por favor, insira um CPF válido!</p>
-            </div>";
-            return false;
-        }
+    // Verifica se o CPF tem 11 dígitos
+    if (strlen($cpf) != 11) {
+        echo "<div class='alerta-erro'>
+            <p>Por favor, insira um CPF válido!</p>
+        </div>";
+        return false;
+    }
 
-        // Verifica se todos os dígitos são iguais
-        if (preg_match('/^(\d)\1{10}$/', $cpf)) {
-            echo 
-            "<div class='alerta-erro'>
-                <p>Por favor, insira um CPF válido!</p>
-            </div>";
+    // Verifica se todos os dígitos são iguais
+    if (preg_match('/^(\d)\1{10}$/', $cpf)) {
+        echo "<div class='alerta-erro'>
+            <p>Por favor, insira um CPF válido!</p>
+        </div>";
+        return false;
+    }
 
-            return false;
-        }
+    // Validação do primeiro dígito verificador
+    $soma = 0;
+    for ($i = 0; $i < 9; $i++) {
+        $soma += $cpf[$i] * (10 - $i);
+    }
+    $resto = $soma % 11;
+    $dv1 = ($resto < 2) ? 0 : 11 - $resto;
 
-        if (empty($cpf)) {
-            # code...
-        
-            // Validação do primeiro dígito verificador
-        $soma = 0;
-        for ($i = 0; $i < 9; $i++) {
-            $soma += $cpf[$i] * (10 - $i);
-        }
-        $resto = $soma % 11;
-        $dv1 = ($resto < 2) ? 0 : 11 - $resto;
+    // Validação do segundo dígito verificador
+    $soma = 0;
+    for ($i = 0; $i < 10; $i++) {
+        $soma += $cpf[$i] * (11 - $i);
+    }
+    $resto = $soma % 11;
+    $dv2 = ($resto < 2) ? 0 : 11 - $resto;
 
-        // Validação do segundo dígito verificador
-        $soma = 0;
-        for ($i = 0; $i < 10; $i++) {
-            $soma += $cpf[$i] * (11 - $i);
-        }
-        $resto = $soma % 11;
-        $dv2 = ($resto < 2) ? 0 : 11 - $resto;
+    // Verifica se os dígitos verificadores estão corretos
+    if ($cpf[9] == $dv1 && $cpf[10] == $dv2) {
+        return true;
+    } else {
+        echo "<div class='alerta-erro'>
+            <h3>Por favor, insira um CPF válido!</h3>
+        </div>";
+        return false;
+    }
+}
 
-        // Verifica se os dígitos verificadores estão corretos
-        return ($cpf[9] == $dv1 && $cpf[10] == $dv2);
-        } 
-           echo 
-            "<div class='alerta-erro'>
-                <h3>Por favor, insira um CPF válido!</h3>
-            </div>";
-            return false;
-        }
 
 
     public function validarDataNascimento($dataNascimento): bool
@@ -118,6 +115,11 @@ class UsuarioServico
         // Verifica idade maior que 18 anos
         $dataLimite = (new DateTime())->modify('-18 years');
         if ($data > $dataLimite) {
+            echo 
+            "<div class='alerta-erro'>
+                <p>Você deve ter pelo menos 18 anos para se cadastrar.</p>
+            </div>";
+
             return false; // Menor de 18 anos
         }
         return true;
