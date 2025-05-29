@@ -103,8 +103,6 @@ public function validarCPF($cpf): bool
     }
 }
 
-
-
     public function validarDataNascimento($dataNascimento): bool
     {
         $data = DateTime::createFromFormat('Y-m-d', $dataNascimento);

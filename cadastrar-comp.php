@@ -12,55 +12,22 @@ ControleDeAcesso::exigirLogin();
 
 $usuarioServico = new UsuarioServico();
 
-/* if (isset($_POST['enviar'])) {
-    $id = $_SESSION['id'];
-    $cpf = filter_input(INPUT_POST, 'cpf', FILTER_SANITIZE_SPECIAL_CHARS);
-    $data_nascimento = filter_input(INPUT_POST, 'data_nascimento', FILTER_SANITIZE_SPECIAL_CHARS);
-
-    $usuarioServico->validarCPF($cpf);
-
-    $usuarioServico->validarDataNascimento($data_nascimento, $)
-
-
-    try {
-        $usuario = new Usuario(
-            $_SESSION['nome'],
-            $_SESSION['email'],
-            '', 
-            'cadastro',
-            $id,
-            $cpf,
-            $data_nascimento
-        );
-        
-        $usuarioServico->completarCadastro($usuario);
-
-        $_SESSION['tipo'] = 'cadastro';
-        header("location:index.php");
-        exit;
-    } catch (Throwable $erro) {
-        $mensagemErro = "Erro ao completar cadastro: " . $erro->getMessage();
-    }
-} */
-
 if (isset($_POST['enviar'])) {
     $id = $_SESSION['id'];
     $cpf = filter_input(INPUT_POST, 'cpf', FILTER_SANITIZE_SPECIAL_CHARS);
     $data_nascimento = filter_input(INPUT_POST, 'data_nascimento', FILTER_SANITIZE_SPECIAL_CHARS);
 
-    $mensagemErro = "";
-
     // Validações
     $cpfValido = $usuarioServico->validarCPF($cpf);
+    $dataValida = $usuarioServico->validarDataNascimento($data_nascimento);
     
-    $dataValida = $usuarioServico->validarDataNascimento();
-
     if ($cpfValido !== true) {
-        $mensagemErro = $cpfValido;
+        echo "<script>alert('CPF inválido.');</script>";
+        
     } elseif ($dataValida !== true) {
-        $mensagemErro = $dataValida;
+        echo  "<script>alert('Data de nascimento inválida.');</script>"; }
 
-    } else {
+     else {
         try {
             $usuario = new Usuario(
                 $_SESSION['nome'],
