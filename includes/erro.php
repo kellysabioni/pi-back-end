@@ -6,7 +6,7 @@
             <h2 class="login-titulo">Entrar</h2>
         </div>
 
-        <div class="erro-login">
+        <div class="alerta-erro">
             <p> Usuário ou login inválido! </p>
         </div>
 
