@@ -1437,7 +1437,7 @@ header {
     color: var(--cor-erro);
 }
 
-.erro-login {
+.alerta-erro {
   color: #ff4444;
     border: 1px solid #ff4444; 
     background-color: #f8959569;
