@@ -2,7 +2,7 @@
 
 use ProjetaBD\Auth\ControleDeAcesso;
 
-require_once "../pi-back-end/vendor/autoload.php";
+require_once "vendor/autoload.php";
 
 ControleDeAcesso::exigirCadastro();
 

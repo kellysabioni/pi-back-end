@@ -3,7 +3,7 @@
 
 use ProjetaBD\Services\EventoServico;
 
-require_once "../pi-back-end/vendor/autoload.php";
+require_once "vendor/autoload.php";
 
 $eventoServico = new EventoServico();
 $resultados = $eventoServico->buscar($_POST["busca"] ?? '');

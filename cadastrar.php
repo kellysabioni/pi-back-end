@@ -1,5 +1,5 @@
 <?php
-require_once "../pi-back-end/vendor/autoload.php";
+require_once "vendor/autoload.php";
 
 use ProjetaBD\Services\UsuarioServico as ServicesUsuarioServico;
 use ProjetaBD\Helpers\Utils;

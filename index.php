@@ -7,7 +7,7 @@ use ProjetaBD\Services\EventoServico;
 use ProjetaBD\Services\UsuarioServico;
 use ProjetaBD\Helpers\Validacoes;
 
-require_once "../pi-back-end/vendor/autoload.php";
+require_once "vendor/autoload.php";
 
 $eventoServico = new EventoServico;
 
