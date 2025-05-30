@@ -47,18 +47,20 @@ class FotoServico
     }
 
     public function atualizar(string $nomeArquivo, int $usuariosId, ?int $eventosId = null, ?int $projetosId = null): void {
-        // Primeiro, verifica se já existe uma foto para este projeto/evento
+        // Primeiro, verifica se já existe uma foto para este projeto/evento/usuário
         $sql = "SELECT id FROM fotos WHERE ";
         $params = [];
         
         if ($eventosId !== null) {
-            $sql .= "eventos_id = :eventos_id";
+            $sql .= "eventos_id = :eventos_id AND usuarios_id = :usuarios_id";
             $params[':eventos_id'] = $eventosId;
+            $params[':usuarios_id'] = $usuariosId;
         } else if ($projetosId !== null) {
-            $sql .= "projetos_id = :projetos_id";
+            $sql .= "projetos_id = :projetos_id AND usuarios_id = :usuarios_id";
             $params[':projetos_id'] = $projetosId;
+            $params[':usuarios_id'] = $usuariosId;
         } else {
-            $sql .= "usuarios_id = :usuarios_id";
+            $sql .= "usuarios_id = :usuarios_id AND eventos_id IS NULL AND projetos_id IS NULL";
             $params[':usuarios_id'] = $usuariosId;
         }
 
@@ -72,30 +74,20 @@ class FotoServico
 
             if ($fotoExistente) {
                 // Se existe, atualiza
-                $sql = "UPDATE fotos SET 
-                    nome_arquivo = :nome_arquivo,
-                    usuarios_id = :usuarios_id,
-                    eventos_id = :eventos_id,
-                    projetos_id = :projetos_id
-                    WHERE ";
-                if ($eventosId !== null) {
-                    $sql .= "eventos_id = :eventos_id";
-                } else if ($projetosId !== null) {
-                    $sql .= "projetos_id = :projetos_id";
-                } else {
-                    $sql .= "usuarios_id = :usuarios_id";
-                }
+                $sql = "UPDATE fotos SET nome_arquivo = :nome_arquivo WHERE id = :id";
+                $consulta = $this->conexao->prepare($sql);
+                $consulta->bindValue(":nome_arquivo", $nomeArquivo, PDO::PARAM_STR);
+                $consulta->bindValue(":id", $fotoExistente['id'], PDO::PARAM_INT);
             } else {
                 // Se não existe, insere
                 $sql = "INSERT INTO fotos (nome_arquivo, usuarios_id, eventos_id, projetos_id) 
                         VALUES (:nome_arquivo, :usuarios_id, :eventos_id, :projetos_id)";
+                $consulta = $this->conexao->prepare($sql);
+                $consulta->bindValue(":nome_arquivo", $nomeArquivo, PDO::PARAM_STR);
+                $consulta->bindValue(":usuarios_id", $usuariosId, PDO::PARAM_INT);
+                $consulta->bindValue(":eventos_id", $eventosId, PDO::PARAM_INT);
+                $consulta->bindValue(":projetos_id", $projetosId, PDO::PARAM_INT);
             }
-
-            $consulta = $this->conexao->prepare($sql);
-            $consulta->bindValue(":nome_arquivo", $nomeArquivo, PDO::PARAM_STR);
-            $consulta->bindValue(":usuarios_id", $usuariosId, PDO::PARAM_INT);
-            $consulta->bindValue(":eventos_id", $eventosId, PDO::PARAM_INT);
-            $consulta->bindValue(":projetos_id", $projetosId, PDO::PARAM_INT);
             $consulta->execute();
         } catch (Throwable $erro) {
             throw new Exception("Erro ao atualizar foto: " . $erro->getMessage());
@@ -104,7 +96,7 @@ class FotoServico
     
     public function buscarPorUsuario(int $usuarioId): ?array
     {
-        $sql = "SELECT * FROM fotos WHERE usuarios_id = :usuario_id";
+        $sql = "SELECT * FROM fotos WHERE usuarios_id = :usuario_id AND eventos_id IS NULL AND projetos_id IS NULL";
         
         try {
             $consulta = $this->conexao->prepare($sql);
