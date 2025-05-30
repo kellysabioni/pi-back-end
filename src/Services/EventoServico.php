@@ -91,7 +91,7 @@ class EventoServico
             $consulta->bindValue(":cidade", $evento->getCidade(), PDO::PARAM_STR);
             $consulta->bindValue(":UF", $evento->getUF(), PDO::PARAM_STR);
             $consulta->bindValue(":telefone", $evento->getTelefone(), PDO::PARAM_STR);
-            $consulta->bindValue(":categoria", $evento->getCategoria()->name, PDO::PARAM_STR);
+            $consulta->bindValue(":categoria", $evento->getCategoria()->value, PDO::PARAM_STR);
             $consulta->bindValue(":usuarios_id", $evento->getUsuarios_id(), PDO::PARAM_STR);
             $consulta->bindValue(":projetos_id", $evento->getProjetos_id(), PDO::PARAM_INT);
 
@@ -134,12 +134,14 @@ class EventoServico
             WHERE eventos.categoria = :categoria
             ORDER BY eventos.created_at DESC";
 
-
         try {
+            error_log("Filtrando por categoria: " . $categoria); // Log para debug
             $consulta = $this->conexao->prepare($sql);
             $consulta->bindValue(":categoria", $categoria, PDO::PARAM_STR);
             $consulta->execute();
-            return $consulta->fetchAll(PDO::FETCH_ASSOC);
+            $resultados = $consulta->fetchAll(PDO::FETCH_ASSOC);
+            error_log("Resultados encontrados: " . count($resultados)); // Log para debug
+            return $resultados;
         } catch (\Throwable $erro) {
             throw new Exception("Erro ao selecionar categoria: " . $erro->getMessage());
         }
