@@ -37,7 +37,7 @@ CREATE TABLE projetos(
     bairro VARCHAR(50) NOT NULL,
     cidade VARCHAR(100) NOT NULL,
     UF CHAR(2) NOT NULL,
-    telefone VARCHAR(11) NOT NULL,
+    telefone VARCHAR(15) NOT NULL,
     categoria ENUM('Indefinido','Cultura','Saude', 'Educacao', 'MeioAmbiente', 'DesenvolvimentoSocial', 'AssistenciaSocial', 'Esportes', 'ApoioAGruposVulneraveis', 'CombateAViolencia', 'ApoioAAnimais', 'AcoesDeVoluntariado') NOT NULL,
     created_at DATETIME NULL DEFAULT CURRENT_TIMESTAMP,
     updated_at DATETIME NULL,

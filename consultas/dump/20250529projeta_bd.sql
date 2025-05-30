@@ -120,7 +120,7 @@ CREATE TABLE `projetos` (
   `bairro` varchar(50) NOT NULL,
   `cidade` varchar(100) NOT NULL,
   `UF` char(2) NOT NULL,
-  `telefone` varchar(11) NOT NULL,
+  `telefone` varchar(15) NOT NULL,
   `categoria` enum('Indefinido','Cultura','Saude','Educacao','MeioAmbiente','DesenvolvimentoSocial','AssistenciaSocial','Esportes','ApoioAGruposVulneraveis','CombateAViolencia','ApoioAAnimais','AcoesDeVoluntariado') NOT NULL,
   `created_at` datetime DEFAULT current_timestamp(),
   `updated_at` datetime DEFAULT NULL,
