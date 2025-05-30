@@ -23,7 +23,7 @@ foreach ($listarEventos as $evento) {
                 </div>
                 <div class="card-header-info">
                     <h3 class="card-titulo"><?= $evento["nome"] ?></h3>
-                    <span class="card-data"><?= $evento["data"] ?></span>
+                 <!--    <span class="card-data"><?= $evento["data"] ?></span> -->
                 </div>
             </div>
             <?php if ($imagem): ?>
@@ -34,8 +34,10 @@ foreach ($listarEventos as $evento) {
             <div class="card-main">
                 <p class="card-conteudo">
                     <strong>📍 Local:</strong> <?= $evento["rua"] ?><br>
-                    <strong>🕒 Horário:</strong> <?= $evento["hora"] ?><br>
-                    <strong>👥 Organizador:</strong> <?= $evento["usuario_nome"] ?><?= $evento["projeto_nome"] ?><br><br>
+                    <strong>🗓️ Data:</strong> <?= date('d/m/Y', strtotime($evento["data"])) ?><br>
+                    <strong>🕒 Horário:</strong> <?= date('H:i', strtotime($evento["hora"])) ?><br>
+                    <strong>👥 Organizador:</strong> <?= $evento["usuario_nome"] ?><br>
+                    <strong>🏢 Organização: </strong> <?= $evento["projeto_nome"] ?><br><br>
                     <?= $evento["descricao"] ?>
                 </p>
             </div>
@@ -53,4 +55,5 @@ foreach ($listarEventos as $evento) {
             </div>
         </div>
     </div>
-<?php } ?>
+<?php 
+} ?>
