@@ -35,7 +35,8 @@ foreach ($listarEventos as $evento) {
                 <p class="card-conteudo">
                     <strong>📍 Local:</strong> <?= $evento["rua"] ?><br>
                     <strong>🕒 Horário:</strong> <?= $evento["hora"] ?><br>
-                    <strong>👥 Organizador:</strong> <?= $evento["usuario_nome"] ?><?= $evento["projeto_nome"] ?><br><br>
+                    <strong>👥 Organizador:</strong> <?= $evento["usuario_nome"] ?><br>
+                    <strong>🏢 Organização: </strong> <?= $evento["projeto_nome"] ?><br><br>
                     <?= $evento["descricao"] ?>
                 </p>
             </div>
@@ -53,4 +54,5 @@ foreach ($listarEventos as $evento) {
             </div>
         </div>
     </div>
-<?php } ?>
+<?php 
+} ?>
