@@ -14,11 +14,11 @@ $eventoServico = new EventoServico;
 // Obtem a categoria do GET, se houver
 $categoria = $_GET['categoria'] ?? null;
 
-if ($categoria && $categoria !== Categoria::Indefinido->value) {
+if ($categoria && $categoria !== 'Indefinido') {
     // Verifica se a categoria é válida
     $listarEventos = $eventoServico->filtro($categoria);
 } else {
-    // Se não houver categoria ou for indefinida, lista todos os eventos
+    // Se não houver categoria ou for "Indefinido", lista todos os eventos
     $listarEventos = $eventoServico->listarTodos();
 }
 
@@ -97,9 +97,9 @@ if (isset($_POST['enviar'])) {
 
              <form method="GET" id="formFiltro" class="filtro-form">
                 <div class="botoes-container filtro-container">
-                    <select name="categoria" id="categoriaProjeto" class="filtro-select" onchange="if(this.value === 'Selecione uma categoria') { window.location.href = 'index.php'; } else { document.getElementById('formFiltro').submit(); }">
+                    <select name="categoria" id="categoriaProjeto" class="filtro-select" onchange="document.getElementById('formFiltro').submit();">
                         <?php foreach (\ProjetaBD\Enums\Categoria::cases() as $categoria): ?>
-                            <option value="<?= $categoria->name ?>" class="filtro-option" <?= isset($_GET['categoria']) && $_GET['categoria'] === $categoria->value ? 'selected' : '' ?>>
+                            <option value="<?= $categoria->name ?>" class="filtro-option" <?= !isset($_GET['categoria']) && $categoria->name === 'Indefinido' ? 'selected' : (isset($_GET['categoria']) && $_GET['categoria'] === $categoria->name ? 'selected' : '') ?>>
                                 <?= $categoria->value ?>
                             </option>
                         <?php endforeach; ?>
