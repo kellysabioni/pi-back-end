@@ -125,12 +125,12 @@ if (isset($_POST['atualizar'])) {
 
             <form action="" method="post" enctype="multipart/form-data">
                 <div class="form">
-                    <label for="nomeEvento">Nome do Evento <span class="campo-obrigatorio">*</span></label>
+                    <label for="nomeEvento">Nome do Evento </label>
                     <input type="text" id="nomeEvento" name="nome" value="<?= $evento['nome'] ?>" required>
                 </div>
 
                 <div class="form">
-                    <label for="categoriaEvento">Categoria <span class="campo-obrigatorio">*</span></label>
+                    <label for="categoriaEvento">Categoria </label>
                     <select name="categoriaEvento" id="categoriaEvento">
                         <?php foreach (Categoria::cases() as $categoria): ?>
                             <option value="<?= $categoria->value ?>" <?= $evento['categoria'] === $categoria->value ? 'selected' : '' ?>>
@@ -154,22 +154,22 @@ if (isset($_POST['atualizar'])) {
                 </div>
 
                 <div class="form">
-                    <label for="descricaoEvento">Descrição <span class="campo-obrigatorio">*</span></label>
+                    <label for="descricaoEvento">Descrição </label>
                     <textarea name="descricao" id="descricaoEvento" required><?= $evento['descricao'] ?></textarea>
                 </div>
 
                 <div class="form">
-                    <label for="dataEvento">Data <span class="campo-obrigatorio">*</span></label>
+                    <label for="dataEvento">Data </label>
                     <input type="date" name="data" id="dataEvento" value="<?= $evento['data'] ?>" required>
                 </div>
 
                 <div class="form">
-                    <label for="horarioEvento">Horário <span class="campo-obrigatorio">*</span></label>
-                    <input type="time" name="hora" id="horarioEvento" value="<?= $evento['hora'] ?>" required>
+                    <label for="horarioEvento">Horário </label>
+                    <input type="time" name="hora" id="horarioEvento" value="<?= $evento['hora'] ?>" >
                 </div>
 
                 <div class="form">
-                    <label for="cep">CEP <span class="campo-obrigatorio">*</span></label>
+                    <label for="cep">CEP </label>
                     <div class="cep">
                         <input type="text" name="CEP" id="cep" value="<?= $evento['CEP'] ?>" required>
                         <button type="button" id="buscarBtn" class="btnCEP">buscar</button>
@@ -178,32 +178,32 @@ if (isset($_POST['atualizar'])) {
                 </div>
 
                 <div class="form formCep">
-                    <label for="rua">Rua <span class="campo-obrigatorio">*</span></label>
+                    <label for="rua">Rua </label>
                     <input type="text" id="rua" name="rua" value="<?= $evento['rua'] ?>" required>
                 </div>
 
                 <div class="form formCep">
-                    <label for="complemento">Número <span class="campo-obrigatorio">*</span></label>
+                    <label for="complemento">Número </label>
                     <input type="text" id="complemento" name="numero" value="<?= $evento['numero'] ?>" required>
                 </div>
 
                 <div class="form formCep">
-                    <label for="bairro">Bairro <span class="campo-obrigatorio">*</span></label>
+                    <label for="bairro">Bairro </label>
                     <input type="text" id="bairro" name="bairro" value="<?= $evento['bairro'] ?>" required>
                 </div>
 
                 <div class="form formCep">
-                    <label for="cidade">Cidade <span class="campo-obrigatorio">*</span></label>
+                    <label for="cidade">Cidade </label>
                     <input type="text" id="cidade" name="cidade" value="<?= $evento['cidade'] ?>" required>
                 </div>
 
                 <div class="form formCep">
-                    <label for="estado">Estado <span class="campo-obrigatorio">*</span></label>
+                    <label for="estado">Estado </label>
                     <input type="text" id="estado" name="UF" value="<?= $evento['UF'] ?>" required>
                 </div>
 
                 <div class="form">
-                    <label for="celular">Telefone <span class="campo-obrigatorio">*</span></label>
+                    <label for="celular">Telefone </label>
                     <input type="tel" id="celular" name="telefone" value="<?= $evento['telefone'] ?>" required>
                 </div>
 

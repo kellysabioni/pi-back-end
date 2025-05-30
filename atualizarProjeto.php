@@ -102,12 +102,12 @@ if (isset($_POST['atualizar'])) {
 
             <form action="" method="post" enctype="multipart/form-data">
                 <div class="form">
-                    <label for="nomeProjeto">Nome do Projeto <span class="campo-obrigatorio">*</span></label>
-                    <input type="text" id="nomeProjeto" name="nome" value="<?= $projeto['nome'] ?>" required>
+                    <label for="nomeProjeto">Nome do Projeto </label>
+                    <input type="text" id="nomeProjeto" name="nome" value="<?= $projeto['nome'] ?>">
                 </div>
 
                 <div class="form">
-                    <label for="categoriaProjeto">Categoria <span class="campo-obrigatorio">*</span></label>
+                    <label for="categoriaProjeto">Categoria </label>
                     <select name="categoria" id="categoriaProjeto">
                         <?php foreach (Categoria::cases() as $categoria): ?>
                             <option value="<?= $categoria->value ?>" <?= $projeto['categoria'] === $categoria->value ? 'selected' : '' ?>>
@@ -118,42 +118,42 @@ if (isset($_POST['atualizar'])) {
                 </div>
 
                 <div class="form">
-                    <label for="cep">CEP <span class="campo-obrigatorio">*</span></label>
+                    <label for="cep">CEP </label>
                     <div class="cep">
-                        <input type="text" name="CEP" id="cep" value="<?= $projeto['CEP'] ?>" required>
+                        <input type="text" name="CEP" id="cep" value="<?= $projeto['CEP'] ?>" >
                         <button type="button" id="buscarBtn" class="btnCEP">buscar</button>
                     </div>
                     <div id="resultado"></div>
                 </div>
 
                 <div class="form formCep">
-                    <label for="rua">Rua <span class="campo-obrigatorio">*</span></label>
-                    <input type="text" id="rua" name="rua" value="<?= $projeto['rua'] ?>" required>
+                    <label for="rua">Rua </label>
+                    <input type="text" id="rua" name="rua" value="<?= $projeto['rua'] ?>" >
                 </div>
 
                 <div class="form formCep">
-                    <label for="complemento">Número <span class="campo-obrigatorio">*</span></label>
-                    <input type="text" id="complemento" name="numero" value="<?= $projeto['numero'] ?>" required>
+                    <label for="complemento">Número </label>
+                    <input type="text" id="complemento" name="numero" value="<?= $projeto['numero'] ?>" >
                 </div>
 
                 <div class="form formCep">
-                    <label for="bairro">Bairro <span class="campo-obrigatorio">*</span></label>
-                    <input type="text" id="bairro" name="bairro" value="<?= $projeto['bairro'] ?>" required>
+                    <label for="bairro">Bairro </label>
+                    <input type="text" id="bairro" name="bairro" value="<?= $projeto['bairro'] ?>" >
                 </div>
 
                 <div class="form formCep">
-                    <label for="cidade">Cidade <span class="campo-obrigatorio">*</span></label>
-                    <input type="text" id="cidade" name="cidade" value="<?= $projeto['cidade'] ?>" required>
+                    <label for="cidade">Cidade </label>
+                    <input type="text" id="cidade" name="cidade" value="<?= $projeto['cidade'] ?>" >
                 </div>
 
                 <div class="form formCep">
-                    <label for="estado">Estado <span class="campo-obrigatorio">*</span></label>
-                    <input type="text" id="estado" name="UF" value="<?= $projeto['UF'] ?>" required>
+                    <label for="estado">Estado </label>
+                    <input type="text" id="estado" name="UF" value="<?= $projeto['UF'] ?>" >
                 </div>
 
                 <div class="form">
-                    <label for="celular">Telefone <span class="campo-obrigatorio">*</span></label>
-                    <input type="tel" id="celular" name="telefone" value="<?= $projeto['telefone'] ?>" required>
+                    <label for="celular">Telefone </label>
+                    <input type="tel" id="celular" name="telefone" value="<?= $projeto['telefone'] ?>" >
                 </div>
 
                 <div class="form">
