@@ -35,6 +35,12 @@ if (isset($_POST['atualizar'])) {
         $descricao = filter_input(INPUT_POST, "descricao", FILTER_SANITIZE_SPECIAL_CHARS);
         $data = filter_input(INPUT_POST, "data", FILTER_SANITIZE_SPECIAL_CHARS);
         $hora = filter_input(INPUT_POST, "hora", FILTER_SANITIZE_SPECIAL_CHARS);
+   
+        if (!empty($hora)) {
+            $horaFormatada = date('H:i', strtotime($hora));
+            $hora = $horaFormatada;
+        }
+        
         $CEP = filter_input(INPUT_POST, "CEP", FILTER_SANITIZE_SPECIAL_CHARS);
         $rua = filter_input(INPUT_POST, "rua", FILTER_SANITIZE_SPECIAL_CHARS);
         $numero = filter_input(INPUT_POST, "numero", FILTER_SANITIZE_SPECIAL_CHARS);
