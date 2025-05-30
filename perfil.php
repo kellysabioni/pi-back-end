@@ -56,14 +56,6 @@ if (isset($_GET['confirmar-exclusao'])) {
 </head>
 
 <body>
-    <?php if (!empty($projetos) || !empty($eventos)): ?>
-        <?php include 'includes/modal-confirmacao.php'; ?>
-    <?php endif; ?>
-
-    <?php if (isset($_GET['id']) && !isset($_GET['confirmar-exclusao'])): ?>
-        <?php include 'includes/card-modal.php'; ?>
-    <?php endif; ?>
-
     <main>
         <div class="perfil-container">
             <div class="perfil-header">
@@ -91,10 +83,7 @@ if (isset($_GET['confirmar-exclusao'])) {
                             <span class="numero"><?= $qEventos['total_eventos'] ?></span>
                             <span class="label">Eventos</span>
                         </div>
-                        <div class="status">
-                            <span class="numero">3</span>
-                            <span class="label">Seguindo</span>
-                        </div>
+
                     </div>
                 </div>
             </div>
@@ -150,11 +139,13 @@ if (isset($_GET['confirmar-exclusao'])) {
         </div>
     </main>
 
+    
+    <?php include 'includes/modal-confirmacao.php'; ?>
+        <?php include 'includes/card-modal.php'; ?>
     <?php include 'includes/nav.php' ?>
     <script src="js/pages/perfil.js"></script>
-    <?php if (isset($_GET['id']) && !isset($_GET['confirmar-exclusao'])): ?>
-        <script src="js/pages/main.js"></script>
-    <?php endif; ?>
+    <script src="js/pages/main.js"></script>
+ 
 </body>
 
 </html>
