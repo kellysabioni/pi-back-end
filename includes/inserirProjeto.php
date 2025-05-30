@@ -7,7 +7,7 @@ use ProjetaBD\Models\Projeto;
 use ProjetaBD\Services\ProjetoServico;
 use ProjetaBD\Services\FotoServico;
 
-require_once "../pi-back-end/vendor/autoload.php";
+require_once "../vendor/autoload.php";
 
 $projetoServico = new ProjetoServico();
 $fotoServico = new FotoServico();

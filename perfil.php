@@ -8,7 +8,7 @@ use ProjetaBD\Services\UsuarioServico;
 use ProjetaBD\Helpers\Utils;
 use ProjetaBD\Services\FotoServico;
 
-require_once "../pi-back-end/vendor/autoload.php";
+require_once "vendor/autoload.php";
 
 ControleDeAcesso::exigirLogin();
 

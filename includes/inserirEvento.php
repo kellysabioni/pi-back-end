@@ -8,7 +8,7 @@ use ProjetaBD\Services\EventoServico;
 use ProjetaBD\Services\FotoServico;
 use ProjetaBD\Services\ProjetoServico;
 
-require_once __DIR__ . "/../vendor/autoload.php";
+require_once __DIR__ . "../vendor/autoload.php";
 
 $eventoServico = new EventoServico();
 $fotoServico = new FotoServico();
