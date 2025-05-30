@@ -1,4 +1,5 @@
 <?php
+
 use ProjetaBD\Helpers\Utils;
 use ProjetaBD\Services\FotoServico;
 
@@ -14,113 +15,120 @@ if (!empty($listarUm) && isset($listarUm[0])) {
     $fotoUser = $fotoServico->buscarPorUsuario($evento["usuario_id"]);
     $caminhoImagem = !empty($fotoUser['nome_arquivo']) ? Utils::getCaminhoImagem($fotoUser['nome_arquivo']) : null;
 ?>
-<div id="postModal" class="post-modal">
-    <div class="post-modal-conteudo">
-        <span class="fechar-modal">&times;</span>
-        <?php if ($imagem): ?>
-        <div class="post-modal-banner">
-            <img src="<?= $imagem ?>" alt="Banner do evento">
-        </div>
-        <?php endif; ?>
-
-        <div class="post-modal-header">
-            <?php if ($caminhoImagem): ?>
-                <img src="<?= $caminhoImagem ?>" alt="Foto de perfil de <?= $evento["usuario_nome"] ?>" style="width: 60px; height: 60px; border-radius: 50%; object-fit: cover; object-position: center;">
-            <?php else: ?>
-                <i class="fa-regular fa-user"></i>
+    <div id="postModal" class="post-modal">
+        <div class="post-modal-conteudo">
+            <span class="fechar-modal">&times;</span>
+            <?php if ($imagem): ?>
+                <div class="post-modal-banner">
+                    <img src="<?= $imagem ?>" alt="Banner do evento">
+                </div>
             <?php endif; ?>
-            <div class="post-header-info">
-                <h2 class="post-modal-titulo"><?=$evento["nome"]?></h2>
-                <div class="post-modal-meta">
-                    <span><i class="far fa-calendar"></i> <?= date('d/m/Y', strtotime($evento["data"])) ?></span>
-                    <span><i class="far fa-user"></i><a href="visita-perfil.php?user=<?=$evento["usuario_id"]?>"><?=$evento["usuario_nome"]?></a> </span>
-                </div>
-            </div>
-        </div>
 
-        <div class="post-modal-quebra">
-            <div class="post-modal-main">
-                <div class="post-modal-descricao">
-                    <h3>Sobre o Evento</h3>
-                    <p><?=$evento["descricao"]?></p>
-                </div>
-            </div>
-
-            <div class="post-modal-lateral">
-                <div class="post-modal-info">
-                    <div class="secao-info">
-                        <h4 class="secao-titulo">
-                            <i class="fas fa-info-circle"></i>
-                            Informações do Evento
-                        </h4>
-                        <div class="info-item">
-                            <i class="fas fa-map-marker-alt"></i>
-                            <span><strong>Local:</strong> <?=$evento["rua"]?>, <?=$evento["numero"]?> - <?=$evento["bairro"]?>. CEP: <?=$evento["CEP"]?>. <?=$evento["cidade"]?> - <?=$evento["UF"]?></span>
-                        </div>
-                        <div class="info-item">
-                            <i class="far fa-clock"></i>
-                            <span><strong>Horário:</strong> <?= date('H:i', strtotime($evento["hora"])) ?></span>
-                        </div>
-                        <div class="info-item">
-                            <i class="far fa-calendar"></i>
-                            <span><strong>Data:</strong> <?= date('d/m/Y', strtotime($evento["data"])) ?></span>
-                        </div>
-                    </div>
-
-                    <div class="secao-info">
-                        <h4 class="secao-titulo">
-                            <i class="fas fa-user-friends"></i>
-                            Organizadores
-                        </h4>
-                        <div class="info-item">
-                            <i class="far fa-user"></i>
-                            <span><strong>Responsável:</strong> <?=$evento["usuario_nome"]?></span>
-                        </div>
-                        <div class="info-item">
-                            <i class="far fa-building"></i>
-                            <span><strong>Organização:</strong> <?=$evento["projeto_nome"]?></span>
-                        </div>
-                    </div>
-
-                    <div class="secao-info">
-                        <h4 class="secao-titulo">
-                            <i class="fas fa-tag"></i>
-                            Detalhes
-                        </h4>
-                        <div class="info-item">
-                            <i class="far fa-id-card"></i>
-                            <span><strong>ID do Evento:</strong> #<?=$evento["id"]?></span>
-                        </div>
-                        <div class="info-item">
-                            <i class="fas fa-users"></i>
-                            <span><strong>Vagas:</strong> Ilimitadas</span>
-                        </div>
+            <div class="post-modal-header">
+                <?php if ($caminhoImagem): ?>
+                    <img src="<?= $caminhoImagem ?>" alt="Foto de perfil de <?= $evento["usuario_nome"] ?>" style="width: 60px; height: 60px; border-radius: 50%; object-fit: cover; object-position: center;">
+                <?php else: ?>
+                    <i class="fa-regular fa-user"></i>
+                <?php endif; ?>
+                <div class="post-header-info">
+                    <h2 class="post-modal-titulo"><?= $evento["nome"] ?></h2>
+                    <div class="post-modal-meta">
+                        <span><i class="far fa-calendar"></i> <?= date('d/m/Y', strtotime($evento["data"])) ?></span>
+                        <span><i class="far fa-user"></i><a href="visita-perfil.php?user=<?= $evento["usuario_id"] ?>"><?= $evento["usuario_nome"] ?></a> </span>
                     </div>
                 </div>
             </div>
-        </div>
 
-<!--         <div class="post-modal-acoes">
+            <div class="post-modal-quebra">
+                <div class="post-modal-main">
+                    <div class="post-modal-descricao">
+                        <h3>Sobre o Evento</h3>
+                        <p><?= $evento["descricao"] ?></p>
+                    </div>
+                </div>
+
+                <div class="post-modal-lateral">
+                    <div class="post-modal-info">
+                        <div class="secao-info">
+                            <h4 class="secao-titulo">
+                                <i class="fas fa-info-circle"></i>
+                                Informações do Evento
+                            </h4>
+                            <div class="info-item">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span><strong>Local:</strong> <?= $evento["rua"] ?>, <?= $evento["numero"] ?> - <?= $evento["bairro"] ?>. CEP: <?= $evento["CEP"] ?>. <?= $evento["cidade"] ?> - <?= $evento["UF"] ?></span>
+                            </div>
+                            <div class="info-item">
+                                <i class="far fa-clock"></i>
+                                <span><strong>Horário:</strong> <?= date('H:i', strtotime($evento["hora"])) ?></span>
+                            </div>
+                            <div class="info-item">
+                                <i class="far fa-calendar"></i>
+                                <span><strong>Data:</strong> <?= date('d/m/Y', strtotime($evento["data"])) ?></span>
+                            </div>
+                        </div>
+
+                        <div class="secao-info">
+                            <h4 class="secao-titulo">
+                                <i class="fas fa-user-friends"></i>
+                                Organizadores
+                            </h4>
+                            <div class="info-item">
+                                <i class="far fa-user"></i>
+                                <span><strong>Responsável:</strong> <?= $evento["usuario_nome"] ?></span>
+                            </div>
+                            <div class="info-item">
+                                <i class="far fa-building"></i>
+                                <span><strong>Organização:</strong> <?= $evento["projeto_nome"] ?></span>
+                            </div>
+                        </div>
+
+                        <div class="secao-info">
+                            <h4 class="secao-titulo">
+                                <i class="fas fa-tag"></i>
+                                Detalhes
+                            </h4>
+                            <div class="info-item">
+                                <i class="far fa-id-card"></i>
+                                <span><strong>ID do Evento:</strong> #<?= $evento["id"] ?></span>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-users"></i>
+                                <span><strong>Vagas:</strong> Ilimitadas</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--         <div class="post-modal-acoes">
             <button class="acoes-botao primeiro">
                 <i class="far fa-calendar-plus"></i>
                 Participar do Evento
             </button>
- --> 
-                 
-        <div class="post-modal-acoes">
-            <!-- Botão para Google Agenda -->
-            <button class="acoes-botao primeiro" onclick="window.open('https://calendar.google.com/calendar/render?action=TEMPLATE&text=<?=$evento['nome']?> - <?= date('d/m/Y', strtotime($evento["data"])) ?> - <?= date('H:i', strtotime($evento["hora"])) ?>&dates=<?= $evento['data']?>T120000Z/<?=$evento['data']?>T130000Z>&details=<?=$evento["rua"]?>, <?=$evento["numero"]?> - <?=$evento["bairro"]?>. CEP: <?=$evento["CEP"]?>. <?=$evento["cidade"]?> - <?=$evento["UF"]?>', '_blank', 'noopener,noreferrer');">
-         <i class="far fa-calendar-plus"></i>Participar do Evento</button>
+ -->
+
+            <div class="post-modal-acoes">
+                <!-- Botão para Google Agenda -->
+                <button class="acoes-botao primeiro" onclick="window.open('https://calendar.google.com/calendar/render?action=TEMPLATE&text=<?= $evento['nome'] ?> - <?= date('d/m/Y', strtotime($evento["data"])) ?> - <?= date('H:i', strtotime($evento["hora"])) ?>&dates=<?= $evento['data'] ?>T120000Z/<?= $evento['data'] ?>T130000Z>&details=<?= $evento["rua"] ?>, <?= $evento["numero"] ?> - <?= $evento["bairro"] ?>. CEP: <?= $evento["CEP"] ?>. <?= $evento["cidade"] ?> - <?= $evento["UF"] ?>', '_blank', 'noopener,noreferrer');">
+                    <i class="far fa-calendar-plus"></i>Participar do Evento</button>
 
 
+                <button class="acoes-botao segundo" onclick="window.open('https://wa.me/?text=Quero%20participar%20do%20<?= $evento['nome'] ?>.%0AData:%20<?= date('d/m/Y', strtotime($evento["data"])) ?>%0AHorário:%20<?= date('H:i', strtotime($evento["hora"])) ?>%0ALocal:%20<?= $evento["rua"] ?>,%20<?= $evento["numero"] ?>%20-%20<?= $evento["bairro"] ?>.%20CEP:%20<?= $evento["CEP"] ?>.%20<?= $evento["cidade"] ?>%20-%20<?= $evento["UF"] ?>%0Ahttps://navibe.tiagohub.com', '_blank', 'noopener,noreferrer');">
+
+                    <i class="far fa-share-square"></i>Compartilhar</button>
+
+
+                <!-- 
                 <button class="acoes-botao segundo">
                 <i class="far fa-share-square"></i>
                 Compartilhar
-            </button>
+            </button> -->
+            </div>
         </div>
     </div>
-</div>
-<?php } else { ?>
+<?php
+} else { ?>
     <div id="postModal" class="post-modal">
         <div class="post-modal-conteudo">
             <span class="fechar-modal">&times;</span>
