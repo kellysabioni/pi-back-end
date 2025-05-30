@@ -19,6 +19,7 @@ $projetoServico = new ProjetoServico();
 $id = filter_input(INPUT_GET, "id", FILTER_SANITIZE_NUMBER_INT);
 $projeto = $projetoServico->listarUm($id)[0];
 
+
 if (isset($_POST['atualizar'])) {
     try {
         $nome = filter_input(INPUT_POST, "nome", FILTER_SANITIZE_SPECIAL_CHARS);
@@ -153,7 +154,7 @@ if (isset($_POST['atualizar'])) {
 
                 <div class="form">
                     <label for="celular">Telefone </label>
-                    <input type="tel" id="celular" name="telefone" value="<?= $projeto['telefone'] ?>" >
+                    <input type="tel" id="celular" name="telefone" value="<?= $projeto['telefone'] ?>" required>
                 </div>
 
                 <div class="form">
