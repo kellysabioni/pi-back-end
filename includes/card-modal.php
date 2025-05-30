@@ -100,12 +100,22 @@ if (!empty($listarUm) && isset($listarUm[0])) {
             </div>
         </div>
 
-        <div class="post-modal-acoes">
+<!--         <div class="post-modal-acoes">
             <button class="acoes-botao primeiro">
                 <i class="far fa-calendar-plus"></i>
                 Participar do Evento
             </button>
-            <button class="acoes-botao segundo">
+ --> 
+ 
+                
+                
+        <div class="post-modal-acoes">
+            <!-- Botão para Google Agenda -->
+            <button class="acoes-botao primeiro" onclick="window.open('https://calendar.google.com/calendar/render?action=TEMPLATE&text=<?=$evento['nome']?> - <?= $evento['data']?> - <?=$evento['hora']?>&dates=<?= $evento['data']?>T120000Z/<?=$evento['data']?>T130000Z>&details=<?=$evento["rua"]?>, <?=$evento["numero"]?> - <?=$evento["bairro"]?>. CEP: <?=$evento["CEP"]?>. <?=$evento["cidade"]?> - <?=$evento["UF"]?>', '_blank', 'noopener,noreferrer');">
+         <i class="far fa-calendar-plus"></i>Participar do Evento</button>
+
+
+                <button class="acoes-botao segundo">
                 <i class="far fa-share-square"></i>
                 Compartilhar
             </button>
