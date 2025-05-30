@@ -33,11 +33,11 @@ foreach ($listarEventos as $evento) {
             <?php endif; ?>
             <div class="card-main">
                 <p class="card-conteudo">
-                    <strong>📍 Local:</strong> <?= $evento["rua"] ?><br>
-                    <strong>🗓️ Data:</strong> <?= date('d/m/Y', strtotime($evento["data"])) ?><br>
-                    <strong>🕒 Horário:</strong> <?= date('H:i', strtotime($evento["hora"])) ?><br>
-                    <strong>👥 Organizador:</strong> <?= $evento["usuario_nome"] ?><br>
-                    <strong>🏢 Organização: </strong> <?= $evento["projeto_nome"] ?><br><br>
+                    <strong>📍  Local:</strong> <?= $evento["rua"] ?><br>
+                    <strong>🗓️  Data:</strong> <?= date('d/m/Y', strtotime($evento["data"])) ?><br>
+                    <strong>🕒  Horário:</strong> <?= date('H:i', strtotime($evento["hora"])) ?><br>
+                    <strong>👥  Organizador:</strong> <?= $evento["usuario_nome"] ?><br>
+                    <strong>🏢  Organização: </strong> <?= $evento["projeto_nome"] ?><br><br>
                     <?= $evento["descricao"] ?>
                 </p>
             </div>
