@@ -103,13 +103,14 @@ class ProjetoServico
 
     public function projetosPerfil(int $id): array
     {
-        $sql = "SELECT projetos.*,
+        $sql = "SELECT 
+                    projetos.*,
                     usuarios.id AS usuario_id,
                     usuarios.nome AS usuario_nome,
                     fotos.nome_arquivo AS imagem
                 FROM projetos
                 LEFT JOIN usuarios ON projetos.usuarios_id = usuarios.id
-                LEFT JOIN fotos ON projetos.id = fotos.projetos_id
+                LEFT JOIN fotos ON projetos.id = fotos.projetos_id AND fotos.usuarios_id = projetos.usuarios_id
                 WHERE projetos.usuarios_id = :usuarios_id
                 ORDER BY projetos.created_at DESC";
 

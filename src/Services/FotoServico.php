@@ -112,9 +112,10 @@ class FotoServico
             $consulta->execute();
             
             $resultado = $consulta->fetch(PDO::FETCH_ASSOC);
+            error_log("Resultado da busca de foto do usuário {$usuarioId}: " . print_r($resultado, true));
             return $resultado !== false ? $resultado : null;
         } catch (Throwable $erro) {
-            throw new Exception("Erro ao buscar foto do evento: " . $erro->getMessage());
+            throw new Exception("Erro ao buscar foto do usuário: " . $erro->getMessage());
         }
     }
 } 

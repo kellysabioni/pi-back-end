@@ -161,13 +161,14 @@ class EventoServico
 
     public function eventosPerfil(int $id): array
     {
-        $sql = "SELECT eventos.*,
+        $sql = "SELECT 
+                    eventos.*,
                     usuarios.id AS usuario_id,
                     usuarios.nome AS usuario_nome,
                     fotos.nome_arquivo AS imagem
                 FROM eventos
                 LEFT JOIN usuarios ON eventos.usuarios_id = usuarios.id
-                LEFT JOIN fotos ON eventos.id = fotos.eventos_id
+                LEFT JOIN fotos ON eventos.id = fotos.eventos_id AND fotos.usuarios_id = eventos.usuarios_id
                 WHERE eventos.usuarios_id = :usuarios_id
                 ORDER BY eventos.created_at DESC";
 
