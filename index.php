@@ -90,12 +90,12 @@ if (isset($_POST['enviar'])) {
         <div id="resultados" class="visually-hidden"></div>
 
         <section class="acoes-index">
-            <div class="botoes-container">
+            <!-- <div class="botoes-container">
                 <i class="fas fa-plus"></i>
                 <input type="text" class="barra-criar" placeholder="Digite o nome do Projeto" autocomplete="off">
             </div>
-
-            <form method="GET" id="formFiltro" class="filtro-form">
+ -->
+<!--             <form method="GET" id="formFiltro" class="filtro-form">
                 <div class="botoes-container filtro-container">
                     <select name="categoria" id="categoriaProjeto" class="filtro-select" onchange="if(this.value === 'Selecione uma categoria') { window.location.href = 'index.php'; } else { document.getElementById('formFiltro').submit(); }">
                         <?php foreach (\ProjetaBD\Enums\Categoria::cases() as $categoria): ?>
@@ -106,7 +106,7 @@ if (isset($_POST['enviar'])) {
                     </select>
                     <i class="fas fa-filter filtro-icon"></i>
                 </div>
-            </form>
+            </form> -->
         </section>
 
         <section class="feed">

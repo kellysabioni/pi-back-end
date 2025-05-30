@@ -32,7 +32,7 @@ if (!empty($listarUm) && isset($listarUm[0])) {
             <div class="post-header-info">
                 <h2 class="post-modal-titulo"><?=$evento["nome"]?></h2>
                 <div class="post-modal-meta">
-                    <span><i class="far fa-calendar"></i> <?=$evento["data"]?></span>
+                    <span><i class="far fa-calendar"></i> <?= date('d/m/Y', strtotime($evento["data"])) ?></span>
                     <span><i class="far fa-user"></i><a href="visita-perfil.php?user=<?=$evento["usuario_id"]?>"><?=$evento["usuario_nome"]?></a> </span>
                 </div>
             </div>
@@ -59,11 +59,11 @@ if (!empty($listarUm) && isset($listarUm[0])) {
                         </div>
                         <div class="info-item">
                             <i class="far fa-clock"></i>
-                            <span><strong>Horário:</strong> <?=$evento["hora"]?></span>
+                            <span><strong>Horário:</strong> <?= date('H:i', strtotime($evento["hora"])) ?></span>
                         </div>
                         <div class="info-item">
                             <i class="far fa-calendar"></i>
-                            <span><strong>Data:</strong> <?=$evento["data"]?></span>
+                            <span><strong>Data:</strong> <?= date('d/m/Y', strtotime($evento["data"])) ?></span>
                         </div>
                     </div>
 
@@ -109,7 +109,7 @@ if (!empty($listarUm) && isset($listarUm[0])) {
                  
         <div class="post-modal-acoes">
             <!-- Botão para Google Agenda -->
-            <button class="acoes-botao primeiro" onclick="window.open('https://calendar.google.com/calendar/render?action=TEMPLATE&text=<?=$evento['nome']?> - <?= $evento['data']?> - <?=$evento['hora']?>&dates=<?= $evento['data']?>T120000Z/<?=$evento['data']?>T130000Z>&details=<?=$evento["rua"]?>, <?=$evento["numero"]?> - <?=$evento["bairro"]?>. CEP: <?=$evento["CEP"]?>. <?=$evento["cidade"]?> - <?=$evento["UF"]?>', '_blank', 'noopener,noreferrer');">
+            <button class="acoes-botao primeiro" onclick="window.open('https://calendar.google.com/calendar/render?action=TEMPLATE&text=<?=$evento['nome']?> - <?= date('d/m/Y', strtotime($evento["data"])) ?> - <?= date('H:i', strtotime($evento["hora"])) ?>&dates=<?= $evento['data']?>T120000Z/<?=$evento['data']?>T130000Z>&details=<?=$evento["rua"]?>, <?=$evento["numero"]?> - <?=$evento["bairro"]?>. CEP: <?=$evento["CEP"]?>. <?=$evento["cidade"]?> - <?=$evento["UF"]?>', '_blank', 'noopener,noreferrer');">
          <i class="far fa-calendar-plus"></i>Participar do Evento</button>
 
 
