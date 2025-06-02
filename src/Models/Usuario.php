@@ -11,7 +11,6 @@ class Usuario {
     private ?string $data_nascimento; 
     private ?string $created_at;
     private ?string $updated_at;
-    private ?string $imagem;
 
     public function __construct(  
         string $nome, 
