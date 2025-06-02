@@ -10,7 +10,7 @@ use ProjetaBD\Services\FotoServico;
 use ProjetaBD\Auth\ControleDeAcesso;
 use ProjetaBD\Helpers\Validacoes;
 
-require_once __DIR__ . "vendor/autoload.php";
+require_once "vendor/autoload.php";
 
 ControleDeAcesso::exigirLogin();
 

@@ -77,7 +77,6 @@ if (isset($_GET['confirmar-exclusao'])) {
                     <?php else: ?>
                         <i class="fa-regular fa-user"></i>
                     <?php endif; ?>
-                    <a href="atualizarUsuario.php?id=<?= $_SESSION['id'] ?>"><i class="fa-solid fa-pen"></i></a>
                 </div>
                 <div class="perfil-info">
                     <h2><?= $usuario['nome'] ?></h2>
