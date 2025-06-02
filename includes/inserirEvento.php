@@ -30,7 +30,8 @@ if (isset($_POST['enviar'])) {
         $cidade = filter_input(INPUT_POST, "cidade", FILTER_SANITIZE_SPECIAL_CHARS);
         $UF = filter_input(INPUT_POST, "UF", FILTER_SANITIZE_SPECIAL_CHARS);
         $telefone = filter_input(INPUT_POST, "telefone", FILTER_SANITIZE_SPECIAL_CHARS);
-        $categoria = Categoria::from(filter_input(INPUT_POST, "categoriaEvento", FILTER_SANITIZE_SPECIAL_CHARS));
+        $categoriaValue = filter_input(INPUT_POST, "categoriaEvento", FILTER_SANITIZE_SPECIAL_CHARS);
+        $categoria = constant("ProjetaBD\\Enums\\Categoria::" . $categoriaValue);
         $usuarios_id = $_SESSION['id'];
         $projetos_id = filter_input(INPUT_POST, "id_projeto", FILTER_SANITIZE_NUMBER_INT);
 
@@ -125,7 +126,7 @@ if (isset($_POST['enviar'])) {
             <label for="categoriaEvento">Categoria <span class="campo-obrigatorio">*</span></label>
             <select name="categoriaEvento" id="categoriaEvento">
                 <?php foreach (\ProjetaBD\Enums\Categoria::cases() as $categoria): ?>
-                    <option value="<?= $categoria->value ?>">
+                    <option value="<?= $categoria->name ?>">
                         <?= $categoria->value ?>
                     </option>
                 <?php endforeach; ?>

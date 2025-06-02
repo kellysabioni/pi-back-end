@@ -91,7 +91,7 @@ class EventoServico
             $consulta->bindValue(":cidade", $evento->getCidade(), PDO::PARAM_STR);
             $consulta->bindValue(":UF", $evento->getUF(), PDO::PARAM_STR);
             $consulta->bindValue(":telefone", $evento->getTelefone(), PDO::PARAM_STR);
-            $consulta->bindValue(":categoria", $evento->getCategoria()->value, PDO::PARAM_STR);
+            $consulta->bindValue(":categoria", $evento->getCategoria()->name, PDO::PARAM_STR);
             $consulta->bindValue(":usuarios_id", $evento->getUsuarios_id(), PDO::PARAM_STR);
             $consulta->bindValue(":projetos_id", $evento->getProjetos_id(), PDO::PARAM_INT);
 
@@ -231,7 +231,7 @@ class EventoServico
             $consulta->bindValue(":cidade", $evento->getCidade(), PDO::PARAM_STR);
             $consulta->bindValue(":UF", $evento->getUF(), PDO::PARAM_STR);
             $consulta->bindValue(":telefone", $evento->getTelefone(), PDO::PARAM_STR);
-            $consulta->bindValue(":categoria", $evento->getCategoria()->value, PDO::PARAM_STR);
+            $consulta->bindValue(":categoria", $evento->getCategoria()->name, PDO::PARAM_STR);
 
             $projetosId = $evento->getProjetos_id();
             if ($projetosId === "-1" || empty($projetosId)) {
